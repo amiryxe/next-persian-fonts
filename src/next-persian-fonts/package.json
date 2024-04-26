@@ -23,5 +23,8 @@
   "homepage": "https://github.com/amiryxe/next-persian-fonts#readme",
   "peerDependencies": {
     "next": ">=13.0.0"
+  },
+  "publishConfig": {
+    "next-persian-fonts": "https://npm.pkg.github.com"
   }
 }
