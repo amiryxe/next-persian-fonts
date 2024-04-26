@@ -1,8 +1,6 @@
-import { sahel } from '@/next-persian-fonts'
-
 export default function Home() {
   return (
-    <div className={`container py-8 flex flex-col gap-8 ${sahel.className}`} dir="rtl">
+    <div className={`container py-8 flex flex-col gap-8`} dir="rtl">
       <div>
         <h1 className="font-sans font-light text-4xl">Next Persian Fonts</h1>
         <h2 className="font-bold text-2xl">پکیج مجموعه فونت‌های فارسی برای Next.js</h2>

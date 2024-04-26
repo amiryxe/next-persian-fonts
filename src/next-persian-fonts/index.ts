@@ -1,2 +1,2 @@
-export * from './assets/fonts/sahel';
-export * from './assets/fonts/vazirmatn';
+export * from './sahel'
+export * from './vazirmatn'
