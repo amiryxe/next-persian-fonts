@@ -1,0 +1,27 @@
+{
+  "name": "next-persian-fonts",
+  "version": "0.1.0",
+  "description": "Persian Fonts for next.js projects",
+  "author": "Amir Salehi (@amiryxe)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amiryxe/next-persian-fonts.git"
+  },
+  "keywords": [
+    "fonts",
+    "persian",
+    "next"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amiryxe/next-persian-fonts/issues"
+  },
+  "homepage": "https://github.com/amiryxe/next-persian-fonts#readme",
+  "peerDependencies": {
+    "next": ">=13.0.0"
+  }
+}
