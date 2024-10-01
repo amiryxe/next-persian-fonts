@@ -1,6 +1,6 @@
 {
   "name": "next-persian-fonts",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Persian Fonts for next.js projects",
   "author": "Amir Salehi (@amiryxe)",
   "main": "index.js",
