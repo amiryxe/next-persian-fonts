@@ -8,7 +8,7 @@ npm install next-persian-fonts
 
 ## Use
 ```javascript
-import {sahel} from 'next-persian-fonts'
+import {sahel} from 'next-persian-fonts/sahel'
 ```
 
 ## Demo

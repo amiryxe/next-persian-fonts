@@ -25,7 +25,7 @@ export default function Home() {
       <section>
         <h2>استفاده:</h2>
 
-        <code>{"import { vazirMatn } from 'next-persian-fonts/next-persian-fonts/vazirmatn'"}</code>
+        <code dir="ltr">{"import { vazirMatn } from 'next-persian-fonts/vazirmatn'"}</code>
       </section>
     </div>
   )

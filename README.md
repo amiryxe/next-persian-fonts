@@ -8,7 +8,7 @@ npm install next-persian-fonts
 
 ## Use
 ```javascript
-import { vazirMatn } from 'next-persian-fonts/next-persian-fonts/vazirmatn
+import { vazirMatn } from 'next-persian-fonts/vazirmatn'
 ```
 | You can also use `sahel` and `estedad` font.
 
