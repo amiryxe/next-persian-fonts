@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { sahel } from '@/next-persian-fonts'
+import { sahel } from '@/next-persian-fonts/sahel'
 import './globals.css'
 
 export const metadata: Metadata = {

@@ -12,6 +12,7 @@ export default function Home() {
         <ul className="list-disc pr-8">
           <li>فونت ساحل</li>
           <li>فونت وزیر</li>
+          <li>فونت استعداد</li>
         </ul>
       </article>
 
@@ -24,12 +25,7 @@ export default function Home() {
       <section>
         <h2>استفاده:</h2>
 
-        <code>
-          {/* import {sahel} from '@/next-persian-fonts'
-            <div
-              className={`container py-8 flex flex-col gap-8 ${sahel.className}`}
-            > */}
-        </code>
+        <code>{"import { vazirMatn } from 'next-persian-fonts/next-persian-fonts/vazirmatn'"}</code>
       </section>
     </div>
   )
