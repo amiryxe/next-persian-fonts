@@ -1,38 +1,171 @@
 {
   "name": "next-persian-fonts",
-  "version": "1.0.1",
-  "description": "Persian Fonts for next.js projects",
+  "version": "1.1.0",
+  "description": "Self-hosted Persian (Farsi) fonts for Next.js via next/font/local: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak and more, with TypeScript types.",
   "author": "Amir Salehi (@amiryxe)",
+  "license": "ISC AND OFL-1.1 AND Bitstream-Vera AND Apache-2.0",
   "type": "module",
+  "sideEffects": false,
   "main": "./index.js",
+  "types": "./index.d.ts",
   "exports": {
-    ".": "./index.js",
-    "./sahel": "./sahel/index.js",
-    "./vazirmatn": "./vazirmatn/index.js",
-    "./estedad": "./estedad/index.js"
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./vazirmatn": {
+      "types": "./vazirmatn/index.d.ts",
+      "default": "./vazirmatn/index.js"
+    },
+    "./vazirmatn-variable": {
+      "types": "./vazirmatn-variable/index.d.ts",
+      "default": "./vazirmatn-variable/index.js"
+    },
+    "./vazirmatn-round-dots": {
+      "types": "./vazirmatn-round-dots/index.d.ts",
+      "default": "./vazirmatn-round-dots/index.js"
+    },
+    "./sahel": {
+      "types": "./sahel/index.d.ts",
+      "default": "./sahel/index.js"
+    },
+    "./sahel-fd": {
+      "types": "./sahel-fd/index.d.ts",
+      "default": "./sahel-fd/index.js"
+    },
+    "./estedad": {
+      "types": "./estedad/index.d.ts",
+      "default": "./estedad/index.js"
+    },
+    "./samim": {
+      "types": "./samim/index.d.ts",
+      "default": "./samim/index.js"
+    },
+    "./samim-fd": {
+      "types": "./samim-fd/index.d.ts",
+      "default": "./samim-fd/index.js"
+    },
+    "./shabnam": {
+      "types": "./shabnam/index.d.ts",
+      "default": "./shabnam/index.js"
+    },
+    "./shabnam-fd": {
+      "types": "./shabnam-fd/index.d.ts",
+      "default": "./shabnam-fd/index.js"
+    },
+    "./tanha": {
+      "types": "./tanha/index.d.ts",
+      "default": "./tanha/index.js"
+    },
+    "./tanha-fd": {
+      "types": "./tanha-fd/index.d.ts",
+      "default": "./tanha-fd/index.js"
+    },
+    "./parastoo": {
+      "types": "./parastoo/index.d.ts",
+      "default": "./parastoo/index.js"
+    },
+    "./parastoo-fd": {
+      "types": "./parastoo-fd/index.d.ts",
+      "default": "./parastoo-fd/index.js"
+    },
+    "./gandom": {
+      "types": "./gandom/index.d.ts",
+      "default": "./gandom/index.js"
+    },
+    "./gandom-fd": {
+      "types": "./gandom-fd/index.d.ts",
+      "default": "./gandom-fd/index.js"
+    },
+    "./mikhak": {
+      "types": "./mikhak/index.d.ts",
+      "default": "./mikhak/index.js"
+    },
+    "./mikhak-fd": {
+      "types": "./mikhak-fd/index.d.ts",
+      "default": "./mikhak-fd/index.js"
+    },
+    "./vazir-code": {
+      "types": "./vazir-code/index.d.ts",
+      "default": "./vazir-code/index.js"
+    },
+    "./vazir-code-fd": {
+      "types": "./vazir-code-fd/index.d.ts",
+      "default": "./vazir-code-fd/index.js"
+    },
+    "./behdad": {
+      "types": "./behdad/index.d.ts",
+      "default": "./behdad/index.js"
+    },
+    "./nika": {
+      "types": "./nika/index.d.ts",
+      "default": "./nika/index.js"
+    },
+    "./fonts.json": "./fonts.json",
+    "./package.json": "./package.json"
   },
   "files": [
     "index.js",
-    "sahel",
+    "index.d.ts",
+    "types.d.ts",
+    "fonts.json",
+    "FONTS.md",
+    "LICENSE.md",
+    "README.md",
     "vazirmatn",
+    "vazirmatn-variable",
+    "vazirmatn-round-dots",
+    "sahel",
+    "sahel-fd",
     "estedad",
-    "README.md"
+    "samim",
+    "samim-fd",
+    "shabnam",
+    "shabnam-fd",
+    "tanha",
+    "tanha-fd",
+    "parastoo",
+    "parastoo-fd",
+    "gandom",
+    "gandom-fd",
+    "mikhak",
+    "mikhak-fd",
+    "vazir-code",
+    "vazir-code-fd",
+    "behdad",
+    "nika"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amiryxe/next-persian-fonts.git"
   },
-  "keywords": [
-    "fonts",
-    "persian",
-    "next"
-  ],
-  "license": "ISC",
+  "homepage": "https://amiryxe.github.io/next-persian-fonts/",
   "bugs": {
     "url": "https://github.com/amiryxe/next-persian-fonts/issues"
   },
-  "homepage": "https://github.com/amiryxe/next-persian-fonts#readme",
+  "keywords": [
+    "next",
+    "nextjs",
+    "next-font",
+    "next/font",
+    "fonts",
+    "persian",
+    "farsi",
+    "arabic",
+    "rtl",
+    "vazirmatn",
+    "vazir",
+    "estedad",
+    "sahel",
+    "samim",
+    "shabnam",
+    "mikhak",
+    "webfont"
+  ],
   "peerDependencies": {
-    "next": ">=13.0.0"
+    "next": ">=13.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0"
   }
 }

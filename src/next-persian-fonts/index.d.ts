@@ -3,6 +3,7 @@
 // (sahel, vazirmatn, estedad) for backward compatibility. Every font imported
 // through this barrel ends up in your CSS, so prefer subpath imports such as
 // `import { samim } from 'next-persian-fonts/samim'`.
+export type { PersianFont } from './types.js'
 export * from './vazirmatn/index.js'
 export * from './sahel/index.js'
 export * from './estedad/index.js'

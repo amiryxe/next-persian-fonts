@@ -1,0 +1,673 @@
+{
+  "$comment": "Source of truth for bundled fonts. Run `npm run fonts:generate` after editing; `npm run fonts:update` re-downloads files from upstream.",
+  "families": [
+    {
+      "id": "vazirmatn",
+      "name": "Vazirmatn",
+      "nameFa": "وزیرمتن",
+      "designer": "Saber Rastikerdar",
+      "category": "sans-serif",
+      "repo": "rastikerdar/vazirmatn",
+      "version": "33.003",
+      "ref": "v33.003",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "vazirmatn",
+          "export": "vazirMatn",
+          "aliases": [
+            "vazirmatnFD"
+          ],
+          "cssVariable": "--font-vazirmatn",
+          "digits": "persian",
+          "legacy": true,
+          "description": "Vazirmatn with Persian (Farsi) digits, 9 static weights (100-900). Same as next-persian-fonts 1.0.x.",
+          "files": [
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/Vazirmatn-FD-Thin.woff2",
+              "to": "Vazirmatn-FD-Thin.woff2",
+              "weight": "100"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/Vazirmatn-FD-ExtraLight.woff2",
+              "to": "Vazirmatn-FD-ExtraLight.woff2",
+              "weight": "200"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/Vazirmatn-FD-Light.woff2",
+              "to": "Vazirmatn-FD-Light.woff2",
+              "weight": "300"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/Vazirmatn-FD-Regular.woff2",
+              "to": "Vazirmatn-FD-Regular.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/Vazirmatn-FD-Medium.woff2",
+              "to": "Vazirmatn-FD-Medium.woff2",
+              "weight": "500"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/Vazirmatn-FD-SemiBold.woff2",
+              "to": "Vazirmatn-FD-SemiBold.woff2",
+              "weight": "600"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/Vazirmatn-FD-Bold.woff2",
+              "to": "Vazirmatn-FD-Bold.woff2",
+              "weight": "700"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/Vazirmatn-FD-ExtraBold.woff2",
+              "to": "Vazirmatn-FD-ExtraBold.woff2",
+              "weight": "800"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/Vazirmatn-FD-Black.woff2",
+              "to": "Vazirmatn-FD-Black.woff2",
+              "weight": "900"
+            }
+          ]
+        },
+        {
+          "subpath": "vazirmatn-variable",
+          "export": "vazirmatnVariable",
+          "cssVariable": "--font-vazirmatn-variable",
+          "digits": "latin",
+          "description": "Vazirmatn variable font (wght 100-900) in a single file, Latin digits.",
+          "files": [
+            {
+              "from": "fonts/webfonts/Vazirmatn[wght].woff2",
+              "to": "Vazirmatn[wght].woff2",
+              "weight": "100 900"
+            }
+          ]
+        },
+        {
+          "subpath": "vazirmatn-round-dots",
+          "export": "vazirmatnRoundDots",
+          "cssVariable": "--font-vazirmatn-round-dots",
+          "digits": "latin",
+          "description": "Vazirmatn Round Dots variable font (wght 100-900), Latin digits.",
+          "files": [
+            {
+              "from": "Round-Dots/fonts/webfonts/Vazirmatn-RD[wght].woff2",
+              "to": "Vazirmatn-RD[wght].woff2",
+              "weight": "100 900"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sahel",
+      "name": "Sahel",
+      "nameFa": "ساحل",
+      "designer": "Saber Rastikerdar",
+      "category": "sans-serif",
+      "repo": "rastikerdar/sahel-font",
+      "version": "3.4.0",
+      "ref": "v3.4.0",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "LICENSE",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "sahel",
+          "export": "sahel",
+          "cssVariable": "--font-sahel",
+          "digits": "latin",
+          "legacy": true,
+          "description": "Sahel variable font (wght 400-900), Latin digits.",
+          "files": [
+            {
+              "from": "dist/Sahel-VF.woff2",
+              "to": "Sahel-VF.woff2",
+              "weight": "400 900"
+            }
+          ]
+        },
+        {
+          "subpath": "sahel-fd",
+          "export": "sahelFD",
+          "cssVariable": "--font-sahel-fd",
+          "digits": "persian",
+          "description": "Sahel with Persian digits, 5 static weights.",
+          "files": [
+            {
+              "from": "dist/Farsi-Digits/Sahel-Light-FD.woff2",
+              "to": "Sahel-Light-FD.woff2",
+              "weight": "300"
+            },
+            {
+              "from": "dist/Farsi-Digits/Sahel-FD.woff2",
+              "to": "Sahel-FD.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "dist/Farsi-Digits/Sahel-SemiBold-FD.woff2",
+              "to": "Sahel-SemiBold-FD.woff2",
+              "weight": "600"
+            },
+            {
+              "from": "dist/Farsi-Digits/Sahel-Bold-FD.woff2",
+              "to": "Sahel-Bold-FD.woff2",
+              "weight": "700"
+            },
+            {
+              "from": "dist/Farsi-Digits/Sahel-Black-FD.woff2",
+              "to": "Sahel-Black-FD.woff2",
+              "weight": "900"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "estedad",
+      "name": "Estedad",
+      "nameFa": "استعداد",
+      "designer": "Amin Abedi",
+      "category": "sans-serif",
+      "repo": "aminabedi68/Estedad",
+      "version": "8.5",
+      "ref": "8.5",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "estedad",
+          "export": "estedad",
+          "cssVariable": "--font-estedad",
+          "digits": "latin",
+          "legacy": true,
+          "description": "Estedad variable font (wght 100-900), Latin digits.",
+          "files": [
+            {
+              "from": "fonts/Estedad[wght].woff2",
+              "to": "Estedad[wght].woff2",
+              "weight": "100 900"
+            }
+          ],
+          "extra": [
+            {
+              "export": "estedadFD",
+              "cssVariable": "--font-estedad-fd",
+              "digits": "persian",
+              "preload": false,
+              "deprecated": "Estedad 8.x no longer ships a Farsi-digits build, so `estedadFD` stays on Estedad 7.3 (the file shipped in next-persian-fonts 1.0.x). Use `estedad` (8.5) for new projects. Not preloaded by default.",
+              "version": "7.3",
+              "pinned": true,
+              "description": "Estedad 7.3 variable font with Persian digits (wght 100-900, KSHD axis). Deprecated.",
+              "files": [
+                {
+                  "from": null,
+                  "to": "Estedad-FD[KSHD,wght].woff2",
+                  "weight": "100 900"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "samim",
+      "name": "Samim",
+      "nameFa": "صمیم",
+      "designer": "Saber Rastikerdar",
+      "category": "sans-serif",
+      "repo": "rastikerdar/samim-font",
+      "version": "4.0.5",
+      "ref": "v4.0.5",
+      "license": "OFL-1.1 (Arabic glyphs) + Bitstream Vera / Apache-2.0 (Latin glyphs)",
+      "licenseFile": {
+        "from": "LICENSE",
+        "to": "LICENSE.txt"
+      },
+      "variants": [
+        {
+          "subpath": "samim",
+          "export": "samim",
+          "cssVariable": "--font-samim",
+          "digits": "latin",
+          "description": "Samim, 3 static weights (400, 500, 700), Latin digits.",
+          "files": [
+            {
+              "from": "dist/Samim.woff2",
+              "to": "Samim.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "dist/Samim-Medium.woff2",
+              "to": "Samim-Medium.woff2",
+              "weight": "500"
+            },
+            {
+              "from": "dist/Samim-Bold.woff2",
+              "to": "Samim-Bold.woff2",
+              "weight": "700"
+            }
+          ]
+        },
+        {
+          "subpath": "samim-fd",
+          "export": "samimFD",
+          "cssVariable": "--font-samim-fd",
+          "digits": "persian",
+          "description": "Samim with Persian digits, 3 static weights (400, 500, 700).",
+          "files": [
+            {
+              "from": "dist/Farsi-Digits/Samim-FD.woff2",
+              "to": "Samim-FD.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "dist/Farsi-Digits/Samim-Medium-FD.woff2",
+              "to": "Samim-Medium-FD.woff2",
+              "weight": "500"
+            },
+            {
+              "from": "dist/Farsi-Digits/Samim-Bold-FD.woff2",
+              "to": "Samim-Bold-FD.woff2",
+              "weight": "700"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shabnam",
+      "name": "Shabnam",
+      "nameFa": "شبنم",
+      "designer": "Saber Rastikerdar",
+      "category": "sans-serif",
+      "repo": "rastikerdar/shabnam-font",
+      "version": "5.0.1",
+      "ref": "v5.0.1",
+      "license": "OFL-1.1 (Arabic glyphs) + Bitstream Vera / Apache-2.0 (Latin glyphs)",
+      "licenseFile": {
+        "from": "LICENSE",
+        "to": "LICENSE.txt"
+      },
+      "variants": [
+        {
+          "subpath": "shabnam",
+          "export": "shabnam",
+          "cssVariable": "--font-shabnam",
+          "digits": "latin",
+          "description": "Shabnam, 5 static weights (100, 300, 400, 500, 700), Latin digits.",
+          "files": [
+            {
+              "from": "dist/Shabnam-Thin.woff2",
+              "to": "Shabnam-Thin.woff2",
+              "weight": "100"
+            },
+            {
+              "from": "dist/Shabnam-Light.woff2",
+              "to": "Shabnam-Light.woff2",
+              "weight": "300"
+            },
+            {
+              "from": "dist/Shabnam.woff2",
+              "to": "Shabnam.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "dist/Shabnam-Medium.woff2",
+              "to": "Shabnam-Medium.woff2",
+              "weight": "500"
+            },
+            {
+              "from": "dist/Shabnam-Bold.woff2",
+              "to": "Shabnam-Bold.woff2",
+              "weight": "700"
+            }
+          ]
+        },
+        {
+          "subpath": "shabnam-fd",
+          "export": "shabnamFD",
+          "cssVariable": "--font-shabnam-fd",
+          "digits": "persian",
+          "description": "Shabnam with Persian digits, 5 static weights.",
+          "files": [
+            {
+              "from": "dist/Farsi-Digits/Shabnam-Thin-FD.woff2",
+              "to": "Shabnam-Thin-FD.woff2",
+              "weight": "100"
+            },
+            {
+              "from": "dist/Farsi-Digits/Shabnam-Light-FD.woff2",
+              "to": "Shabnam-Light-FD.woff2",
+              "weight": "300"
+            },
+            {
+              "from": "dist/Farsi-Digits/Shabnam-FD.woff2",
+              "to": "Shabnam-FD.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "dist/Farsi-Digits/Shabnam-Medium-FD.woff2",
+              "to": "Shabnam-Medium-FD.woff2",
+              "weight": "500"
+            },
+            {
+              "from": "dist/Farsi-Digits/Shabnam-Bold-FD.woff2",
+              "to": "Shabnam-Bold-FD.woff2",
+              "weight": "700"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tanha",
+      "name": "Tanha",
+      "nameFa": "تنها",
+      "designer": "Saber Rastikerdar",
+      "category": "display",
+      "repo": "rastikerdar/tanha-font",
+      "version": "0.10",
+      "ref": "v0.10",
+      "license": "Bitstream Vera License + Public Domain (changes) + Apache-2.0 (Latin glyphs)",
+      "licenseFile": {
+        "from": "LICENSE",
+        "to": "LICENSE.txt"
+      },
+      "variants": [
+        {
+          "subpath": "tanha",
+          "export": "tanha",
+          "cssVariable": "--font-tanha",
+          "digits": "latin",
+          "description": "Tanha, single weight (400), Latin digits.",
+          "files": [
+            {
+              "from": "dist/Tanha.woff2",
+              "to": "Tanha.woff2",
+              "weight": "400"
+            }
+          ]
+        },
+        {
+          "subpath": "tanha-fd",
+          "export": "tanhaFD",
+          "cssVariable": "--font-tanha-fd",
+          "digits": "persian",
+          "description": "Tanha with Persian digits, single weight (400).",
+          "files": [
+            {
+              "from": "dist/Farsi-Digits/Tanha-FD.woff2",
+              "to": "Tanha-FD.woff2",
+              "weight": "400"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parastoo",
+      "name": "Parastoo",
+      "nameFa": "پرستو",
+      "designer": "Saber Rastikerdar",
+      "category": "serif",
+      "repo": "rastikerdar/parastoo-font",
+      "version": "2.0.1",
+      "ref": "v2.0.1",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "LICENSE",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "parastoo",
+          "export": "parastoo",
+          "cssVariable": "--font-parastoo",
+          "digits": "latin",
+          "description": "Parastoo, 2 static weights (400, 700), Latin digits.",
+          "files": [
+            {
+              "from": "dist/Parastoo.woff2",
+              "to": "Parastoo.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "dist/Parastoo-Bold.woff2",
+              "to": "Parastoo-Bold.woff2",
+              "weight": "700"
+            }
+          ]
+        },
+        {
+          "subpath": "parastoo-fd",
+          "export": "parastooFD",
+          "cssVariable": "--font-parastoo-fd",
+          "digits": "persian",
+          "description": "Parastoo with Persian digits, 2 static weights (400, 700).",
+          "files": [
+            {
+              "from": "dist/Farsi-Digits/Parastoo-FD.woff2",
+              "to": "Parastoo-FD.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "dist/Farsi-Digits/Parastoo-Bold-FD.woff2",
+              "to": "Parastoo-Bold-FD.woff2",
+              "weight": "700"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gandom",
+      "name": "Gandom",
+      "nameFa": "گندم",
+      "designer": "Saber Rastikerdar",
+      "category": "serif",
+      "repo": "rastikerdar/gandom-font",
+      "version": "0.8",
+      "ref": "v0.8",
+      "license": "OFL-1.1 (Arabic glyphs) + Bitstream Vera / Apache-2.0 (Latin glyphs)",
+      "licenseFile": {
+        "from": "LICENSE",
+        "to": "LICENSE.txt"
+      },
+      "variants": [
+        {
+          "subpath": "gandom",
+          "export": "gandom",
+          "cssVariable": "--font-gandom",
+          "digits": "latin",
+          "description": "Gandom, single weight (400), Latin digits.",
+          "files": [
+            {
+              "from": "dist/Gandom.woff2",
+              "to": "Gandom.woff2",
+              "weight": "400"
+            }
+          ]
+        },
+        {
+          "subpath": "gandom-fd",
+          "export": "gandomFD",
+          "cssVariable": "--font-gandom-fd",
+          "digits": "persian",
+          "description": "Gandom with Persian digits, single weight (400).",
+          "files": [
+            {
+              "from": "dist/Farsi-Digits/Gandom-FD.woff2",
+              "to": "Gandom-FD.woff2",
+              "weight": "400"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mikhak",
+      "name": "Mikhak",
+      "nameFa": "میخک",
+      "designer": "Amin Abedi",
+      "category": "sans-serif",
+      "repo": "aminabedi68/Mikhak",
+      "version": "3.4",
+      "ref": "9dea055eb3dfc752879442224460c6e5d6ebe232",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "mikhak",
+          "export": "mikhak",
+          "cssVariable": "--font-mikhak",
+          "digits": "latin",
+          "description": "Mikhak variable font (wght 100-900, plus DSTY and KSHD axes), Latin digits.",
+          "files": [
+            {
+              "from": "fonts/webfonts/variable/Mikhak[DSTY,KSHD,wght].woff2",
+              "to": "Mikhak[DSTY,KSHD,wght].woff2",
+              "weight": "100 900"
+            }
+          ]
+        },
+        {
+          "subpath": "mikhak-fd",
+          "export": "mikhakFD",
+          "cssVariable": "--font-mikhak-fd",
+          "digits": "persian",
+          "description": "Mikhak variable font with Persian digits (wght 100-900, plus DSTY and KSHD axes).",
+          "files": [
+            {
+              "from": "fonts/webfonts/variable/Mikhak-FD[DSTY,KSHD,wght].woff2",
+              "to": "Mikhak-FD[DSTY,KSHD,wght].woff2",
+              "weight": "100 900"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vazir-code",
+      "name": "Vazir Code",
+      "nameFa": "وزیر کد",
+      "designer": "Saber Rastikerdar",
+      "category": "monospace",
+      "repo": "rastikerdar/vazir-code-font",
+      "version": "1.1.2",
+      "ref": "abc484a90c685430c09332c4a6a65b0b1314de1f",
+      "license": "Bitstream Vera License + Public Domain (changes)",
+      "licenseFile": {
+        "from": "LICENSE",
+        "to": "LICENSE.txt"
+      },
+      "variants": [
+        {
+          "subpath": "vazir-code",
+          "export": "vazirCode",
+          "cssVariable": "--font-vazir-code",
+          "digits": "latin",
+          "description": "Vazir Code monospace font, single weight (400), Latin digits.",
+          "files": [
+            {
+              "from": "dist/Vazir-Code.woff2",
+              "to": "Vazir-Code.woff2",
+              "weight": "400"
+            }
+          ]
+        },
+        {
+          "subpath": "vazir-code-fd",
+          "export": "vazirCodeFD",
+          "cssVariable": "--font-vazir-code-fd",
+          "digits": "persian",
+          "description": "Vazir Code monospace font with Persian digits, single weight (400).",
+          "files": [
+            {
+              "from": "dist/Farsi-Digits/Vazir-Code-FD.woff2",
+              "to": "Vazir-Code-FD.woff2",
+              "weight": "400"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "behdad",
+      "name": "Behdad",
+      "nameFa": "بهداد",
+      "designer": "Mohammad Saleh Souzanchi (Font Store)",
+      "category": "sans-serif",
+      "repo": "font-store/BehdadFont",
+      "version": "1.0.0",
+      "ref": "7c302bb454eef288edbaf67792d3f4e5abb91f24",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "behdad",
+          "export": "behdad",
+          "cssVariable": "--font-behdad",
+          "digits": "none",
+          "description": "Behdad, single weight (400). Arabic-script only (no Latin letters or Latin digits): pair it with a Latin font.",
+          "files": [
+            {
+              "from": "Behdad-1.0.0/Behdad-Regular.woff2",
+              "to": "Behdad-Regular.woff2",
+              "weight": "400"
+            }
+          ]
+        }
+      ],
+      "archive": "https://github.com/font-store/BehdadFont/releases/download/1.0.0/Behdad-1.0.0.zip"
+    },
+    {
+      "id": "nika",
+      "name": "Nika",
+      "nameFa": "نیکا",
+      "designer": "Mohammad Saleh Souzanchi (Font Store)",
+      "category": "display",
+      "repo": "font-store/NikaFont",
+      "version": "1.0.0",
+      "ref": "476b4ab5d2aa2b7466a1141618bd4ffcaf39cdd1",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "nika",
+          "export": "nika",
+          "cssVariable": "--font-nika",
+          "digits": "none",
+          "description": "Nika display font, single weight (400). Arabic-script only (no Latin letters or Latin digits): pair it with a Latin font.",
+          "files": [
+            {
+              "from": "dist/Nika-Regular.woff2",
+              "to": "Nika-Regular.woff2",
+              "weight": "400"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
