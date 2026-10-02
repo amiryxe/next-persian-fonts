@@ -167,7 +167,7 @@ export default function Home() {
               فونت‌های فارسی، <span className="text-emerald-600 dark:text-emerald-400">آماده برای Next.js</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300">
-              {fa(familyCount)} فونت فارسی رایگان، داخل خود پکیج: وزیرمتن، استعداد، ساحل و فونت‌های فارسی Google Fonts مثل لاله‌زار و نوتو. بدون گوگل و CDN، پس حتی وقتی اینترنت بین‌الملل قطع است هم سایت و build شما کار می‌کند.
+              {fa(familyCount)} خانوادهٔ فونت فارسی رایگان، داخل خود پکیج: وزیرمتن، استعداد، ساحل و فونت‌های فارسی Google Fonts مثل لاله‌زار و نوتو. بدون گوگل و CDN، پس حتی وقتی اینترنت بین‌الملل قطع است هم سایت و build شما کار می‌کند.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <div className="flex items-center gap-3 rounded-xl border border-zinc-300 bg-white py-2 pe-2 ps-4 shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
@@ -179,7 +179,7 @@ export default function Home() {
             <dl className="mt-12 grid max-w-2xl grid-cols-3 gap-4 text-center">
               {[
                 [fa(familyCount), 'خانوادهٔ فونت'],
-                [fa(variantCount), 'خروجی آماده'],
+                [fa(variantCount), 'نسخه (FD، متغیر و…)'],
                 [fa(googleCount), 'فونت Google، آفلاین'],
               ].map(([v, l]) => (
                 <div key={l} className="rounded-xl border border-zinc-200 bg-white/60 p-4 dark:border-zinc-800 dark:bg-zinc-900/40">

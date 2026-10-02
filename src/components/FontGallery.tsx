@@ -33,6 +33,208 @@ function nearestWeight(f: FontEntry, w: number) {
   return f.weights.reduce((a, b) => (Math.abs(b - w) < Math.abs(a - w) ? b : a))
 }
 
+/** A dimension along which the variants of one family differ. */
+type Axis = { key: string; label: string; value: (f: FontEntry) => string; names: Record<string, string> }
+
+const AXES: Axis[] = [
+  { key: 'digits', label: 'ارقام', value: (f) => f.digits, names: { persian: '۱۲۳ فارسی', latin: '123 لاتین', none: 'بدون رقم لاتین' } },
+  { key: 'kind', label: 'نوع', value: (f) => (f.isVariable ? 'variable' : 'static'), names: { static: 'ثابت', variable: 'متغیر' } },
+  { key: 'dots', label: 'نقطه‌ها', value: (f) => (f.subpath.includes('round-dots') ? 'round' : 'standard'), names: { standard: 'معمولی', round: 'گرد' } },
+]
+
+export type Family = {
+  id: string
+  name: string
+  nameFa: string
+  designer: string
+  category: string
+  googleFonts: boolean
+  hasItalic: boolean
+  variants: FontEntry[]
+}
+
+export function groupFamilies(fonts: FontEntry[]): Family[] {
+  const map = new Map<string, Family>()
+  for (const f of fonts) {
+    const fam = map.get(f.familyId) ?? { id: f.familyId, name: f.name, nameFa: f.nameFa, designer: f.designer, category: f.category, googleFonts: f.googleFonts, hasItalic: false, variants: [] }
+    fam.variants.push(f)
+    fam.hasItalic ||= f.hasItalic
+    map.set(f.familyId, fam)
+  }
+  return [...map.values()]
+}
+
+/** Axes that have more than one value and are not just a mirror of an axis already shown. */
+function axesFor(variants: FontEntry[]) {
+  const sig = (ax: Axis) => {
+    const seen: string[] = []
+    return variants.map((v) => { const x = ax.value(v); if (!seen.includes(x)) seen.push(x); return seen.indexOf(x) }).join()
+  }
+  const shown: { axis: Axis; sig: string }[] = []
+  for (const axis of AXES) {
+    const values = new Set(variants.map(axis.value))
+    if (values.size < 2) continue
+    const s = sig(axis)
+    if (shown.some((x) => x.sig === s)) continue
+    shown.push({ axis, sig: s })
+  }
+  return shown.map((x) => x.axis)
+}
+
+function defaultVariant(variants: FontEntry[], persianDigits: boolean) {
+  const want = persianDigits ? 'persian' : 'latin'
+  const score = (f: FontEntry) => (f.deprecated ? 0 : 4) + (f.digits === want ? 2 : 0) + (f.subpath.includes('round-dots') ? 0 : 1)
+  return variants.reduce((best, f) => (score(f) > score(best) ? f : best))
+}
+
+/** Pick the variant with `axis = value` that keeps as many of the current variant's other properties as possible. */
+function switchVariant(variants: FontEntry[], current: FontEntry, axis: Axis, value: string) {
+  const candidates = variants.filter((v) => axis.value(v) === value)
+  const score = (f: FontEntry) => AXES.filter((a) => a.value(f) === a.value(current)).length + (f.deprecated ? 0 : 0.5)
+  return candidates.reduce((best, f) => (score(f) > score(best) ? f : best))
+}
+
+const chip = 'cursor-pointer select-none rounded-md px-2.5 py-1 text-xs transition peer-checked:bg-emerald-600 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500 peer-focus-visible:ring-offset-1 dark:peer-focus-visible:ring-offset-zinc-900 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
+
+function FamilyCard({
+  family,
+  selected,
+  onSelect,
+  persianDigits,
+  hideDeprecated,
+  preview,
+  weight,
+  setWeight,
+  size,
+}: {
+  family: Family
+  selected: string | undefined
+  onSelect: (exportName: string) => void
+  persianDigits: boolean
+  hideDeprecated: boolean
+  preview: string
+  weight: number
+  setWeight: (w: number) => void
+  size: number
+}) {
+  const [italic, setItalic] = useState(false)
+  const variants = hideDeprecated ? family.variants.filter((v) => !v.deprecated) : family.variants
+  const f = variants.find((v) => v.exportName === selected) ?? defaultVariant(variants, persianDigits)
+  const axes = axesFor(variants)
+  const snippet = `import { ${f.exportName} } from 'next-persian-fonts/${f.subpath}'`
+  const w = nearestWeight(f, weight)
+  const canItalic = f.hasItalic
+  const headingId = `family-${family.id}`
+
+  return (
+    <li
+      data-family={family.id}
+      data-variant={f.exportName}
+      aria-labelledby={headingId}
+      className="group flex min-w-0 flex-col rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm transition hover:border-emerald-400/70 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 dark:hover:border-emerald-500/50"
+    >
+      <div className="flex flex-wrap items-start justify-between gap-2">
+        <div className="min-w-0">
+          <h3 id={headingId} className="text-lg font-bold">
+            {family.nameFa} <span className="font-normal text-zinc-500 dark:text-zinc-400" dir="ltr">{family.name}</span>
+          </h3>
+          <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">{family.designer}</p>
+        </div>
+        <div className="flex flex-wrap gap-1.5 text-[11px]" aria-live="polite">
+          <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300">{weightLabel(f)}</span>
+          {f.digits === 'persian' && <span className="rounded-full bg-sky-50 px-2 py-0.5 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300">ارقام فارسی (FD)</span>}
+          {f.digits === 'none' && <span className="rounded-full bg-amber-50 px-2 py-0.5 text-amber-700 dark:bg-amber-500/10 dark:text-amber-300">فقط فارسی</span>}
+          {family.googleFonts && <span className="rounded-full bg-violet-50 px-2 py-0.5 text-violet-700 dark:bg-violet-500/10 dark:text-violet-300" title="در Google Fonts هم هست؛ اینجا به‌صورت محلی و آفلاین">Google Fonts · آفلاین</span>}
+          {f.deprecated && <span className="rounded-full bg-rose-50 px-2 py-0.5 text-rose-700 dark:bg-rose-500/10 dark:text-rose-300">منسوخ</span>}
+          <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300" dir="ltr">v{f.version}</span>
+        </div>
+      </div>
+
+      {(axes.length > 0 || canItalic) && (
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+          {axes.map((axis) => {
+            const values = [...new Set(variants.map(axis.value))]
+            return (
+              <fieldset key={axis.key} className="flex min-w-0 items-center gap-2">
+                <legend className="sr-only">{axis.label} — {family.nameFa}</legend>
+                <span aria-hidden className="text-xs text-zinc-500 dark:text-zinc-400">{axis.label}</span>
+                <div className="inline-flex flex-wrap rounded-lg border border-zinc-200 p-0.5 dark:border-zinc-700">
+                  {values.map((value) => {
+                    const onlyDeprecated = variants.filter((v) => axis.value(v) === value).every((v) => v.deprecated)
+                    return (
+                      <label key={value} className="relative">
+                        <input
+                          type="radio"
+                          className="peer sr-only"
+                          name={`${family.id}-${axis.key}`}
+                          value={value}
+                          checked={axis.value(f) === value}
+                          onChange={() => onSelect(switchVariant(variants, f, axis, value).exportName)}
+                        />
+                        <span className={chip}>
+                          {axis.names[value] ?? value}
+                          {onlyDeprecated && <span className="opacity-75"> (منسوخ)</span>}
+                        </span>
+                      </label>
+                    )
+                  })}
+                </div>
+              </fieldset>
+            )
+          })}
+          {canItalic && (
+            <label className="relative">
+              <input type="checkbox" className="peer sr-only" checked={italic} onChange={(e) => setItalic(e.target.checked)} />
+              <span className={`${chip} inline-block border border-zinc-200 dark:border-zinc-700`}>
+                <i>ایتالیک</i>
+              </span>
+            </label>
+          )}
+        </div>
+      )}
+
+      <p
+        className="my-5 min-h-24 [overflow-wrap:anywhere] leading-[1.7] text-zinc-900 dark:text-zinc-50"
+        style={{ fontFamily: f.fontFamily, fontWeight: w, fontSize: size, fontStyle: canItalic && italic ? 'italic' : undefined, lineHeight: f.category === 'calligraphy' ? 2.4 : undefined }}
+      >
+        {preview || 'متن نمونه'}
+      </p>
+
+      <div className="mt-auto space-y-3">
+        {!f.isVariable && f.weights.length > 1 && (
+          <div className="flex flex-wrap gap-1" role="group" aria-label={`وزن‌های موجود ${family.nameFa}`}>
+            {f.weights.map((x) => (
+              <button
+                key={x}
+                type="button"
+                aria-pressed={x === w}
+                onClick={() => setWeight(x)}
+                className={`rounded px-1.5 py-0.5 text-[11px] ${x === w ? 'bg-zinc-900 text-white dark:bg-white dark:text-zinc-900' : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400'}`}
+              >
+                {faNum(x)}
+              </button>
+            ))}
+          </div>
+        )}
+        {f.deprecated && (
+          <p className="text-xs leading-5 text-rose-700 dark:text-rose-300">
+            این نسخه منسوخ است و فقط برای سازگاری با نسخه‌های قبلی (نسخهٔ <span dir="ltr">{f.version}</span>) باقی مانده؛ برای پروژهٔ جدید نسخهٔ دیگر را انتخاب کنید.
+          </p>
+        )}
+        <div className="flex items-center gap-2 rounded-lg bg-zinc-50 p-2 dark:bg-zinc-950/60">
+          <code data-snippet dir="ltr" className="min-w-0 flex-1 truncate text-left font-mono text-xs text-zinc-700 dark:text-zinc-300" title={snippet}>{snippet}</code>
+          <CopyButton text={snippet} />
+        </div>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-zinc-500 dark:text-zinc-400">
+          <span dir="ltr" className="font-mono">{f.cssVariable}</span>
+          <a className="hover:text-emerald-600 dark:hover:text-emerald-400" href={f.licenseUrl} target="_blank" rel="noreferrer">مجوز: <span dir="ltr">{f.license.split(' ')[0]}</span></a>
+          <a className="hover:text-emerald-600 dark:hover:text-emerald-400" href={f.sourceUrl} target="_blank" rel="noreferrer">منبع ↗</a>
+        </div>
+      </div>
+    </li>
+  )
+}
+
 export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
   const [text, setText] = useState(SAMPLES[0])
   const [weight, setWeight] = useState(400)
@@ -42,19 +244,26 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
   const [query, setQuery] = useState('')
   const [hideDeprecated, setHideDeprecated] = useState(true)
   const [source, setSource] = useState<'all' | 'iranian' | 'google'>('all')
+  const [selected, setSelected] = useState<Record<string, string>>({})
+  const families = useMemo(() => groupFamilies(fonts), [fonts])
+
+  // The global digits toggle resets every card to its default variant for that digit style.
+  const changeDigits = (fa: boolean) => {
+    setPersianDigits(fa)
+    setSelected({})
+  }
 
   const preview = persianDigits ? toPersianDigits(text) : toLatinDigits(text)
 
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase()
-    return fonts.filter(
-      (f) =>
-        (category === 'all' || f.category === category) &&
-        (!hideDeprecated || !f.deprecated) &&
-        (source === 'all' || (source === 'google') === f.googleFonts) &&
-        (!q || [f.name, f.nameFa, f.exportName, f.subpath].some((s) => s.toLowerCase().includes(q))),
+    return families.filter(
+      (fam) =>
+        (category === 'all' || fam.category === category) &&
+        (source === 'all' || (source === 'google') === fam.googleFonts) &&
+        (!q || [fam.name, fam.nameFa, fam.id, ...fam.variants.flatMap((v) => [v.exportName, v.subpath])].some((s) => s.toLowerCase().includes(q))),
     )
-  }, [fonts, category, query, hideDeprecated, source])
+  }, [families, category, query, source])
 
   return (
     <div>
@@ -99,7 +308,7 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
                     key={String(fa)}
                     type="button"
                     aria-pressed={persianDigits === fa}
-                    onClick={() => setPersianDigits(fa)}
+                    onClick={() => changeDigits(fa)}
                     className={`flex-1 rounded-md px-3 py-1 text-sm transition ${persianDigits === fa ? 'bg-emerald-600 text-white' : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'}`}
                   >
                     {fa ? '۱۲۳ فارسی' : '123 لاتین'}
@@ -141,74 +350,30 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
           />
           <label className="flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400">
             <input type="checkbox" checked={hideDeprecated} onChange={(e) => setHideDeprecated(e.target.checked)} className="accent-emerald-600" />
-            پنهان کردن منسوخ‌ها
+            پنهان کردن نسخه‌های منسوخ
           </label>
         </div>
       </div>
 
-      <p className="mb-4 text-sm text-zinc-500 dark:text-zinc-400">
-        {faNum(visible.length)} فونت نمایش داده می‌شود. نسخه‌های «FD» عددهای انگلیسی را هم فارسی نشان می‌دهند. برای فونت‌های بدون FD، دکمهٔ «۱۲۳ فارسی» متن را به ارقام فارسی تبدیل می‌کند.
+      <p className="mb-4 text-sm leading-6 text-zinc-500 dark:text-zinc-400" aria-live="polite">
+        {faNum(visible.length)} خانوادهٔ فونت نمایش داده می‌شود. هر کارت یک خانواده است؛ نسخه‌ها (ارقام فارسی FD، متغیر، نقطهٔ گرد، ایتالیک) را داخل کارت انتخاب کنید. دکمهٔ «۱۲۳ فارسی» بالا نسخهٔ ارقام فارسی را در همهٔ کارت‌ها پیش‌فرض می‌کند.
       </p>
 
       <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {visible.map((f) => {
-          const snippet = `import { ${f.exportName} } from 'next-persian-fonts/${f.subpath}'`
-          const w = nearestWeight(f, weight)
-          return (
-            <li key={f.id} className="group flex min-w-0 flex-col rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm transition hover:border-emerald-400/70 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 dark:hover:border-emerald-500/50">
-              <div className="flex flex-wrap items-start justify-between gap-2">
-                <div>
-                  <h3 className="text-lg font-bold">
-                    {f.nameFa} <span className="font-normal text-zinc-500 dark:text-zinc-400" dir="ltr">{f.name}</span>
-                  </h3>
-                  <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">{f.designer}</p>
-                </div>
-                <div className="flex flex-wrap gap-1.5 text-[11px]">
-                  <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300">{weightLabel(f)}</span>
-                  {f.digits === 'persian' && <span className="rounded-full bg-sky-50 px-2 py-0.5 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300">ارقام فارسی (FD)</span>}
-                  {f.digits === 'none' && <span className="rounded-full bg-amber-50 px-2 py-0.5 text-amber-700 dark:bg-amber-500/10 dark:text-amber-300">فقط فارسی</span>}
-                  {f.googleFonts && <span className="rounded-full bg-violet-50 px-2 py-0.5 text-violet-700 dark:bg-violet-500/10 dark:text-violet-300" title="در Google Fonts هم هست؛ اینجا به‌صورت محلی و آفلاین">Google Fonts · آفلاین</span>}
-                  {f.hasItalic && <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">ایتالیک</span>}
-                  {f.deprecated && <span className="rounded-full bg-rose-50 px-2 py-0.5 text-rose-700 dark:bg-rose-500/10 dark:text-rose-300">منسوخ</span>}
-                  <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300" dir="ltr">v{f.version}</span>
-                </div>
-              </div>
-
-              <p
-                className="my-5 min-h-24 [overflow-wrap:anywhere] leading-[1.7] text-zinc-900 dark:text-zinc-50"
-                style={{ fontFamily: f.fontFamily, fontWeight: w, fontSize: size, lineHeight: f.category === 'calligraphy' ? 2.4 : undefined }}
-              >
-                {preview || 'متن نمونه'}
-              </p>
-
-              <div className="mt-auto space-y-3">
-                {!f.isVariable && f.weights.length > 1 && (
-                  <div className="flex flex-wrap gap-1" aria-label="وزن‌های موجود">
-                    {f.weights.map((x) => (
-                      <button
-                        key={x}
-                        type="button"
-                        onClick={() => setWeight(x)}
-                        className={`rounded px-1.5 py-0.5 text-[11px] ${x === w ? 'bg-zinc-900 text-white dark:bg-white dark:text-zinc-900' : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400'}`}
-                      >
-                        {faNum(x)}
-                      </button>
-                    ))}
-                  </div>
-                )}
-                <div className="flex items-center gap-2 rounded-lg bg-zinc-50 p-2 dark:bg-zinc-950/60">
-                  <code dir="ltr" className="min-w-0 flex-1 truncate text-left font-mono text-xs text-zinc-700 dark:text-zinc-300" title={snippet}>{snippet}</code>
-                  <CopyButton text={snippet} />
-                </div>
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-zinc-500 dark:text-zinc-400">
-                  <span dir="ltr" className="font-mono">{f.cssVariable}</span>
-                  <a className="hover:text-emerald-600 dark:hover:text-emerald-400" href={f.licenseUrl} target="_blank" rel="noreferrer">مجوز: <span dir="ltr">{f.license.split(' ')[0]}</span></a>
-                  <a className="hover:text-emerald-600 dark:hover:text-emerald-400" href={f.sourceUrl} target="_blank" rel="noreferrer">منبع ↗</a>
-                </div>
-              </div>
-            </li>
-          )
-        })}
+        {visible.map((fam) => (
+          <FamilyCard
+            key={fam.id}
+            family={fam}
+            selected={selected[fam.id]}
+            onSelect={(exportName) => setSelected((s) => ({ ...s, [fam.id]: exportName }))}
+            persianDigits={persianDigits}
+            hideDeprecated={hideDeprecated}
+            preview={preview}
+            weight={weight}
+            setWeight={setWeight}
+            size={size}
+          />
+        ))}
       </ul>
       {visible.length === 0 && <p className="py-16 text-center text-zinc-500">فونتی پیدا نشد.</p>}
     </div>
