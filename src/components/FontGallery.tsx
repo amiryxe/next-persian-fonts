@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { FontEntry } from '@/lib/fonts'
 import { CopyButton } from './CopyButton'
 
@@ -81,9 +81,13 @@ function axesFor(variants: FontEntry[]) {
   return shown.map((x) => x.axis)
 }
 
+/** Static exports with many files (e.g. vazirMatn: 9 weights) are heavy; prefer a variable sibling. */
+const HEAVY_FILES = 6
+
 function defaultVariant(variants: FontEntry[], persianDigits: boolean) {
   const want = persianDigits ? 'persian' : 'latin'
-  const score = (f: FontEntry) => (f.deprecated ? 0 : 4) + (f.digits === want ? 2 : 0) + (f.subpath.includes('round-dots') ? 0 : 1)
+  const score = (f: FontEntry) =>
+    (f.deprecated ? 0 : 8) + (f.fileCount > HEAVY_FILES ? 0 : 4) + (f.digits === want ? 2 : 0) + (f.subpath.includes('round-dots') ? 0 : 1)
   return variants.reduce((best, f) => (score(f) > score(best) ? f : best))
 }
 
@@ -94,7 +98,7 @@ function switchVariant(variants: FontEntry[], current: FontEntry, axis: Axis, va
   return candidates.reduce((best, f) => (score(f) > score(best) ? f : best))
 }
 
-const chip = 'cursor-pointer select-none rounded-md px-2.5 py-1 text-xs transition peer-checked:bg-emerald-600 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500 peer-focus-visible:ring-offset-1 dark:peer-focus-visible:ring-offset-zinc-900 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
+const chip = 'cursor-pointer select-none rounded-md px-2.5 py-1 text-xs transition peer-checked:bg-emerald-700 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500 peer-focus-visible:ring-offset-1 dark:peer-focus-visible:ring-offset-zinc-900 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
 
 function FamilyCard({
   family,
@@ -118,6 +122,21 @@ function FamilyCard({
   size: number
 }) {
   const [italic, setItalic] = useState(false)
+  // Only apply the font (and so download it) once the card is close to the viewport.
+  const ref = useRef<HTMLLIElement>(null)
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el || visible) return
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        setVisible(true)
+        io.disconnect()
+      }
+    }, { rootMargin: '400px 0px' })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [visible])
   const variants = hideDeprecated ? family.variants.filter((v) => !v.deprecated) : family.variants
   const f = variants.find((v) => v.exportName === selected) ?? defaultVariant(variants, persianDigits)
   const axes = axesFor(variants)
@@ -128,6 +147,7 @@ function FamilyCard({
 
   return (
     <li
+      ref={ref}
       data-family={family.id}
       data-variant={f.exportName}
       aria-labelledby={headingId}
@@ -195,7 +215,7 @@ function FamilyCard({
 
       <p
         className="my-5 min-h-24 [overflow-wrap:anywhere] leading-[1.7] text-zinc-900 dark:text-zinc-50"
-        style={{ fontFamily: f.fontFamily, fontWeight: w, fontSize: size, fontStyle: canItalic && italic ? 'italic' : undefined, lineHeight: f.category === 'calligraphy' ? 2.4 : undefined }}
+        style={{ fontFamily: visible ? f.fontFamily : undefined, fontWeight: w, fontSize: size, fontStyle: canItalic && italic ? 'italic' : undefined, lineHeight: f.category === 'calligraphy' ? 2.4 : undefined }}
       >
         {preview || 'متن نمونه'}
       </p>
@@ -309,7 +329,7 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
                     type="button"
                     aria-pressed={persianDigits === fa}
                     onClick={() => changeDigits(fa)}
-                    className={`flex-1 rounded-md px-3 py-1 text-sm transition ${persianDigits === fa ? 'bg-emerald-600 text-white' : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'}`}
+                    className={`flex-1 rounded-md px-3 py-1 text-sm transition ${persianDigits === fa ? 'bg-emerald-700 text-white' : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'}`}
                   >
                     {fa ? '۱۲۳ فارسی' : '123 لاتین'}
                   </button>

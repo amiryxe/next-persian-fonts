@@ -10,17 +10,19 @@ const NPM = 'https://www.npmjs.com/package/next-persian-fonts'
 const fa = (n: number | string) => String(n).replace(/[0-9]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[Number(d)])
 
 const layoutCode = `// app/layout.tsx
+import './globals.css'
 import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fa" dir="rtl" className={vazirmatnVariable.className}>
-      <body>{children}</body>
+    <html lang="fa" dir="rtl">
+      <body className={vazirmatnVariable.className}>{children}</body>
     </html>
   )
 }`
 
 const pagesCode = `// pages/_app.tsx
+import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
 
@@ -30,6 +32,11 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
     </main>
   )
+}`
+
+const pagesConfigCode = `// next.config.mjs — needed for the Pages Router (and Jest)
+export default {
+  transpilePackages: ['next-persian-fonts'],
 }`
 
 const tailwind4Code = `/* globals.css */
@@ -66,7 +73,7 @@ export default {
 const steps: [string, string, string][] = [
   ['نصب کنید', 'با npm، pnpm، yarn یا bun:', 'npm install next-persian-fonts'],
   ['ایمپورت کنید', 'در فایل app/layout.tsx:', "import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'"],
-  ['استفاده کنید', 'کلاس فونت را روی html بگذارید:', '<html lang="fa" dir="rtl" className={vazirmatnVariable.className}>'],
+  ['استفاده کنید', 'کلاس فونت را روی body بگذارید:', '<body className={vazirmatnVariable.className}>'],
 ]
 
 const code = 'font-mono text-[0.9em]'
@@ -107,6 +114,24 @@ const faq: [string, React.ReactNode][] = [
     </>,
   ],
   [
+    'Pages Router یا Jest خطای ERR_UNSUPPORTED_DIR_IMPORT می‌دهد؟',
+    <>
+      در <code dir="ltr" className={code}>next.config</code> بنویسید <code dir="ltr" className={code}>{"transpilePackages: ['next-persian-fonts']"}</code>. Pages Router و <code dir="ltr" className={code}>next/jest</code> پکیج‌های node_modules را باندل نمی‌کنند، پس <code dir="ltr" className={code}>next/font/local</code> اجرا نمی‌شود. این تنظیم در App Router هم بی‌ضرر است.
+    </>,
+  ],
+  [
+    'با pnpm نسخهٔ قدیمی (۱.۰) نصب شد؟',
+    <>
+      نسخه‌های جدید pnpm بسته‌هایی را که تازه منتشر شده‌اند تا مدتی نصب نمی‌کنند. نسخه را صریح بنویسید: <code dir="ltr" className={code}>pnpm add next-persian-fonts@^1.1</code> (یا <code dir="ltr" className={code}>npm install next-persian-fonts@latest</code>).
+    </>,
+  ],
+  [
+    'چرا بعضی فونت‌ها preload نمی‌شوند؟',
+    <>
+      خروجی‌هایی که بیش از ۳ فایل دارند (مثل <code dir="ltr" className={code}>vazirMatn</code> با ۹ وزن یا <code dir="ltr" className={code}>sahelFD</code>) preload نمی‌شوند تا Next.js همهٔ وزن‌ها را در هر صفحه از قبل دانلود نکند؛ فقط وزن‌هایی که واقعاً استفاده می‌شوند بارگذاری می‌شوند. برای کمترین حجم، نسخه‌های متغیر مثل <code dir="ltr" className={code}>vazirmatnVariable</code> را انتخاب کنید.
+    </>,
+  ],
+  [
     'estedadFD چه شد؟',
     <>
       استعداد ۸ دیگر نسخهٔ ارقام فارسی ندارد. <code dir="ltr" className={code}>estedadFD</code> برای سازگاری روی نسخهٔ ۷.۳ مانده و منسوخ است؛ برای پروژهٔ جدید از <code dir="ltr" className={code}>estedad</code> استفاده کنید.
@@ -123,7 +148,7 @@ const faq: [string, React.ReactNode][] = [
 function Section({ id, title, kicker, children }: { id: string; title: string; kicker?: string; children: React.ReactNode }) {
   return (
     <section id={id} className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
-      {kicker && <p className="mb-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400">{kicker}</p>}
+      {kicker && <p className="mb-2 text-sm font-semibold text-emerald-700 dark:text-emerald-400">{kicker}</p>}
       <h2 className="mb-8 text-2xl font-extrabold tracking-tight sm:text-3xl">{title}</h2>
       {children}
     </section>
@@ -138,7 +163,7 @@ export default function Home() {
       <header className="sticky top-0 z-30 h-16 border-b border-zinc-200/80 bg-white/80 backdrop-blur dark:border-zinc-800/80 dark:bg-zinc-950/80">
         <div className="mx-auto flex h-full max-w-6xl items-center gap-6 px-4">
           <a href="#top" className="flex items-center gap-2 font-extrabold">
-            <span className="grid size-8 place-items-center rounded-lg bg-emerald-600 text-lg text-white">ف</span>
+            <span className="grid size-8 place-items-center rounded-lg bg-emerald-700 text-lg text-white">ف</span>
             <span dir="ltr">Next Persian Fonts</span>
           </a>
           <nav className="hidden items-center gap-5 text-sm text-zinc-600 md:flex dark:text-zinc-400">
@@ -164,7 +189,7 @@ export default function Home() {
               <span dir="ltr">v{pkg.version}</span> · سازگار با Next.js ۱۳.۲ تا ۱۶
             </p>
             <h1 className="max-w-3xl text-4xl font-black leading-tight tracking-tight sm:text-6xl">
-              فونت‌های فارسی، <span className="text-emerald-600 dark:text-emerald-400">آماده برای Next.js</span>
+              فونت‌های فارسی، <span className="text-emerald-700 dark:text-emerald-400">آماده برای Next.js</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300">
               {fa(familyCount)} خانوادهٔ فونت فارسی رایگان، داخل خود پکیج: وزیرمتن، استعداد، ساحل و فونت‌های فارسی Google Fonts مثل لاله‌زار و نوتو. بدون گوگل و CDN، پس حتی وقتی اینترنت بین‌الملل قطع است هم سایت و build شما کار می‌کند.
@@ -201,7 +226,7 @@ export default function Home() {
               {steps.map(([t, d, c], i) => (
                 <li key={t} className="flex min-w-0 flex-col rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900/50">
                   <div className="flex items-center gap-3">
-                    <span className="grid size-8 shrink-0 place-items-center rounded-full bg-emerald-600 text-sm font-bold text-white">{fa(i + 1)}</span>
+                    <span className="grid size-8 shrink-0 place-items-center rounded-full bg-emerald-700 text-sm font-bold text-white">{fa(i + 1)}</span>
                     <h3 className="font-bold">{t}</h3>
                   </div>
                   <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">{d}</p>
@@ -212,13 +237,19 @@ export default function Home() {
                 </li>
               ))}
             </ol>
+            <div className="mb-8 rounded-2xl border border-amber-300/60 bg-amber-50 p-5 text-sm leading-7 text-amber-900 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200">
+              <b>پروژهٔ تازهٔ create-next-app دارید؟</b> در <code dir="ltr" className={code}>app/layout.tsx</code> ایمپورت فونت‌های Geist از <code dir="ltr" className={code}>next/font/google</code> را حذف کنید (به اینترنت جهانی نیاز دارند) و در <code dir="ltr" className={code}>globals.css</code> خط <code dir="ltr" className={code}>font-family: Arial, Helvetica, sans-serif;</code> را از قانون <code dir="ltr" className={code}>body</code> پاک کنید تا جلوی فونت فارسی را نگیرد.
+            </div>
             <h3 className="mb-4 text-lg font-bold">مثال کامل برای کپی</h3>
             <div className="grid gap-6 lg:grid-cols-2">
               <CodeBlock title="App Router — app/layout.tsx" code={layoutCode} />
-              <CodeBlock title="Pages Router — pages/_app.tsx" code={pagesCode} />
+              <div className="space-y-4">
+                <CodeBlock title="Pages Router — pages/_app.tsx" code={pagesCode} />
+                <CodeBlock title="Pages Router — next.config.mjs" code={pagesConfigCode} />
+              </div>
             </div>
             <p className="mt-4 text-sm leading-7 text-zinc-600 dark:text-zinc-400">
-              فونت دیگری می‌خواهید؟ در گالری بالا روی «کپی» کارت آن فونت بزنید و خط ایمپورت را جایگزین کنید. در Pages Router برای راست‌چین شدن، در <code dir="ltr" className={code}>pages/_document.tsx</code> بنویسید <code dir="ltr" className={code}>{'<Html lang="fa" dir="rtl">'}</code>.
+              فونت دیگری می‌خواهید؟ در گالری بالا روی «کپی» کارت آن فونت بزنید و خط ایمپورت را جایگزین کنید. در Pages Router تنظیم <code dir="ltr" className={code}>transpilePackages</code> لازم است (Next.js پکیج‌های node_modules را در Pages Router باندل نمی‌کند و بدون آن build خطا می‌دهد)؛ در App Router بی‌ضرر است. برای راست‌چین شدن، در <code dir="ltr" className={code}>pages/_document.tsx</code> بنویسید <code dir="ltr" className={code}>{'<Html lang="fa" dir="rtl">'}</code>.
             </p>
           </Section>
         </div>
@@ -271,7 +302,7 @@ export default function Home() {
                     <td className="p-3 text-right font-mono">{n}</td>
                     <td className="p-3 text-right font-mono">{r}</td>
                     <td className="p-3 text-right">{b}</td>
-                    <td className="p-3 text-right text-emerald-600 dark:text-emerald-400">✓</td>
+                    <td className="p-3 text-right text-emerald-700 dark:text-emerald-400">✓</td>
                   </tr>
                 ))}
               </tbody>

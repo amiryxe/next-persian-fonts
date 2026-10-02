@@ -4,7 +4,7 @@ import { themeScript } from '@/components/ThemeToggle'
 import './globals.css'
 
 const description =
-  'مجموعه فونت‌های فارسی رایگان برای Next.js با next/font/local: وزیرمتن، استعداد، ساحل، صمیم، شبنم، میخک و… — بدون CDN، با تایپ‌اسکریپت.'
+  '۳۳ خانوادهٔ فونت فارسی رایگان برای Next.js، داخل پکیج و آفلاین: وزیرمتن، استعداد، ساحل، لاله‌زار، نوتو و… — بدون گوگل و CDN، با تایپ‌اسکریپت.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://amiryxe.github.io/next-persian-fonts/'),
@@ -23,8 +23,14 @@ export const metadata: Metadata = {
     siteName: 'Next Persian Fonts',
     title: 'Next Persian Fonts — فونت‌های فارسی برای Next.js',
     description,
+    images: [{ url: 'https://raw.githubusercontent.com/amiryxe/next-persian-fonts/main/.github/assets/banner.png', width: 1280, height: 640, alt: 'next-persian-fonts: فونت‌های فارسی برای Next.js' }],
   },
-  twitter: { card: 'summary', title: 'Next Persian Fonts', description },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Next Persian Fonts',
+    description,
+    images: ['https://raw.githubusercontent.com/amiryxe/next-persian-fonts/main/.github/assets/banner.png'],
+  },
 }
 
 export const viewport: Viewport = {
