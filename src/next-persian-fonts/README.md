@@ -13,10 +13,8 @@
   <a href="https://github.com/amiryxe/next-persian-fonts/actions/workflows/ci.yml"><img src="https://github.com/amiryxe/next-persian-fonts/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
 </p>
 
-<p align="center">
-  <b>فونت‌های فارسی رایگان برای Next.js، داخل خود پکیج. بدون گوگل و CDN، حتی وقتی اینترنت بین‌الملل قطع است.</b><br>
-  Free Persian (Farsi) fonts for Next.js, bundled in the package. No Google, no CDN, works offline.
-</p>
+<p align="center" dir="rtl"><b>فونت‌های فارسی رایگان برای Next.js، داخل خود پکیج. بدون گوگل و CDN، حتی وقتی اینترنت بین‌الملل قطع است.</b></p>
+<p align="center" dir="ltr">Free Persian (Farsi) fonts for Next.js, bundled in the package. No Google, no CDN, works offline.</p>
 
 <p align="center">
   <a href="https://amiryxe.github.io/next-persian-fonts/"><b>🎨 دموی زنده و گالری · Live demo</b></a> ·
@@ -251,7 +249,10 @@ Usage · استفاده: `import { <Export> } from 'next-persian-fonts/<import>'
 | **Baloo Bhaijaan 2**<br>بالو بهایجان | Ek Type | `baloo-bhaijaan-2` | `balooBhaijaan2` | 400–800 variable | OFL-1.1 |
 | **Cairo**<br>قاهره | Mohamed Gaber | `cairo` | `cairo` | 200–1000 variable | OFL-1.1 |
 
-¹ Persian digits (FD): Latin digits are shown as Persian digits · ارقام لاتین هم فارسی نمایش داده می‌شوند.
+¹ Persian digits (FD): Latin digits are shown as Persian digits.
+
+<p dir="rtl">¹ نسخهٔ ارقام فارسی (FD): ارقام لاتین هم فارسی نمایش داده می‌شوند.</p>
+
 Vera = Bitstream Vera license (Latin glyphs), PD = public domain changes. Versions, sources and file changes: **[FONTS.md](https://github.com/amiryxe/next-persian-fonts/blob/main/src/next-persian-fonts/FONTS.md)**.
 
 ---
