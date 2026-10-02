@@ -20,69 +20,104 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   )
 }`
 
-const variableCode = `// app/layout.tsx — expose several fonts as CSS variables
-import { estedad } from 'next-persian-fonts/estedad'
-import { vazirCode } from 'next-persian-fonts/vazir-code'
-
-<html lang="fa" dir="rtl" className={\`\${estedad.variable} \${vazirCode.variable}\`}>
-
-/* any CSS file */
-body { font-family: var(--font-estedad), system-ui, sans-serif; }
-code { font-family: var(--font-vazir-code), monospace; }`
-
-const tailwind4Code = `/* app/globals.css — Tailwind CSS v4 */
-@import 'tailwindcss';
-
-@theme inline {
-  --font-sans: var(--font-estedad), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-vazir-code), ui-monospace, monospace;
-}`
-
-const tailwind3Code = `// tailwind.config.ts — Tailwind CSS v3
-import type { Config } from 'tailwindcss'
-
-export default {
-  content: ['./app/**/*.{ts,tsx}'],
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['var(--font-estedad)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-vazir-code)', 'monospace'],
-      },
-    },
-  },
-} satisfies Config`
-
-const pagesCode = `// pages/_app.tsx — Pages Router
+const pagesCode = `// pages/_app.tsx
 import type { AppProps } from 'next/app'
-import { samim } from 'next-persian-fonts/samim'
+import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={samim.className}>
+    <main className={vazirmatnVariable.className}>
       <Component {...pageProps} />
     </main>
   )
 }`
 
-const googleCode = `// Fonts that are on Google Fonts are best loaded with next/font/google
-import { Lalezar, Noto_Naskh_Arabic, Markazi_Text } from 'next/font/google'
+const tailwind4Code = `/* globals.css */
+@import 'tailwindcss';
 
-const lalezar = Lalezar({ weight: '400', subsets: ['arabic'], variable: '--font-lalezar' })
-const naskh = Noto_Naskh_Arabic({ subsets: ['arabic'], variable: '--font-naskh' })
-const markazi = Markazi_Text({ subsets: ['arabic'], variable: '--font-markazi' })`
+@theme inline {
+  --font-sans: var(--font-vazirmatn-variable), sans-serif;
+}`
 
-const googleFonts = [
-  ['Lalezar', 'لاله‌زار', 'Lalezar'],
-  ['Noto Naskh Arabic', 'نوتو نسخ', 'Noto+Naskh+Arabic'],
-  ['Noto Sans Arabic', 'نوتو سنس', 'Noto+Sans+Arabic'],
-  ['Noto Nastaliq Urdu', 'نوتو نستعلیق', 'Noto+Nastaliq+Urdu'],
-  ['Markazi Text', 'مرکزی', 'Markazi+Text'],
-  ['Vazirmatn', 'وزیرمتن', 'Vazirmatn'],
-  ['Reem Kufi', 'ریم کوفی', 'Reem+Kufi'],
-  ['IBM Plex Sans Arabic', 'آی‌بی‌ام پلکس', 'IBM+Plex+Sans+Arabic'],
-  ['Amiri', 'امیری', 'Amiri'],
-  ['Mirza', 'میرزا', 'Mirza'],
+const tailwind3Code = `// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      fontFamily: { sans: ['var(--font-vazirmatn-variable)', 'sans-serif'] },
+    },
+  },
+}`
+
+const multiCode = `// app/layout.tsx
+import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
+import { lalezar } from 'next-persian-fonts/lalezar'
+
+<html lang="fa" dir="rtl" className={\`\${vazirmatnVariable.variable} \${lalezar.variable}\`}>
+
+/* globals.css */
+body { font-family: var(--font-vazirmatn-variable); }
+h1   { font-family: var(--font-lalezar); }`
+
+const optimizeCode = `// next.config.mjs (only for: import { sahel } from 'next-persian-fonts' + webpack)
+export default {
+  experimental: { optimizePackageImports: ['next-persian-fonts'] },
+}`
+
+const steps: [string, string, string][] = [
+  ['نصب کنید', 'با npm، pnpm، yarn یا bun:', 'npm install next-persian-fonts'],
+  ['ایمپورت کنید', 'در فایل app/layout.tsx:', "import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'"],
+  ['استفاده کنید', 'کلاس فونت را روی html بگذارید:', '<html lang="fa" dir="rtl" className={vazirmatnVariable.className}>'],
+]
+
+const code = 'font-mono text-[0.9em]'
+
+const faq: [string, React.ReactNode][] = [
+  [
+    'چرا فونت‌ها داخل پکیج هستند و از Google Fonts یا CDN استفاده نمی‌کنیم؟',
+    <>
+      وقتی اینترنت ایران از اینترنت جهانی قطع می‌شود، <code dir="ltr" className={code}>next/font/google</code> نمی‌تواند هنگام build فونت را دانلود کند و build شکست می‌خورد؛ فونت‌های CDN هم برای کاربران باز نمی‌شوند. اینجا فایل فونت‌ها همراه <code dir="ltr" className={code}>npm install</code> می‌آیند و Next.js آن‌ها را روی سایت خودتان میزبانی می‌کند، پس همیشه کار می‌کنند. برای همین فونت‌های فارسی Google Fonts (لاله‌زار، نوتو، امیری، مرکزی و…) هم داخل پکیج قرار گرفته‌اند. در گالری با فیلتر «منبع» می‌توانید فقط آن‌ها را ببینید.
+    </>,
+  ],
+  [
+    'چطور چند فونت را با هم استفاده کنم؟',
+    <>
+      <p>
+        به‌جای <code dir="ltr" className={code}>className</code> از <code dir="ltr" className={code}>variable</code> هر فونت استفاده کنید و هر جا لازم است متغیر CSS آن را بنویسید. نام متغیر همیشه <code dir="ltr" className={code}>--font-</code> به‌علاوهٔ مسیر ایمپورت است. ساده‌ترین راه هم این است که <code dir="ltr" className={code}>lalezar.className</code> را مستقیم روی همان المان بگذارید.
+      </p>
+      <div className="mt-4">
+        <CodeBlock title="multiple fonts" code={multiCode} />
+      </div>
+    </>,
+  ],
+  [
+    'نسخه‌های FD چه هستند؟',
+    <>
+      در نسخه‌های <b>FD</b> (مثل <code dir="ltr" className={code}>sahelFD</code> و <code dir="ltr" className={code}>samimFD</code>) حتی اعداد انگلیسی (123) هم فارسی (۱۲۳) نمایش داده می‌شوند؛ برای قیمت و تاریخ مفید است. اگر متن شما خودش اعداد فارسی دارد، نسخهٔ معمولی هم کافی است. <code dir="ltr" className={code}>vazirMatn</code> همیشه اعداد فارسی دارد.
+    </>,
+  ],
+  [
+    'optimizePackageImports لازم است؟',
+    <>
+      <p>
+        اگر مثل مثال‌های بالا از مسیر هر فونت ایمپورت کنید (<code dir="ltr" className={code}>next-persian-fonts/estedad</code>)، <b>نه</b>. فقط اگر از ریشهٔ پکیج ایمپورت می‌کنید (روش قدیمی نسخهٔ ۱.۰) و با webpack می‌سازید (پیش‌فرض Next ۱۳ تا ۱۵)، این تنظیم را اضافه کنید تا فونت‌های اضافه دانلود نشوند:
+      </p>
+      <div className="mt-4">
+        <CodeBlock title="next.config.mjs" code={optimizeCode} />
+      </div>
+    </>,
+  ],
+  [
+    'estedadFD چه شد؟',
+    <>
+      استعداد ۸ دیگر نسخهٔ ارقام فارسی ندارد. <code dir="ltr" className={code}>estedadFD</code> برای سازگاری روی نسخهٔ ۷.۳ مانده و منسوخ است؛ برای پروژهٔ جدید از <code dir="ltr" className={code}>estedad</code> استفاده کنید.
+    </>,
+  ],
+  [
+    'برای پروژهٔ تجاری رایگان است؟',
+    <>
+      بله. همهٔ فونت‌ها مجوز آزاد دارند (بیشترشان SIL OFL 1.1) و استفاده در سایت‌های تجاری مجاز است. مجوز هر فونت روی کارت آن در گالری لینک شده است.
+    </>,
+  ],
 ]
 
 function Section({ id, title, kicker, children }: { id: string; title: string; kicker?: string; children: React.ReactNode }) {
@@ -97,6 +132,7 @@ function Section({ id, title, kicker, children }: { id: string; title: string; k
 
 export default function Home() {
   const variantCount = fonts.filter((f) => !f.deprecated).length
+  const googleCount = new Set(fonts.filter((f) => f.googleFonts).map((f) => f.familyId)).size
   return (
     <>
       <header className="sticky top-0 z-30 h-16 border-b border-zinc-200/80 bg-white/80 backdrop-blur dark:border-zinc-800/80 dark:bg-zinc-950/80">
@@ -107,9 +143,9 @@ export default function Home() {
           </a>
           <nav className="hidden items-center gap-5 text-sm text-zinc-600 md:flex dark:text-zinc-400">
             <a href="#fonts" className="hover:text-zinc-950 dark:hover:text-white">فونت‌ها</a>
-            <a href="#usage" className="hover:text-zinc-950 dark:hover:text-white">استفاده</a>
+            <a href="#usage" className="hover:text-zinc-950 dark:hover:text-white">شروع سریع</a>
             <a href="#tailwind" className="hover:text-zinc-950 dark:hover:text-white">Tailwind</a>
-            <a href="#google" className="hover:text-zinc-950 dark:hover:text-white">Google Fonts</a>
+            <a href="#faq" className="hover:text-zinc-950 dark:hover:text-white">پرسش‌ها</a>
             <a href="#compat" className="hover:text-zinc-950 dark:hover:text-white">سازگاری</a>
           </nav>
           <div className="ms-auto flex items-center gap-2">
@@ -131,7 +167,7 @@ export default function Home() {
               فونت‌های فارسی، <span className="text-emerald-600 dark:text-emerald-400">آماده برای Next.js</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300">
-              {fa(familyCount)} خانوادهٔ فونت فارسی آزاد و {fa(variantCount)} نسخهٔ آماده، بارگذاری‌شده با <code dir="ltr" className="font-mono text-base">next/font/local</code>: میزبانی روی سرور خودتان، بدون CDN، بدون پرش صفحه (CLS) و با پشتیبانی کامل از تایپ‌اسکریپت.
+              {fa(familyCount)} فونت فارسی رایگان، داخل خود پکیج: وزیرمتن، استعداد، ساحل و فونت‌های فارسی Google Fonts مثل لاله‌زار و نوتو. بدون گوگل و CDN، پس حتی وقتی اینترنت بین‌الملل قطع است هم سایت و build شما کار می‌کند.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <div className="flex items-center gap-3 rounded-xl border border-zinc-300 bg-white py-2 pe-2 ps-4 shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
@@ -144,7 +180,7 @@ export default function Home() {
               {[
                 [fa(familyCount), 'خانوادهٔ فونت'],
                 [fa(variantCount), 'خروجی آماده'],
-                ['OFL', 'مجوز آزاد'],
+                [fa(googleCount), 'فونت Google، آفلاین'],
               ].map(([v, l]) => (
                 <div key={l} className="rounded-xl border border-zinc-200 bg-white/60 p-4 dark:border-zinc-800 dark:bg-zinc-900/40">
                   <dt className="text-xs text-zinc-500 dark:text-zinc-400">{l}</dt>
@@ -160,64 +196,55 @@ export default function Home() {
         </Section>
 
         <div className="border-y border-zinc-200 bg-zinc-50/60 dark:border-zinc-800 dark:bg-zinc-900/30">
-          <Section id="usage" title="نحوهٔ استفاده" kicker="شروع سریع">
-            <ol className="mb-8 grid gap-4 md:grid-cols-3">
-              {[
-                ['نصب', 'پکیج را با npm، pnpm، yarn یا bun نصب کنید.'],
-                ['ایمپورت', 'هر فونت از مسیر جداگانهٔ خودش ایمپورت می‌شود تا فقط همان فونت در خروجی بیاید.'],
-                ['اعمال', 'className یا متغیر CSS فونت را روی html یا body بگذارید.'],
-              ].map(([t, d], i) => (
-                <li key={t} className="rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900/50">
-                  <span className="grid size-8 place-items-center rounded-full bg-emerald-600 text-sm font-bold text-white">{fa(i + 1)}</span>
-                  <h3 className="mt-3 font-bold">{t}</h3>
-                  <p className="mt-1 text-sm leading-6 text-zinc-600 dark:text-zinc-400">{d}</p>
+          <Section id="usage" title="شروع سریع در ۳ قدم" kicker="نحوهٔ استفاده">
+            <ol className="mb-10 grid gap-4 md:grid-cols-3">
+              {steps.map(([t, d, c], i) => (
+                <li key={t} className="flex min-w-0 flex-col rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900/50">
+                  <div className="flex items-center gap-3">
+                    <span className="grid size-8 shrink-0 place-items-center rounded-full bg-emerald-600 text-sm font-bold text-white">{fa(i + 1)}</span>
+                    <h3 className="font-bold">{t}</h3>
+                  </div>
+                  <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">{d}</p>
+                  <div className="mt-2 flex items-start gap-2 rounded-lg bg-zinc-100 p-2 dark:bg-zinc-800/70">
+                    <code dir="ltr" className="min-w-0 flex-1 break-all text-left font-mono text-xs leading-5">{c}</code>
+                    <CopyButton text={c} />
+                  </div>
                 </li>
               ))}
             </ol>
+            <h3 className="mb-4 text-lg font-bold">مثال کامل برای کپی</h3>
             <div className="grid gap-6 lg:grid-cols-2">
-              <CodeBlock title="App Router — className" code={layoutCode} />
-              <CodeBlock title="CSS variables" code={variableCode} />
-              <CodeBlock title="Pages Router" code={pagesCode} />
-              <div className="rounded-2xl border border-amber-300/60 bg-amber-50 p-5 text-sm leading-7 text-amber-900 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200">
-                <h3 className="mb-2 font-bold">نکته‌های مهم</h3>
-                <ul className="list-disc space-y-1 ps-5">
-                  <li>از ایمپورت مسیری (مثل <code dir="ltr" className="font-mono">next-persian-fonts/samim</code>) استفاده کنید؛ ایمپورت از ریشهٔ پکیج فقط برای سازگاری با نسخهٔ ۱.۰ است.</li>
-                  <li>نسخه‌های <b>FD</b> ارقام انگلیسی را هم فارسی نمایش می‌دهند (مثلاً قیمت‌ها و تاریخ‌ها).</li>
-                  <li>فونت‌های متغیر (Variable) همهٔ وزن‌ها را در یک فایل دارند و حجم کمتری دارند.</li>
-                  <li><code dir="ltr" className="font-mono">estedadFD</code> منسوخ شده و روی استعداد ۷.۳ مانده است؛ برای پروژه‌های جدید از <code dir="ltr" className="font-mono">estedad</code> استفاده کنید.</li>
-                </ul>
-              </div>
+              <CodeBlock title="App Router — app/layout.tsx" code={layoutCode} />
+              <CodeBlock title="Pages Router — pages/_app.tsx" code={pagesCode} />
             </div>
+            <p className="mt-4 text-sm leading-7 text-zinc-600 dark:text-zinc-400">
+              فونت دیگری می‌خواهید؟ در گالری بالا روی «کپی» کارت آن فونت بزنید و خط ایمپورت را جایگزین کنید. در Pages Router برای راست‌چین شدن، در <code dir="ltr" className={code}>pages/_document.tsx</code> بنویسید <code dir="ltr" className={code}>{'<Html lang="fa" dir="rtl">'}</code>.
+            </p>
           </Section>
         </div>
 
-        <Section id="tailwind" title="استفاده با Tailwind CSS" kicker="Tailwind v3 و v4">
+        <Section id="tailwind" title="استفاده با Tailwind CSS" kicker="Tailwind v4 و v3">
+          <p className="mb-6 max-w-3xl leading-7 text-zinc-600 dark:text-zinc-400">
+            روی <code dir="ltr" className={code}>html</code> به‌جای <code dir="ltr" className={code}>className</code> از <code dir="ltr" className={code}>vazirmatnVariable.variable</code> استفاده کنید و فونت را به Tailwind معرفی کنید. بعد از آن کلاس <code dir="ltr" className={code}>font-sans</code> (پیش‌فرض Tailwind) همان فونت فارسی است.
+          </p>
           <div className="grid gap-6 lg:grid-cols-2">
             <CodeBlock title="Tailwind v4 — globals.css" code={tailwind4Code} />
-            <CodeBlock title="Tailwind v3 — tailwind.config.ts" code={tailwind3Code} />
+            <CodeBlock title="Tailwind v3 — tailwind.config.js" code={tailwind3Code} />
           </div>
-          <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
-            در هر دو حالت، کلاس <code dir="ltr" className="font-mono">estedad.variable</code> را روی تگ <code dir="ltr" className="font-mono">html</code> بگذارید تا متغیر CSS تعریف شود.
-          </p>
         </Section>
 
         <div className="border-y border-zinc-200 bg-zinc-50/60 dark:border-zinc-800 dark:bg-zinc-900/30">
-          <Section id="google" title="فونت‌های فارسی در Google Fonts" kicker="next/font/google">
-            <p className="mb-6 max-w-3xl leading-7 text-zinc-600 dark:text-zinc-400">
-              فونت‌هایی که در Google Fonts موجودند در این پکیج قرار نگرفته‌اند، چون Next.js خودش آن‌ها را با <code dir="ltr" className="font-mono">next/font/google</code> هنگام بیلد دانلود و روی سایت شما میزبانی می‌کند.
-            </p>
-            <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
-              <ul className="grid grid-cols-2 gap-2 self-start">
-                {googleFonts.map(([en, faName, q]) => (
-                  <li key={en}>
-                    <a href={`https://fonts.google.com/specimen/${q}`} target="_blank" rel="noreferrer" className="flex flex-col rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm hover:border-emerald-500 dark:border-zinc-800 dark:bg-zinc-900/50">
-                      <span className="font-semibold">{faName}</span>
-                      <span dir="ltr" className="text-left text-xs text-zinc-500">{en}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <CodeBlock title="next/font/google" code={googleCode} />
+          <Section id="faq" title="پرسش‌های رایج" kicker="سؤال دارید؟">
+            <div className="space-y-3">
+              {faq.map(([q, a], i) => (
+                <details key={q} open={i === 0} className="group rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900/50">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold [&::-webkit-details-marker]:hidden">
+                    {q}
+                    <span aria-hidden className="text-zinc-400 transition group-open:rotate-45">+</span>
+                  </summary>
+                  <div className="mt-3 leading-8 text-zinc-600 dark:text-zinc-300">{a}</div>
+                </details>
+              ))}
             </div>
           </Section>
         </div>
