@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.1.1 (2026-10-02)
+
+### Fixed
+- **Variable fonts were downloaded twice with Turbopack.** File names with brackets (e.g. `Vazirmatn[wght].woff2`) were percent-encoded in Next's `<link rel="preload">` but not in the CSS `url()`, so browsers fetched the same file twice. The 18 affected files are renamed (e.g. `Vazirmatn-VF.woff2`); import paths and export names are unchanged. `npm run verify` now rejects such file names.
+- **Static families with many weights no longer preload every file.** Exports with more than 3 files (`vazirMatn`, `sahelFD`, `shabnam`, `shabnamFD`, `ibmPlexSansArabic`, `amiri`, `mirza`, `harmattan`, `lateef`, `scheherazadeNew`) use `preload: false`; only the weights a page uses are downloaded (e.g. `vazirMatn` preloaded 9 files / 460 KB before).
+
+### Docs
+- **Pages Router / Jest:** document `transpilePackages: ['next-persian-fonts']` (without it the Pages Router build and `next/jest` fail with `ERR_UNSUPPORTED_DIR_IMPORT`; harmless for the App Router). The smoke tests now build a Pages Router page and run a `next/jest` test.
+- **create-next-app:** step 3 puts the class on `<body>`, and the docs say to remove the template's Geist `next/font/google` imports and its `body { font-family: Arial… }` rule, which otherwise hides the Persian font. Full examples keep `import './globals.css'`.
+- pnpm note: recent pnpm versions hold back fresh releases; use `pnpm add next-persian-fonts@^1.1`.
+- Removed the unused `typescript` devDependency from the published `package.json`.
+
+### Demo
+- Much lighter page: gallery fonts are no longer preloaded (only the site and code fonts are), and each card loads its font only when it scrolls near the viewport. The Vazirmatn card defaults to `vazirmatnVariable`.
+- Better contrast (emerald-700 behind white text), `og:image` / `twitter:image` banner with `summary_large_image`.
+
 ## 1.1.0 (2026-10-02)
 
 Nothing that worked in 1.0.x breaks: every 1.0.x import path and export name still works.

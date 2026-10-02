@@ -1,6 +1,6 @@
 {
   "name": "next-persian-fonts-site",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "Demo/docs site and tooling for the next-persian-fonts package (published from src/next-persian-fonts).",
   "workspaces": [
