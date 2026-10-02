@@ -136,13 +136,15 @@ const md = [
 write(join(pkgDir, 'FONTS.md'), md.join('\n'))
 
 // Demo-only copies of every font with preload: false, so the gallery page does not preload ~90 files.
-// The site and code fonts are imported from the package itself (and preloaded).
+// The site and code fonts are imported from the package itself (and preloaded) and left out here: a second
+// @font-face with the same family name would make the browser download their files twice.
+const SITE_FONTS = new Set(['vazirmatnVariable', 'vazirCode'])
 const gallery = [
   HEADER,
   '// Demo gallery only: the same font files as the package, but never preloaded.',
   "import localFont from 'next/font/local'",
   '',
-  ...rows.map(({ v, x }) => {
+  ...rows.filter(({ x }) => !SITE_FONTS.has(x.export)).map(({ v, x }) => {
     const src = x.files.map((f) => `    { path: '../next-persian-fonts/${v.subpath}/${f.to}', weight: '${f.weight}', style: '${f.style ?? 'normal'}' },`).join('\n')
     return `export const ${x.export} = localFont({\n  src: [\n${src}\n  ],\n  display: 'swap',\n  preload: false,\n})\n`
   }),

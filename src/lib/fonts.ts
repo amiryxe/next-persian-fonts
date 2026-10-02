@@ -5,7 +5,8 @@ import { vazirCode } from 'next-persian-fonts/vazir-code'
 // so the page only preloads the site and code fonts.
 import * as gallery from './gallery-fonts.generated'
 
-const loaded: Record<string, { style: { fontFamily: string } }> = gallery
+// The site and code fonts are not in the generated gallery list; the gallery reuses the preloaded package objects.
+const loaded: Record<string, { style: { fontFamily: string } }> = { ...gallery, vazirmatnVariable, vazirCode }
 
 export { vazirmatnVariable as siteFont, vazirCode as codeFont }
 

@@ -18,14 +18,6 @@ export const vazirMatn = localFont({
   preload: false,
 })
 
-export const vazirmatnVariable = localFont({
-  src: [
-    { path: '../next-persian-fonts/vazirmatn-variable/Vazirmatn-VF.woff2', weight: '100 900', style: 'normal' },
-  ],
-  display: 'swap',
-  preload: false,
-})
-
 export const vazirmatnRoundDots = localFont({
   src: [
     { path: '../next-persian-fonts/vazirmatn-round-dots/Vazirmatn-RD-VF.woff2', weight: '100 900', style: 'normal' },
@@ -175,14 +167,6 @@ export const mikhak = localFont({
 export const mikhakFD = localFont({
   src: [
     { path: '../next-persian-fonts/mikhak-fd/Mikhak-FD-VF.woff2', weight: '100 900', style: 'normal' },
-  ],
-  display: 'swap',
-  preload: false,
-})
-
-export const vazirCode = localFont({
-  src: [
-    { path: '../next-persian-fonts/vazir-code/Vazir-Code.woff2', weight: '400', style: 'normal' },
   ],
   display: 'swap',
   preload: false,
