@@ -34,3 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated type-test fixtures
+/tests/types/.generated/
+# local npm pack output
+*.tgz

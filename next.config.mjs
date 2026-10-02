@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    basePath: "/next-persian-fonts",
-    output: "export",
-    reactStrictMode: true,
-};
+  // Deployed to https://amiryxe.github.io/next-persian-fonts/ (GitHub Pages project site)
+  basePath: '/next-persian-fonts',
+  output: 'export',
+  trailingSlash: true,
+  reactStrictMode: true,
+  images: { unoptimized: true },
+}
 
-export default nextConfig;
+export default nextConfig
