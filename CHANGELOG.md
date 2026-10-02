@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.0 (unreleased)
+## 1.1.0 (2026-10-02)
 
 Nothing that worked in 1.0.x breaks: every 1.0.x import path and export name still works.
 
@@ -24,7 +24,8 @@ Nothing that worked in 1.0.x breaks: every 1.0.x import path and export name sti
 - `PersianFont` type, `next-persian-fonts/fonts.json` (machine-readable font list) and `exports` entries with `types` conditions.
 - Tooling: `fonts.json` manifest with generator, upstream update/check script, package verification, and a smoke-test matrix (Next 13.5 / 14 / 15 / 16, webpack and Turbopack) with CI on Node 22 and 24.
 - Demo/docs site redesigned: Next.js 16, React 19, Tailwind CSS 4, RTL/`lang="fa"`, a live font gallery (custom text, weight and size sliders, Persian/Latin digits toggle, category filter, search, copyable imports, license links), dark mode, a Google Fonts source filter, and beginner-friendly docs (3-step Installation & Usage guide, App Router / Pages Router examples, Tailwind v3/v4, FAQ). The demo sets `agentRules: false` so `next dev` on Next.js 16 doesn't generate `AGENTS.md`/`CLAUDE.md`.
-- READMEs rewritten: Persian first, then English, with a 3-step Installation & Usage guide, copy-paste examples and an FAQ.
+- READMEs rewritten for GitHub and npm: banner and gallery images, badges, Persian first then English, a 3-step Installation & Usage guide, copy-paste examples, the full font table, FAQ, contributing and credits.
+- Demo gallery shows one card per font family, with the variants (Persian/Latin digits, round dots, italic) switchable inside the card.
 
 ## 1.0.1 (2026-07-18)
 - ESM `exports` map for `sahel`, `vazirmatn` and `estedad`.
