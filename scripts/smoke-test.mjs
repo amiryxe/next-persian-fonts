@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Builds a throw-away Next.js app against the packed tarball of next-persian-fonts for several
-// Next.js versions and bundlers, then checks the generated CSS/HTML.
+// Next.js versions and bundlers, then checks the generated CSS/HTML. Each version also builds a
+// Pages Router page (with the documented `transpilePackages`), and Next.js 16 runs a next/jest test.
 //
 //   node scripts/smoke-test.mjs                # full matrix
 //   node scripts/smoke-test.mjs --next 16      # one Next.js major (repeatable / comma separated)
@@ -19,7 +20,7 @@ const MATRIX = [
   { next: '13.5', react: '18', types: '18', bundlers: { webpack: [] } },
   { next: '14', react: '18', types: '18', bundlers: { webpack: [] } },
   { next: '15', react: '19', types: '19', bundlers: { webpack: [], turbopack: ['--turbopack'] } },
-  { next: '16', react: '19', types: '19', bundlers: { turbopack: [], webpack: ['--webpack'] } },
+  { next: '16', react: '19', types: '19', bundlers: { turbopack: [], webpack: ['--webpack'] }, jest: true },
 ]
 
 const args = process.argv.slice(2)
@@ -79,15 +80,41 @@ export default function Legacy() {
 `,
 }
 
+// Pages Router: Next.js does not bundle node_modules packages for pages/, so the docs tell users to add
+// transpilePackages. This page (plus that config) must build.
+const pagesFiles = {
+  'next.config.mjs': "export default { output: 'export', transpilePackages: ['next-persian-fonts'] }\n",
+  'pages/pages-router.tsx': `import { samim } from 'next-persian-fonts/samim'
+import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
+
+export default function PagesRouter() {
+  return <main className={vazirmatnVariable.className}><p className={samim.className}>سلام از Pages Router</p></main>
+}
+`,
+  'jest.config.mjs': "import nextJest from 'next/jest.js'\nexport default nextJest({ dir: './' })({ testEnvironment: 'node' })\n",
+  '__tests__/font.test.js': `import { sahel } from 'next-persian-fonts/sahel'
+import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
+
+test('font objects work under next/jest', () => {
+  expect(typeof sahel.className).toBe('string')
+  expect(typeof vazirmatnVariable.variable).toBe('string')
+})
+`,
+}
+
+const writeFiles = (app, map) => {
+  for (const [p, c] of Object.entries(map)) {
+    mkdirSync(dirname(join(app, p)), { recursive: true })
+    writeFileSync(join(app, p), c)
+  }
+}
+
 // ---- run --------------------------------------------------------------------
 const results = []
 for (const m of matrix) {
   const app = join(work, `next-${m.next}`)
   mkdirSync(app, { recursive: true })
-  for (const [p, c] of Object.entries(files)) {
-    mkdirSync(dirname(join(app, p)), { recursive: true })
-    writeFileSync(join(app, p), c)
-  }
+  writeFiles(app, files)
   writeFileSync(join(app, 'package.json'), JSON.stringify({ name: `smoke-next-${m.next.replace('.', '-')}`, private: true }))
   process.stdout.write(`\n▶ Next.js ${m.next}: installing… `)
   sh('npm', ['install', '--no-audit', '--no-fund', '--loglevel=error',
@@ -114,6 +141,36 @@ for (const m of matrix) {
       results.push({ label, ok: false })
     }
   }
+
+  // Pages Router (first bundler of this version) + next/jest (Next.js 16)
+  const [bundler, flags] = Object.entries(m.bundlers)[0]
+  const label = `next@${version} Pages Router (${bundler})`
+  try {
+    writeFiles(app, pagesFiles)
+    rmSync(join(app, '.next'), { recursive: true, force: true })
+    rmSync(join(app, 'out'), { recursive: true, force: true })
+    sh('npx', ['next', 'build', ...flags], app)
+    const html = findHtml(join(app, 'out'), 'pages-router')
+    if (!html.includes('سلام از Pages Router')) throw new Error('pages-router.html has no content')
+    console.log(`  ✓ ${label} (transpilePackages)`)
+    results.push({ label, ok: true })
+  } catch (e) {
+    console.log(`  ✗ ${label} FAILED\n${`${e.stdout ?? ''}${e.stderr ?? ''}${e.message}`.split('\n').slice(-30).join('\n')}`)
+    results.push({ label, ok: false })
+  }
+  if (m.jest) {
+    const jl = `next@${version} next/jest`
+    try {
+      sh('npm', ['install', '--no-audit', '--no-fund', '--loglevel=error', 'jest@30'], app)
+      sh('npx', ['jest', '--ci'], app)
+      console.log(`  ✓ ${jl}`)
+      results.push({ label: jl, ok: true })
+    } catch (e) {
+      console.log(`  ✗ ${jl} FAILED\n${`${e.stdout ?? ''}${e.stderr ?? ''}`.split('\n').slice(-30).join('\n')}`)
+      results.push({ label: jl, ok: false })
+    }
+  }
+  if (!process.env.KEEP) rmSync(app, { recursive: true, force: true })
 }
 
 function findHtml(out, route) {

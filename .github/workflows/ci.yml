@@ -48,5 +48,5 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Build a test app against the packed tarball
+      - name: Build App Router + Pages Router test apps (and next/jest on 16) against the packed tarball
         run: node scripts/smoke-test.mjs --next ${{ matrix.next }}
