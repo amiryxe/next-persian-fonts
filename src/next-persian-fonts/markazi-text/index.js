@@ -10,7 +10,7 @@ import localFont from 'next/font/local'
  */
 export const markaziText = localFont({
   src: [
-    { path: './MarkaziText[wght].woff2', weight: '400 700', style: 'normal' },
+    { path: './MarkaziText-VF.woff2', weight: '400 700', style: 'normal' },
   ],
   variable: '--font-markazi-text',
   display: 'swap',

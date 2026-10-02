@@ -7,6 +7,7 @@ import localFont from 'next/font/local'
  * Upstream: https://github.com/google/fonts (v1.002), license: OFL-1.1.
  * Also on Google Fonts; bundled here so it works offline / without access to Google.
  * CSS variable: `--font-amiri`.
+ * Not preloaded (4 files); fonts load when first used. A variable export of the family preloads a single file.
  */
 export const amiri = localFont({
   src: [
@@ -17,4 +18,5 @@ export const amiri = localFont({
   ],
   variable: '--font-amiri',
   display: 'swap',
+  preload: false,
 })

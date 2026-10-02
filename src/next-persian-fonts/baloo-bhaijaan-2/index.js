@@ -10,7 +10,7 @@ import localFont from 'next/font/local'
  */
 export const balooBhaijaan2 = localFont({
   src: [
-    { path: './BalooBhaijaan2[wght].woff2', weight: '400 800', style: 'normal' },
+    { path: './BalooBhaijaan2-VF.woff2', weight: '400 800', style: 'normal' },
   ],
   variable: '--font-baloo-bhaijaan-2',
   display: 'swap',

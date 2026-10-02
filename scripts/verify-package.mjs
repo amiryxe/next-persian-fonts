@@ -39,6 +39,9 @@ for (const family of manifest.families) {
     }
     for (const file of readdirSync(dir).filter((f) => /\.(woff2?|ttf|otf)$/.test(f))) {
       if (!expected.has(file)) fail(`${v.subpath}/${file} is not listed in fonts.json`)
+      // Brackets, commas, spaces etc. get percent-encoded in Next's <link rel=preload> but not in the
+      // CSS url(), so the browser would download the file twice.
+      if (!/^[A-Za-z0-9._-]+$/.test(file)) fail(`${v.subpath}/${file}: file names may only contain A-Z a-z 0-9 . _ -`)
       const fd = openSync(join(dir, file), 'r')
       const buf = Buffer.alloc(4)
       readSync(fd, buf, 0, 4, 0)

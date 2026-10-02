@@ -7,5 +7,6 @@ import type { PersianFont } from '../types.js'
  * Upstream: https://github.com/google/fonts (v1.0010g), license: OFL-1.1.
  * Also on Google Fonts; bundled here so it works offline / without access to Google.
  * CSS variable: `--font-mirza`.
+ * Not preloaded (4 files); fonts load when first used. A variable export of the family preloads a single file.
  */
 export declare const mirza: PersianFont

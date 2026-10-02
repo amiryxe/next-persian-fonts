@@ -10,7 +10,7 @@ import localFont from 'next/font/local'
  */
 export const changa = localFont({
   src: [
-    { path: './Changa[wght].woff2', weight: '200 800', style: 'normal' },
+    { path: './Changa-VF.woff2', weight: '200 800', style: 'normal' },
   ],
   variable: '--font-changa',
   display: 'swap',

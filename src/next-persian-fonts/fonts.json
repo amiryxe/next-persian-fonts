@@ -83,7 +83,7 @@
           "files": [
             {
               "from": "fonts/webfonts/Vazirmatn[wght].woff2",
-              "to": "Vazirmatn[wght].woff2",
+              "to": "Vazirmatn-VF.woff2",
               "weight": "100 900"
             }
           ]
@@ -97,7 +97,7 @@
           "files": [
             {
               "from": "Round-Dots/fonts/webfonts/Vazirmatn-RD[wght].woff2",
-              "to": "Vazirmatn-RD[wght].woff2",
+              "to": "Vazirmatn-RD-VF.woff2",
               "weight": "100 900"
             }
           ]
@@ -196,7 +196,7 @@
           "files": [
             {
               "from": "fonts/Estedad[wght].woff2",
-              "to": "Estedad[wght].woff2",
+              "to": "Estedad-VF.woff2",
               "weight": "100 900"
             }
           ],
@@ -213,7 +213,7 @@
               "files": [
                 {
                   "from": null,
-                  "to": "Estedad-FD[KSHD,wght].woff2",
+                  "to": "Estedad-FD-VF.woff2",
                   "weight": "100 900"
                 }
               ]
@@ -543,7 +543,7 @@
           "files": [
             {
               "from": "fonts/webfonts/variable/Mikhak[DSTY,KSHD,wght].woff2",
-              "to": "Mikhak[DSTY,KSHD,wght].woff2",
+              "to": "Mikhak-VF.woff2",
               "weight": "100 900"
             }
           ]
@@ -557,7 +557,7 @@
           "files": [
             {
               "from": "fonts/webfonts/variable/Mikhak-FD[DSTY,KSHD,wght].woff2",
-              "to": "Mikhak-FD[DSTY,KSHD,wght].woff2",
+              "to": "Mikhak-FD-VF.woff2",
               "weight": "100 900"
             }
           ]
@@ -734,7 +734,7 @@
           "files": [
             {
               "from": "ofl/markazitext/MarkaziText[wght].ttf",
-              "to": "MarkaziText[wght].woff2",
+              "to": "MarkaziText-VF.woff2",
               "weight": "400 700",
               "subset": "arabic-latin"
             }
@@ -822,7 +822,7 @@
           "files": [
             {
               "from": "ofl/reemkufi/ReemKufi[wght].ttf",
-              "to": "ReemKufi[wght].woff2",
+              "to": "ReemKufi-VF.woff2",
               "weight": "400 700",
               "subset": "arabic-latin"
             }
@@ -857,7 +857,7 @@
           "files": [
             {
               "from": "ofl/notonaskharabic/NotoNaskhArabic[wght].ttf",
-              "to": "NotoNaskhArabic[wght].woff2",
+              "to": "NotoNaskhArabic-VF.woff2",
               "weight": "400 700",
               "subset": "arabic-latin"
             }
@@ -892,7 +892,7 @@
           "files": [
             {
               "from": "ofl/notosansarabic/NotoSansArabic[wdth,wght].ttf",
-              "to": "NotoSansArabic[wght].woff2",
+              "to": "NotoSansArabic-VF.woff2",
               "weight": "100 900",
               "subset": "arabic-latin",
               "pinAxes": {
@@ -930,7 +930,7 @@
           "files": [
             {
               "from": "ofl/notokufiarabic/NotoKufiArabic[wght].ttf",
-              "to": "NotoKufiArabic[wght].woff2",
+              "to": "NotoKufiArabic-VF.woff2",
               "weight": "100 900",
               "subset": "arabic-latin"
             }
@@ -965,7 +965,7 @@
           "files": [
             {
               "from": "ofl/notonastaliqurdu/NotoNastaliqUrdu[wght].ttf",
-              "to": "NotoNastaliqUrdu[wght].woff2",
+              "to": "NotoNastaliqUrdu-VF.woff2",
               "weight": "400 700",
               "subset": "arabic-latin"
             }
@@ -1346,13 +1346,13 @@
           "files": [
             {
               "from": "ofl/rubik/Rubik[wght].ttf",
-              "to": "Rubik[wght].woff2",
+              "to": "Rubik-VF.woff2",
               "weight": "300 900",
               "subset": "arabic-latin"
             },
             {
               "from": "ofl/rubik/Rubik-Italic[wght].ttf",
-              "to": "Rubik-Italic[wght].woff2",
+              "to": "Rubik-Italic-VF.woff2",
               "weight": "300 900",
               "style": "italic",
               "subset": "arabic-latin"
@@ -1423,7 +1423,7 @@
           "files": [
             {
               "from": "ofl/elmessiri/ElMessiri[wght].ttf",
-              "to": "ElMessiri[wght].woff2",
+              "to": "ElMessiri-VF.woff2",
               "weight": "400 700",
               "subset": "arabic-latin"
             }
@@ -1458,7 +1458,7 @@
           "files": [
             {
               "from": "ofl/changa/Changa[wght].ttf",
-              "to": "Changa[wght].woff2",
+              "to": "Changa-VF.woff2",
               "weight": "200 800",
               "subset": "arabic-latin"
             }
@@ -1493,7 +1493,7 @@
           "files": [
             {
               "from": "ofl/baloobhaijaan2/BalooBhaijaan2[wght].ttf",
-              "to": "BalooBhaijaan2[wght].woff2",
+              "to": "BalooBhaijaan2-VF.woff2",
               "weight": "400 800",
               "subset": "arabic-latin"
             }
@@ -1528,7 +1528,7 @@
           "files": [
             {
               "from": "ofl/cairo/Cairo[slnt,wght].ttf",
-              "to": "Cairo[slnt,wght].woff2",
+              "to": "Cairo-VF.woff2",
               "weight": "200 1000",
               "subset": "arabic-latin"
             }

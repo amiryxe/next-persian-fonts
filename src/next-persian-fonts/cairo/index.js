@@ -10,7 +10,7 @@ import localFont from 'next/font/local'
  */
 export const cairo = localFont({
   src: [
-    { path: './Cairo[slnt,wght].woff2', weight: '200 1000', style: 'normal' },
+    { path: './Cairo-VF.woff2', weight: '200 1000', style: 'normal' },
   ],
   variable: '--font-cairo',
   display: 'swap',

@@ -7,6 +7,7 @@ import localFont from 'next/font/local'
  * Upstream: https://github.com/silnrsi/font-scheherazade (v4.500), license: OFL-1.1.
  * Also on Google Fonts; bundled here so it works offline / without access to Google.
  * CSS variable: `--font-scheherazade-new`.
+ * Not preloaded (4 files); fonts load when first used. A variable export of the family preloads a single file.
  */
 export const scheherazadeNew = localFont({
   src: [
@@ -17,4 +18,5 @@ export const scheherazadeNew = localFont({
   ],
   variable: '--font-scheherazade-new',
   display: 'swap',
+  preload: false,
 })

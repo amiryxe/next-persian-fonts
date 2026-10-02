@@ -10,7 +10,7 @@ import localFont from 'next/font/local'
  */
 export const vazirmatnVariable = localFont({
   src: [
-    { path: './Vazirmatn[wght].woff2', weight: '100 900', style: 'normal' },
+    { path: './Vazirmatn-VF.woff2', weight: '100 900', style: 'normal' },
   ],
   variable: '--font-vazirmatn-variable',
   display: 'swap',

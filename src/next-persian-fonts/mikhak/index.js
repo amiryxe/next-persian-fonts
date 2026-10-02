@@ -9,7 +9,7 @@ import localFont from 'next/font/local'
  */
 export const mikhak = localFont({
   src: [
-    { path: './Mikhak[DSTY,KSHD,wght].woff2', weight: '100 900', style: 'normal' },
+    { path: './Mikhak-VF.woff2', weight: '100 900', style: 'normal' },
   ],
   variable: '--font-mikhak',
   display: 'swap',

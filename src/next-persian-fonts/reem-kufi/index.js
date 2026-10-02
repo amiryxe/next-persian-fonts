@@ -10,7 +10,7 @@ import localFont from 'next/font/local'
  */
 export const reemKufi = localFont({
   src: [
-    { path: './ReemKufi[wght].woff2', weight: '400 700', style: 'normal' },
+    { path: './ReemKufi-VF.woff2', weight: '400 700', style: 'normal' },
   ],
   variable: '--font-reem-kufi',
   display: 'swap',

@@ -10,7 +10,7 @@ import localFont from 'next/font/local'
  */
 export const notoNaskhArabic = localFont({
   src: [
-    { path: './NotoNaskhArabic[wght].woff2', weight: '400 700', style: 'normal' },
+    { path: './NotoNaskhArabic-VF.woff2', weight: '400 700', style: 'normal' },
   ],
   variable: '--font-noto-naskh-arabic',
   display: 'swap',

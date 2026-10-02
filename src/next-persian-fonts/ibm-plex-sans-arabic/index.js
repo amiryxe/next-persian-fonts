@@ -7,6 +7,7 @@ import localFont from 'next/font/local'
  * Upstream: https://github.com/IBM/plex (v1.1.0), license: OFL-1.1.
  * Also on Google Fonts; bundled here so it works offline / without access to Google.
  * CSS variable: `--font-ibm-plex-sans-arabic`.
+ * Not preloaded (7 files); fonts load when first used. A variable export of the family preloads a single file.
  */
 export const ibmPlexSansArabic = localFont({
   src: [
@@ -20,4 +21,5 @@ export const ibmPlexSansArabic = localFont({
   ],
   variable: '--font-ibm-plex-sans-arabic',
   display: 'swap',
+  preload: false,
 })

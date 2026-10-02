@@ -10,7 +10,7 @@ import localFont from 'next/font/local'
  */
 export const elMessiri = localFont({
   src: [
-    { path: './ElMessiri[wght].woff2', weight: '400 700', style: 'normal' },
+    { path: './ElMessiri-VF.woff2', weight: '400 700', style: 'normal' },
   ],
   variable: '--font-el-messiri',
   display: 'swap',

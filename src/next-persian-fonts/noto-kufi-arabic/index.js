@@ -10,7 +10,7 @@ import localFont from 'next/font/local'
  */
 export const notoKufiArabic = localFont({
   src: [
-    { path: './NotoKufiArabic[wght].woff2', weight: '100 900', style: 'normal' },
+    { path: './NotoKufiArabic-VF.woff2', weight: '100 900', style: 'normal' },
   ],
   variable: '--font-noto-kufi-arabic',
   display: 'swap',

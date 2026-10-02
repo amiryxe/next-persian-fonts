@@ -6,5 +6,6 @@ import type { PersianFont } from '../types.js'
  *
  * Upstream: https://github.com/rastikerdar/shabnam-font (v5.0.1), license: OFL-1.1 (Arabic glyphs) + Bitstream Vera / Apache-2.0 (Latin glyphs).
  * CSS variable: `--font-shabnam-fd`.
+ * Not preloaded (5 files); fonts load when first used. A variable export of the family preloads a single file.
  */
 export declare const shabnamFD: PersianFont

@@ -10,7 +10,7 @@ import localFont from 'next/font/local'
  */
 export const vazirmatnRoundDots = localFont({
   src: [
-    { path: './Vazirmatn-RD[wght].woff2', weight: '100 900', style: 'normal' },
+    { path: './Vazirmatn-RD-VF.woff2', weight: '100 900', style: 'normal' },
   ],
   variable: '--font-vazirmatn-round-dots',
   display: 'swap',

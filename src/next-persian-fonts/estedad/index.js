@@ -10,7 +10,7 @@ import localFont from 'next/font/local'
  */
 export const estedad = localFont({
   src: [
-    { path: './Estedad[wght].woff2', weight: '100 900', style: 'normal' },
+    { path: './Estedad-VF.woff2', weight: '100 900', style: 'normal' },
   ],
   variable: '--font-estedad',
   display: 'swap',
@@ -27,7 +27,7 @@ export const estedad = localFont({
  */
 export const estedadFD = localFont({
   src: [
-    { path: './Estedad-FD[KSHD,wght].woff2', weight: '100 900', style: 'normal' },
+    { path: './Estedad-FD-VF.woff2', weight: '100 900', style: 'normal' },
   ],
   variable: '--font-estedad-fd',
   display: 'swap',

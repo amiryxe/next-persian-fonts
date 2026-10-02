@@ -10,7 +10,7 @@ import localFont from 'next/font/local'
  */
 export const notoNastaliqUrdu = localFont({
   src: [
-    { path: './NotoNastaliqUrdu[wght].woff2', weight: '400 700', style: 'normal' },
+    { path: './NotoNastaliqUrdu-VF.woff2', weight: '400 700', style: 'normal' },
   ],
   variable: '--font-noto-nastaliq-urdu',
   display: 'swap',

@@ -6,6 +6,7 @@ import localFont from 'next/font/local'
  *
  * Upstream: https://github.com/rastikerdar/sahel-font (v3.4.0), license: OFL-1.1.
  * CSS variable: `--font-sahel-fd`.
+ * Not preloaded (5 files); fonts load when first used. A variable export of the family preloads a single file.
  */
 export const sahelFD = localFont({
   src: [
@@ -17,4 +18,5 @@ export const sahelFD = localFont({
   ],
   variable: '--font-sahel-fd',
   display: 'swap',
+  preload: false,
 })

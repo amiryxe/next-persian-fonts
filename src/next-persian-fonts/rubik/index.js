@@ -10,8 +10,8 @@ import localFont from 'next/font/local'
  */
 export const rubik = localFont({
   src: [
-    { path: './Rubik[wght].woff2', weight: '300 900', style: 'normal' },
-    { path: './Rubik-Italic[wght].woff2', weight: '300 900', style: 'italic' },
+    { path: './Rubik-VF.woff2', weight: '300 900', style: 'normal' },
+    { path: './Rubik-Italic-VF.woff2', weight: '300 900', style: 'italic' },
   ],
   variable: '--font-rubik',
   display: 'swap',

@@ -7,6 +7,7 @@ import type { PersianFont } from '../types.js'
  * Upstream: https://github.com/rastikerdar/vazirmatn (v33.003), license: OFL-1.1.
  * Also on Google Fonts; bundled here so it works offline / without access to Google.
  * CSS variable: `--font-vazirmatn`.
+ * Not preloaded (9 files); fonts load when first used. A variable export of the family preloads a single file.
  */
 export declare const vazirMatn: PersianFont
 

@@ -6,5 +6,6 @@ import type { PersianFont } from '../types.js'
  *
  * Upstream: https://github.com/rastikerdar/sahel-font (v3.4.0), license: OFL-1.1.
  * CSS variable: `--font-sahel-fd`.
+ * Not preloaded (5 files); fonts load when first used. A variable export of the family preloads a single file.
  */
 export declare const sahelFD: PersianFont
