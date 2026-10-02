@@ -24,15 +24,16 @@ const write = (file, content) => {
 }
 
 const weightLabel = (files) => {
-  const ws = files.map((f) => f.weight)
-  return ws.length === 1 ? ws[0].replace(' ', '–') : ws.join(', ')
+  const ws = [...new Set(files.map((f) => f.weight))]
+  const label = ws.length === 1 ? ws[0].replace(' ', '–') : ws.join(', ')
+  return files.some((f) => f.style === 'italic') ? `${label} + italic` : label
 }
 const isVariable = (files) => files.some((f) => f.weight.includes(' '))
 const digitsLabel = { latin: 'Latin (0-9)', persian: 'Persian (۰-۹)', none: 'no Latin glyphs' }
 
 function fontCall(family, v) {
   const src = v.files
-    .map((f) => `    { path: './${f.to}', weight: '${f.weight}', style: 'normal' },`)
+    .map((f) => `    { path: './${f.to}', weight: '${f.weight}', style: '${f.style ?? 'normal'}' },`)
     .join('\n')
   const opts = [`  src: [\n${src}\n  ],`, `  variable: '${v.cssVariable}',`, `  display: 'swap',`]
   if (v.preload === false) opts.push('  preload: false,')
@@ -44,6 +45,7 @@ function jsdoc(family, v, extraVersion) {
     `${family.name} (${family.nameFa}) — ${v.description}`,
     '',
     `Upstream: https://github.com/${family.repo} (v${extraVersion ?? family.version}), license: ${family.license}.`,
+    ...(family.googleFonts ? ['Also on Google Fonts; bundled here so it works offline / without access to Google.'] : []),
     `CSS variable: \`${v.cssVariable}\`.`,
   ]
   if (v.deprecated) lines.push('', `@deprecated ${v.deprecated}`)
@@ -107,17 +109,21 @@ const md = [
   '',
   'Every font is redistributed unmodified from its upstream repository. Each font folder contains the upstream license file.',
   '',
-  '| Font | Import | Export | Weights | Digits | Upstream version | License | Source |',
-  '|---|---|---|---|---|---|---|---|',
+  '| Font | Import | Export | Weights | Digits | Upstream version | License | Source | Changes |',
+  '|---|---|---|---|---|---|---|---|---|',
   ...rows.map(({ family, v, x }) => {
     const ver = x.version ?? family.version
     const name = `${family.name} (${family.nameFa})${x.deprecated ? ' — deprecated' : ''}`
     const w = `${weightLabel(x.files)}${isVariable(x.files) ? ' (variable)' : ''}`
     const lic = `[${family.license}](./${v.subpath}/${family.licenseFile.to})`
-    return `| ${name} | \`next-persian-fonts/${v.subpath}\` | \`${x.export}\` | ${w} | ${digitsLabel[x.digits]} | ${ver} | ${lic} | [${family.repo}](https://github.com/${family.repo}) |`
+    const src = family.repo === 'google/fonts' ? `[google/fonts](https://github.com/google/fonts/tree/main/ofl/${family.googleFontsDir})` : `[${family.repo}](https://github.com/${family.repo})`
+    const changes = family.modification ? family.modification.replace(/\|/g, '/') : 'None (upstream WOFF2)'
+    return `| ${name}${family.googleFonts ? ' ⓖ' : ''} | \`next-persian-fonts/${v.subpath}\` | \`${x.export}\` | ${w} | ${digitsLabel[x.digits]} | ${ver} | ${lic} | ${src} | ${changes} |`
   }),
   '',
   'Aliases: `vazirmatnFD` is an alias of `vazirMatn`.',
+  '',
+  'ⓖ = also available on Google Fonts. These are bundled so they work when Google is unreachable (e.g. during internet shutdowns in Iran) and builds never need to download fonts. Fonts whose license reserves their name (IBM Plex, SIL fonts) are shipped as the authors\' unmodified WOFF2 files; the others were converted to WOFF2 and subset to Arabic + Latin characters, which the OFL allows because no Reserved Font Name applies.',
   '',
 ]
 write(join(pkgDir, 'FONTS.md'), md.join('\n'))
