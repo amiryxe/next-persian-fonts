@@ -5,6 +5,7 @@ import type { PersianFont } from '../types.js'
  * Vazirmatn (وزیرمتن) — Vazirmatn Round Dots variable font (wght 100-900), Latin digits.
  *
  * Upstream: https://github.com/rastikerdar/vazirmatn (v33.003), license: OFL-1.1.
+ * Also on Google Fonts; bundled here so it works offline / without access to Google.
  * CSS variable: `--font-vazirmatn-round-dots`.
  */
 export declare const vazirmatnRoundDots: PersianFont

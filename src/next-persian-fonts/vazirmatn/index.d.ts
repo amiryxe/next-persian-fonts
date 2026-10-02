@@ -5,6 +5,7 @@ import type { PersianFont } from '../types.js'
  * Vazirmatn (وزیرمتن) — Vazirmatn with Persian (Farsi) digits, 9 static weights (100-900). Same as next-persian-fonts 1.0.x.
  *
  * Upstream: https://github.com/rastikerdar/vazirmatn (v33.003), license: OFL-1.1.
+ * Also on Google Fonts; bundled here so it works offline / without access to Google.
  * CSS variable: `--font-vazirmatn`.
  */
 export declare const vazirMatn: PersianFont

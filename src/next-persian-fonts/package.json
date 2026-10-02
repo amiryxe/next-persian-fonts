@@ -1,7 +1,7 @@
 {
   "name": "next-persian-fonts",
   "version": "1.1.0",
-  "description": "Self-hosted Persian (Farsi) fonts for Next.js via next/font/local: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak and more, with TypeScript types.",
+  "description": "Self-hosted Persian (Farsi) fonts for Next.js via next/font/local — works offline, no Google/CDN needed: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Noto, Lalezar, Amiri and more, with TypeScript types.",
   "author": "Amir Salehi (@amiryxe)",
   "license": "ISC AND OFL-1.1 AND Bitstream-Vera AND Apache-2.0",
   "type": "module",
@@ -101,6 +101,90 @@
       "types": "./nika/index.d.ts",
       "default": "./nika/index.js"
     },
+    "./lalezar": {
+      "types": "./lalezar/index.d.ts",
+      "default": "./lalezar/index.js"
+    },
+    "./markazi-text": {
+      "types": "./markazi-text/index.d.ts",
+      "default": "./markazi-text/index.js"
+    },
+    "./mirza": {
+      "types": "./mirza/index.d.ts",
+      "default": "./mirza/index.js"
+    },
+    "./reem-kufi": {
+      "types": "./reem-kufi/index.d.ts",
+      "default": "./reem-kufi/index.js"
+    },
+    "./noto-naskh-arabic": {
+      "types": "./noto-naskh-arabic/index.d.ts",
+      "default": "./noto-naskh-arabic/index.js"
+    },
+    "./noto-sans-arabic": {
+      "types": "./noto-sans-arabic/index.d.ts",
+      "default": "./noto-sans-arabic/index.js"
+    },
+    "./noto-kufi-arabic": {
+      "types": "./noto-kufi-arabic/index.d.ts",
+      "default": "./noto-kufi-arabic/index.js"
+    },
+    "./noto-nastaliq-urdu": {
+      "types": "./noto-nastaliq-urdu/index.d.ts",
+      "default": "./noto-nastaliq-urdu/index.js"
+    },
+    "./ibm-plex-sans-arabic": {
+      "types": "./ibm-plex-sans-arabic/index.d.ts",
+      "default": "./ibm-plex-sans-arabic/index.js"
+    },
+    "./amiri": {
+      "types": "./amiri/index.d.ts",
+      "default": "./amiri/index.js"
+    },
+    "./harmattan": {
+      "types": "./harmattan/index.d.ts",
+      "default": "./harmattan/index.js"
+    },
+    "./scheherazade-new": {
+      "types": "./scheherazade-new/index.d.ts",
+      "default": "./scheherazade-new/index.js"
+    },
+    "./lateef": {
+      "types": "./lateef/index.d.ts",
+      "default": "./lateef/index.js"
+    },
+    "./katibeh": {
+      "types": "./katibeh/index.d.ts",
+      "default": "./katibeh/index.js"
+    },
+    "./aref-ruqaa": {
+      "types": "./aref-ruqaa/index.d.ts",
+      "default": "./aref-ruqaa/index.js"
+    },
+    "./rubik": {
+      "types": "./rubik/index.d.ts",
+      "default": "./rubik/index.js"
+    },
+    "./jomhuria": {
+      "types": "./jomhuria/index.d.ts",
+      "default": "./jomhuria/index.js"
+    },
+    "./el-messiri": {
+      "types": "./el-messiri/index.d.ts",
+      "default": "./el-messiri/index.js"
+    },
+    "./changa": {
+      "types": "./changa/index.d.ts",
+      "default": "./changa/index.js"
+    },
+    "./baloo-bhaijaan-2": {
+      "types": "./baloo-bhaijaan-2/index.d.ts",
+      "default": "./baloo-bhaijaan-2/index.js"
+    },
+    "./cairo": {
+      "types": "./cairo/index.d.ts",
+      "default": "./cairo/index.js"
+    },
     "./fonts.json": "./fonts.json",
     "./package.json": "./package.json"
   },
@@ -133,7 +217,28 @@
     "vazir-code",
     "vazir-code-fd",
     "behdad",
-    "nika"
+    "nika",
+    "lalezar",
+    "markazi-text",
+    "mirza",
+    "reem-kufi",
+    "noto-naskh-arabic",
+    "noto-sans-arabic",
+    "noto-kufi-arabic",
+    "noto-nastaliq-urdu",
+    "ibm-plex-sans-arabic",
+    "amiri",
+    "harmattan",
+    "scheherazade-new",
+    "lateef",
+    "katibeh",
+    "aref-ruqaa",
+    "rubik",
+    "jomhuria",
+    "el-messiri",
+    "changa",
+    "baloo-bhaijaan-2",
+    "cairo"
   ],
   "repository": {
     "type": "git",
@@ -160,7 +265,14 @@
     "samim",
     "shabnam",
     "mikhak",
-    "webfont"
+    "webfont",
+    "offline",
+    "self-hosted",
+    "google-fonts",
+    "lalezar",
+    "noto",
+    "amiri",
+    "iran"
   ],
   "peerDependencies": {
     "next": ">=13.2.0"

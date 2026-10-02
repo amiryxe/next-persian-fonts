@@ -5,6 +5,7 @@ import type { PersianFont } from '../types.js'
  * Parastoo (پرستو) — Parastoo with Persian digits, 2 static weights (400, 700).
  *
  * Upstream: https://github.com/rastikerdar/parastoo-font (v2.0.1), license: OFL-1.1.
+ * Also on Google Fonts; bundled here so it works offline / without access to Google.
  * CSS variable: `--font-parastoo-fd`.
  */
 export declare const parastooFD: PersianFont

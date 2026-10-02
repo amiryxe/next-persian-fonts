@@ -5,6 +5,7 @@ import localFont from 'next/font/local'
  * Estedad (استعداد) — Estedad variable font (wght 100-900), Latin digits.
  *
  * Upstream: https://github.com/aminabedi68/Estedad (v8.5), license: OFL-1.1.
+ * Also on Google Fonts; bundled here so it works offline / without access to Google.
  * CSS variable: `--font-estedad`.
  */
 export const estedad = localFont({
@@ -19,6 +20,7 @@ export const estedad = localFont({
  * Estedad (استعداد) — Estedad 7.3 variable font with Persian digits (wght 100-900, KSHD axis). Deprecated.
  *
  * Upstream: https://github.com/aminabedi68/Estedad (v7.3), license: OFL-1.1.
+ * Also on Google Fonts; bundled here so it works offline / without access to Google.
  * CSS variable: `--font-estedad-fd`.
  *
  * @deprecated Estedad 8.x no longer ships a Farsi-digits build, so `estedadFD` stays on Estedad 7.3 (the file shipped in next-persian-fonts 1.0.x). Use `estedad` (8.5) for new projects. Not preloaded by default.

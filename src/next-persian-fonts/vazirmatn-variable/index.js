@@ -5,6 +5,7 @@ import localFont from 'next/font/local'
  * Vazirmatn (وزیرمتن) — Vazirmatn variable font (wght 100-900) in a single file, Latin digits.
  *
  * Upstream: https://github.com/rastikerdar/vazirmatn (v33.003), license: OFL-1.1.
+ * Also on Google Fonts; bundled here so it works offline / without access to Google.
  * CSS variable: `--font-vazirmatn-variable`.
  */
 export const vazirmatnVariable = localFont({

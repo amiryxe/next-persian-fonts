@@ -102,7 +102,8 @@
             }
           ]
         }
-      ]
+      ],
+      "googleFonts": true
     },
     {
       "id": "sahel",
@@ -219,7 +220,8 @@
             }
           ]
         }
-      ]
+      ],
+      "googleFonts": true
     },
     {
       "id": "samim",
@@ -469,7 +471,8 @@
             }
           ]
         }
-      ]
+      ],
+      "googleFonts": true
     },
     {
       "id": "gandom",
@@ -664,6 +667,870 @@
               "from": "dist/Nika-Regular.woff2",
               "to": "Nika-Regular.woff2",
               "weight": "400"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lalezar",
+      "name": "Lalezar",
+      "nameFa": "لاله‌زار",
+      "designer": "Borna Izadpanah",
+      "category": "display",
+      "repo": "google/fonts",
+      "googleFontsDir": "lalezar",
+      "googleFonts": true,
+      "version": "1.004",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/lalezar/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "lalezar",
+          "export": "lalezar",
+          "cssVariable": "--font-lalezar",
+          "digits": "latin",
+          "description": "Lalezar display font, single weight (400).",
+          "files": [
+            {
+              "from": "ofl/lalezar/Lalezar-Regular.ttf",
+              "to": "Lalezar-Regular.woff2",
+              "weight": "400",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "markazi-text",
+      "name": "Markazi Text",
+      "nameFa": "مرکزی",
+      "designer": "Borna Izadpanah",
+      "category": "serif",
+      "repo": "google/fonts",
+      "googleFontsDir": "markazitext",
+      "googleFonts": true,
+      "version": "1.001",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/markazitext/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "markazi-text",
+          "export": "markaziText",
+          "cssVariable": "--font-markazi-text",
+          "digits": "latin",
+          "description": "Markazi Text variable font (wght 400-700).",
+          "files": [
+            {
+              "from": "ofl/markazitext/MarkaziText[wght].ttf",
+              "to": "MarkaziText[wght].woff2",
+              "weight": "400 700",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mirza",
+      "name": "Mirza",
+      "nameFa": "میرزا",
+      "designer": "KB-Studio (Kourosh Beigpour)",
+      "category": "serif",
+      "repo": "google/fonts",
+      "googleFontsDir": "mirza",
+      "googleFonts": true,
+      "version": "1.0010g",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/mirza/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "mirza",
+          "export": "mirza",
+          "cssVariable": "--font-mirza",
+          "digits": "latin",
+          "description": "Mirza, 4 static weights (400, 500, 600, 700).",
+          "files": [
+            {
+              "from": "ofl/mirza/Mirza-Regular.ttf",
+              "to": "Mirza-Regular.woff2",
+              "weight": "400",
+              "subset": "arabic-latin"
+            },
+            {
+              "from": "ofl/mirza/Mirza-Medium.ttf",
+              "to": "Mirza-Medium.woff2",
+              "weight": "500",
+              "subset": "arabic-latin"
+            },
+            {
+              "from": "ofl/mirza/Mirza-SemiBold.ttf",
+              "to": "Mirza-SemiBold.woff2",
+              "weight": "600",
+              "subset": "arabic-latin"
+            },
+            {
+              "from": "ofl/mirza/Mirza-Bold.ttf",
+              "to": "Mirza-Bold.woff2",
+              "weight": "700",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reem-kufi",
+      "name": "Reem Kufi",
+      "nameFa": "ریم کوفی",
+      "designer": "Khaled Hosny (Alif Type)",
+      "category": "sans-serif",
+      "repo": "google/fonts",
+      "googleFontsDir": "reemkufi",
+      "googleFonts": true,
+      "version": "2.000",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/reemkufi/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "reem-kufi",
+          "export": "reemKufi",
+          "cssVariable": "--font-reem-kufi",
+          "digits": "latin",
+          "description": "Reem Kufi variable font (wght 400-700). Note: ۵ uses the Arabic-style form.",
+          "files": [
+            {
+              "from": "ofl/reemkufi/ReemKufi[wght].ttf",
+              "to": "ReemKufi[wght].woff2",
+              "weight": "400 700",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "noto-naskh-arabic",
+      "name": "Noto Naskh Arabic",
+      "nameFa": "نوتو نسخ",
+      "designer": "Google (Noto project)",
+      "category": "serif",
+      "repo": "google/fonts",
+      "googleFontsDir": "notonaskharabic",
+      "googleFonts": true,
+      "version": "2.021",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/notonaskharabic/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "noto-naskh-arabic",
+          "export": "notoNaskhArabic",
+          "cssVariable": "--font-noto-naskh-arabic",
+          "digits": "latin",
+          "description": "Noto Naskh Arabic variable font (wght 400-700).",
+          "files": [
+            {
+              "from": "ofl/notonaskharabic/NotoNaskhArabic[wght].ttf",
+              "to": "NotoNaskhArabic[wght].woff2",
+              "weight": "400 700",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "noto-sans-arabic",
+      "name": "Noto Sans Arabic",
+      "nameFa": "نوتو سنس عربی",
+      "designer": "Google (Noto project)",
+      "category": "sans-serif",
+      "repo": "google/fonts",
+      "googleFontsDir": "notosansarabic",
+      "googleFonts": true,
+      "version": "2.012",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/notosansarabic/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "noto-sans-arabic",
+          "export": "notoSansArabic",
+          "cssVariable": "--font-noto-sans-arabic",
+          "digits": "latin",
+          "description": "Noto Sans Arabic variable font (wght 100-900; width axis pinned to normal).",
+          "files": [
+            {
+              "from": "ofl/notosansarabic/NotoSansArabic[wdth,wght].ttf",
+              "to": "NotoSansArabic[wght].woff2",
+              "weight": "100 900",
+              "subset": "arabic-latin",
+              "pinAxes": {
+                "wdth": 100
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "noto-kufi-arabic",
+      "name": "Noto Kufi Arabic",
+      "nameFa": "نوتو کوفی",
+      "designer": "Google (Noto project)",
+      "category": "sans-serif",
+      "repo": "google/fonts",
+      "googleFontsDir": "notokufiarabic",
+      "googleFonts": true,
+      "version": "2.109",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/notokufiarabic/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "noto-kufi-arabic",
+          "export": "notoKufiArabic",
+          "cssVariable": "--font-noto-kufi-arabic",
+          "digits": "latin",
+          "description": "Noto Kufi Arabic variable font (wght 100-900).",
+          "files": [
+            {
+              "from": "ofl/notokufiarabic/NotoKufiArabic[wght].ttf",
+              "to": "NotoKufiArabic[wght].woff2",
+              "weight": "100 900",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "noto-nastaliq-urdu",
+      "name": "Noto Nastaliq Urdu",
+      "nameFa": "نوتو نستعلیق",
+      "designer": "Google (Noto project)",
+      "category": "calligraphy",
+      "repo": "google/fonts",
+      "googleFontsDir": "notonastaliqurdu",
+      "googleFonts": true,
+      "version": "3.009",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/notonastaliqurdu/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "noto-nastaliq-urdu",
+          "export": "notoNastaliqUrdu",
+          "cssVariable": "--font-noto-nastaliq-urdu",
+          "digits": "latin",
+          "description": "Noto Nastaliq Urdu variable font (wght 400-700). Nastaliq script; needs a generous line-height.",
+          "files": [
+            {
+              "from": "ofl/notonastaliqurdu/NotoNastaliqUrdu[wght].ttf",
+              "to": "NotoNastaliqUrdu[wght].woff2",
+              "weight": "400 700",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ibm-plex-sans-arabic",
+      "name": "IBM Plex Sans Arabic",
+      "nameFa": "آی‌بی‌ام پلکس عربی",
+      "designer": "IBM (Mike Abbink, Bold Monday)",
+      "category": "sans-serif",
+      "repo": "IBM/plex",
+      "googleFonts": true,
+      "version": "1.1.0",
+      "ref": "@ibm/plex-sans-arabic@1.1.0",
+      "archive": "https://registry.npmjs.org/@ibm/plex-sans-arabic/-/plex-sans-arabic-1.1.0.tgz",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "package/LICENSE.txt",
+        "to": "OFL.txt",
+        "inArchive": true
+      },
+      "modification": "None: IBM's official WOFF2 files (Reserved Font Name \"Plex\").",
+      "variants": [
+        {
+          "subpath": "ibm-plex-sans-arabic",
+          "export": "ibmPlexSansArabic",
+          "cssVariable": "--font-ibm-plex-sans-arabic",
+          "digits": "latin",
+          "description": "IBM Plex Sans Arabic, 7 static weights (100-700).",
+          "files": [
+            {
+              "from": "package/fonts/complete/woff2/IBMPlexSansArabic-Thin.woff2",
+              "to": "IBMPlexSansArabic-Thin.woff2",
+              "weight": "100"
+            },
+            {
+              "from": "package/fonts/complete/woff2/IBMPlexSansArabic-ExtraLight.woff2",
+              "to": "IBMPlexSansArabic-ExtraLight.woff2",
+              "weight": "200"
+            },
+            {
+              "from": "package/fonts/complete/woff2/IBMPlexSansArabic-Light.woff2",
+              "to": "IBMPlexSansArabic-Light.woff2",
+              "weight": "300"
+            },
+            {
+              "from": "package/fonts/complete/woff2/IBMPlexSansArabic-Regular.woff2",
+              "to": "IBMPlexSansArabic-Regular.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "package/fonts/complete/woff2/IBMPlexSansArabic-Medium.woff2",
+              "to": "IBMPlexSansArabic-Medium.woff2",
+              "weight": "500"
+            },
+            {
+              "from": "package/fonts/complete/woff2/IBMPlexSansArabic-SemiBold.woff2",
+              "to": "IBMPlexSansArabic-SemiBold.woff2",
+              "weight": "600"
+            },
+            {
+              "from": "package/fonts/complete/woff2/IBMPlexSansArabic-Bold.woff2",
+              "to": "IBMPlexSansArabic-Bold.woff2",
+              "weight": "700"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "amiri",
+      "name": "Amiri",
+      "nameFa": "امیری",
+      "designer": "Khaled Hosny (Alif Type)",
+      "category": "serif",
+      "repo": "google/fonts",
+      "googleFontsDir": "amiri",
+      "googleFonts": true,
+      "version": "1.002",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/amiri/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "amiri",
+          "export": "amiri",
+          "cssVariable": "--font-amiri",
+          "digits": "latin",
+          "description": "Amiri Naskh font: regular and bold, upright and italic.",
+          "files": [
+            {
+              "from": "ofl/amiri/Amiri-Regular.ttf",
+              "to": "Amiri-Regular.woff2",
+              "weight": "400",
+              "subset": "arabic-latin"
+            },
+            {
+              "from": "ofl/amiri/Amiri-Bold.ttf",
+              "to": "Amiri-Bold.woff2",
+              "weight": "700",
+              "subset": "arabic-latin"
+            },
+            {
+              "from": "ofl/amiri/Amiri-Italic.ttf",
+              "to": "Amiri-Italic.woff2",
+              "weight": "400",
+              "style": "italic",
+              "subset": "arabic-latin"
+            },
+            {
+              "from": "ofl/amiri/Amiri-BoldItalic.ttf",
+              "to": "Amiri-BoldItalic.woff2",
+              "weight": "700",
+              "style": "italic",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harmattan",
+      "name": "Harmattan",
+      "nameFa": "هرمتان",
+      "designer": "SIL Global",
+      "category": "sans-serif",
+      "repo": "silnrsi/font-harmattan",
+      "googleFonts": true,
+      "version": "4.400",
+      "ref": "v4.400",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "Harmattan-4.400/OFL.txt",
+        "to": "OFL.txt",
+        "inArchive": true
+      },
+      "modification": "None: SIL's official web WOFF2 files.",
+      "variants": [
+        {
+          "subpath": "harmattan",
+          "export": "harmattan",
+          "cssVariable": "--font-harmattan",
+          "digits": "latin",
+          "description": "Harmattan, 4 static weights (400, 500, 600, 700).",
+          "files": [
+            {
+              "from": "Harmattan-4.400/web/Harmattan-Regular.woff2",
+              "to": "Harmattan-Regular.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "Harmattan-4.400/web/Harmattan-Medium.woff2",
+              "to": "Harmattan-Medium.woff2",
+              "weight": "500"
+            },
+            {
+              "from": "Harmattan-4.400/web/Harmattan-SemiBold.woff2",
+              "to": "Harmattan-SemiBold.woff2",
+              "weight": "600"
+            },
+            {
+              "from": "Harmattan-4.400/web/Harmattan-Bold.woff2",
+              "to": "Harmattan-Bold.woff2",
+              "weight": "700"
+            }
+          ]
+        }
+      ],
+      "archive": "https://github.com/silnrsi/font-harmattan/releases/download/v4.400/Harmattan-4.400.zip"
+    },
+    {
+      "id": "scheherazade-new",
+      "name": "Scheherazade New",
+      "nameFa": "شهرزاد",
+      "designer": "SIL Global",
+      "category": "serif",
+      "repo": "silnrsi/font-scheherazade",
+      "googleFonts": true,
+      "version": "4.500",
+      "ref": "v4.500",
+      "archive": "https://github.com/silnrsi/font-scheherazade/releases/download/v4.500/ScheherazadeNew-4.500.zip",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ScheherazadeNew-4.500/OFL.txt",
+        "to": "OFL.txt",
+        "inArchive": true
+      },
+      "modification": "None: SIL's official web WOFF2 files (Reserved Font Names \"Scheherazade\" and \"SIL\").",
+      "variants": [
+        {
+          "subpath": "scheherazade-new",
+          "export": "scheherazadeNew",
+          "cssVariable": "--font-scheherazade-new",
+          "digits": "latin",
+          "description": "Scheherazade New Naskh font, 4 static weights (400, 500, 600, 700).",
+          "files": [
+            {
+              "from": "ScheherazadeNew-4.500/web/ScheherazadeNew-Regular.woff2",
+              "to": "ScheherazadeNew-Regular.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "ScheherazadeNew-4.500/web/ScheherazadeNew-Medium.woff2",
+              "to": "ScheherazadeNew-Medium.woff2",
+              "weight": "500"
+            },
+            {
+              "from": "ScheherazadeNew-4.500/web/ScheherazadeNew-SemiBold.woff2",
+              "to": "ScheherazadeNew-SemiBold.woff2",
+              "weight": "600"
+            },
+            {
+              "from": "ScheherazadeNew-4.500/web/ScheherazadeNew-Bold.woff2",
+              "to": "ScheherazadeNew-Bold.woff2",
+              "weight": "700"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lateef",
+      "name": "Lateef",
+      "nameFa": "لطیف",
+      "designer": "SIL Global",
+      "category": "serif",
+      "repo": "silnrsi/font-lateef",
+      "googleFonts": true,
+      "version": "4.400",
+      "ref": "v4.400",
+      "archive": "https://github.com/silnrsi/font-lateef/releases/download/v4.400/Lateef-4.400.zip",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "Lateef-4.400/OFL.txt",
+        "to": "OFL.txt",
+        "inArchive": true
+      },
+      "modification": "None: SIL's official web WOFF2 files (Reserved Font Names \"Lateef\" and \"SIL\").",
+      "variants": [
+        {
+          "subpath": "lateef",
+          "export": "lateef",
+          "cssVariable": "--font-lateef",
+          "digits": "latin",
+          "description": "Lateef (Sindhi/Urdu-style Naskh), 4 static weights (400, 500, 600, 700).",
+          "files": [
+            {
+              "from": "Lateef-4.400/web/Lateef-Regular.woff2",
+              "to": "Lateef-Regular.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "Lateef-4.400/web/Lateef-Medium.woff2",
+              "to": "Lateef-Medium.woff2",
+              "weight": "500"
+            },
+            {
+              "from": "Lateef-4.400/web/Lateef-SemiBold.woff2",
+              "to": "Lateef-SemiBold.woff2",
+              "weight": "600"
+            },
+            {
+              "from": "Lateef-4.400/web/Lateef-Bold.woff2",
+              "to": "Lateef-Bold.woff2",
+              "weight": "700"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "katibeh",
+      "name": "Katibeh",
+      "nameFa": "کتیبه",
+      "designer": "KB-Studio (Kourosh Beigpour)",
+      "category": "display",
+      "repo": "google/fonts",
+      "googleFontsDir": "katibeh",
+      "googleFonts": true,
+      "version": "1.0010g",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/katibeh/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "katibeh",
+          "export": "katibeh",
+          "cssVariable": "--font-katibeh",
+          "digits": "latin",
+          "description": "Katibeh display font, single weight (400).",
+          "files": [
+            {
+              "from": "ofl/katibeh/Katibeh-Regular.ttf",
+              "to": "Katibeh-Regular.woff2",
+              "weight": "400",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aref-ruqaa",
+      "name": "Aref Ruqaa",
+      "nameFa": "عارف رقعه",
+      "designer": "Abdullah Aref, Khaled Hosny",
+      "category": "calligraphy",
+      "repo": "google/fonts",
+      "googleFontsDir": "arefruqaa",
+      "googleFonts": true,
+      "version": "1.003",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/arefruqaa/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "aref-ruqaa",
+          "export": "arefRuqaa",
+          "cssVariable": "--font-aref-ruqaa",
+          "digits": "latin",
+          "description": "Aref Ruqaa (Ruq'ah calligraphic style), 2 weights (400, 700).",
+          "files": [
+            {
+              "from": "ofl/arefruqaa/ArefRuqaa-Regular.ttf",
+              "to": "ArefRuqaa-Regular.woff2",
+              "weight": "400",
+              "subset": "arabic-latin"
+            },
+            {
+              "from": "ofl/arefruqaa/ArefRuqaa-Bold.ttf",
+              "to": "ArefRuqaa-Bold.woff2",
+              "weight": "700",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rubik",
+      "name": "Rubik",
+      "nameFa": "روبیک",
+      "designer": "Hubert & Fischer, Meir Sadan, Cyreal, Daniel Grumer",
+      "category": "sans-serif",
+      "repo": "google/fonts",
+      "googleFontsDir": "rubik",
+      "googleFonts": true,
+      "version": "2.300",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/rubik/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "rubik",
+          "export": "rubik",
+          "cssVariable": "--font-rubik",
+          "digits": "latin",
+          "description": "Rubik variable font (wght 300-900), upright and italic.",
+          "files": [
+            {
+              "from": "ofl/rubik/Rubik[wght].ttf",
+              "to": "Rubik[wght].woff2",
+              "weight": "300 900",
+              "subset": "arabic-latin"
+            },
+            {
+              "from": "ofl/rubik/Rubik-Italic[wght].ttf",
+              "to": "Rubik-Italic[wght].woff2",
+              "weight": "300 900",
+              "style": "italic",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jomhuria",
+      "name": "Jomhuria",
+      "nameFa": "جمهوریا",
+      "designer": "KB-Studio (Kourosh Beigpour)",
+      "category": "display",
+      "repo": "google/fonts",
+      "googleFontsDir": "jomhuria",
+      "googleFonts": true,
+      "version": "1.0010",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/jomhuria/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "jomhuria",
+          "export": "jomhuria",
+          "cssVariable": "--font-jomhuria",
+          "digits": "latin",
+          "description": "Jomhuria display font, single weight (400).",
+          "files": [
+            {
+              "from": "ofl/jomhuria/Jomhuria-Regular.ttf",
+              "to": "Jomhuria-Regular.woff2",
+              "weight": "400",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "el-messiri",
+      "name": "El Messiri",
+      "nameFa": "المسیری",
+      "designer": "Mohamed Gaber, Jovanny Lemonad",
+      "category": "sans-serif",
+      "repo": "google/fonts",
+      "googleFontsDir": "elmessiri",
+      "googleFonts": true,
+      "version": "2.020",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/elmessiri/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "el-messiri",
+          "export": "elMessiri",
+          "cssVariable": "--font-el-messiri",
+          "digits": "latin",
+          "description": "El Messiri variable font (wght 400-700).",
+          "files": [
+            {
+              "from": "ofl/elmessiri/ElMessiri[wght].ttf",
+              "to": "ElMessiri[wght].woff2",
+              "weight": "400 700",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "changa",
+      "name": "Changa",
+      "nameFa": "چنگا",
+      "designer": "Eduardo Tunni",
+      "category": "sans-serif",
+      "repo": "google/fonts",
+      "googleFontsDir": "changa",
+      "googleFonts": true,
+      "version": "3.003",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/changa/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "changa",
+          "export": "changa",
+          "cssVariable": "--font-changa",
+          "digits": "latin",
+          "description": "Changa variable font (wght 200-800).",
+          "files": [
+            {
+              "from": "ofl/changa/Changa[wght].ttf",
+              "to": "Changa[wght].woff2",
+              "weight": "200 800",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "baloo-bhaijaan-2",
+      "name": "Baloo Bhaijaan 2",
+      "nameFa": "بالو بهایجان",
+      "designer": "Ek Type",
+      "category": "display",
+      "repo": "google/fonts",
+      "googleFontsDir": "baloobhaijaan2",
+      "googleFonts": true,
+      "version": "1.701",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/baloobhaijaan2/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "baloo-bhaijaan-2",
+          "export": "balooBhaijaan2",
+          "cssVariable": "--font-baloo-bhaijaan-2",
+          "digits": "latin",
+          "description": "Baloo Bhaijaan 2 variable font (wght 400-800).",
+          "files": [
+            {
+              "from": "ofl/baloobhaijaan2/BalooBhaijaan2[wght].ttf",
+              "to": "BalooBhaijaan2[wght].woff2",
+              "weight": "400 800",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cairo",
+      "name": "Cairo",
+      "nameFa": "قاهره",
+      "designer": "Mohamed Gaber",
+      "category": "sans-serif",
+      "repo": "google/fonts",
+      "googleFontsDir": "cairo",
+      "googleFonts": true,
+      "version": "3.130",
+      "ref": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "ofl/cairo/OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "cairo",
+          "export": "cairo",
+          "cssVariable": "--font-cairo",
+          "digits": "latin",
+          "description": "Cairo variable font (wght 200-1000, plus a slant axis).",
+          "files": [
+            {
+              "from": "ofl/cairo/Cairo[slnt,wght].ttf",
+              "to": "Cairo[slnt,wght].woff2",
+              "weight": "200 1000",
+              "subset": "arabic-latin"
             }
           ]
         }
