@@ -45,30 +45,35 @@
 npm install next-persian-fonts
 ```
 
+با pnpm یا yarn: `pnpm add next-persian-fonts@^1.1` (نسخه را صریح بنویسید؛ pnpm بسته‌های تازه‌منتشرشده را تا مدتی نصب نمی‌کند).
+
 **۲. فونت را در `app/layout.tsx` ایمپورت کنید**
 
 ```tsx
 import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
 ```
 
-**۳. کلاس فونت را روی `<html>` بگذارید**
+**۳. کلاس فونت را روی `<body>` بگذارید**
 
 ```tsx
-<html lang="fa" dir="rtl" className={vazirmatnVariable.className}>
+<body className={vazirmatnVariable.className}>
 ```
 
 تمام! حالا کل سایت با فونت وزیرمتن نمایش داده می‌شود.
+
+> **پروژهٔ تازهٔ create-next-app؟** در `app/layout.tsx` ایمپورت فونت‌های Geist از `next/font/google` را حذف کنید (به اینترنت جهانی نیاز دارند) و در `globals.css` خط `font-family: Arial, Helvetica, sans-serif;` را از قانون `body` پاک کنید تا جلوی فونت فارسی را نگیرد.
 
 ### مثال کامل: App Router
 
 ```tsx
 // app/layout.tsx
+import './globals.css'
 import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fa" dir="rtl" className={vazirmatnVariable.className}>
-      <body>{children}</body>
+    <html lang="fa" dir="rtl">
+      <body className={vazirmatnVariable.className}>{children}</body>
     </html>
   )
 }
@@ -78,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ```tsx
 // pages/_app.tsx
+import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
 
@@ -87,6 +93,15 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
     </main>
   )
+}
+```
+
+و در `next.config` این را اضافه کنید (در Pages Router لازم است، چون Next.js پکیج‌های node_modules را در Pages Router باندل نمی‌کند و بدون آن build با خطای `ERR_UNSUPPORTED_DIR_IMPORT` متوقف می‌شود؛ برای Jest هم لازم است و در App Router بی‌ضرر است):
+
+```js
+// next.config.mjs
+export default {
+  transpilePackages: ['next-persian-fonts'],
 }
 ```
 
@@ -164,6 +179,24 @@ h1   { font-family: var(--font-lalezar); }
 ```js
 experimental: { optimizePackageImports: ['next-persian-fonts'] }
 ```
+</details>
+
+<details>
+<summary><b>Pages Router یا Jest خطای ERR_UNSUPPORTED_DIR_IMPORT می‌دهد؟</b></summary>
+
+در `next.config` بنویسید `transpilePackages: ['next-persian-fonts']`. Pages Router و `next/jest` پکیج‌های node_modules را باندل نمی‌کنند، پس `next/font/local` اجرا نمی‌شود. این تنظیم در App Router هم بی‌ضرر است.
+</details>
+
+<details>
+<summary><b>چرا بعضی فونت‌ها preload نمی‌شوند؟</b></summary>
+
+خروجی‌هایی که بیش از ۳ فایل دارند (مثل `vazirMatn` با ۹ وزن، `sahelFD`، `shabnam`، `ibmPlexSansArabic`) preload نمی‌شوند تا Next.js همهٔ وزن‌ها را در هر صفحه از قبل دانلود نکند؛ فقط وزن‌هایی که استفاده می‌کنید بارگذاری می‌شوند. برای کمترین حجم، نسخه‌های متغیر مثل `vazirmatnVariable` را انتخاب کنید (یک فایل برای همهٔ وزن‌ها).
+</details>
+
+<details>
+<summary><b>با pnpm نسخهٔ قدیمی (۱.۰) نصب شد؟</b></summary>
+
+نسخه‌های جدید pnpm بسته‌هایی را که تازه منتشر شده‌اند تا مدتی نصب نمی‌کنند. نسخه را صریح بنویسید: `pnpm add next-persian-fonts@^1.1`.
 </details>
 
 <details>
@@ -271,20 +304,23 @@ Vera = Bitstream Vera license (Latin glyphs), PD = public domain changes. Versio
 
 ### Installation & Usage (3 steps)
 
-1. Install: `npm install next-persian-fonts`
+1. Install: `npm install next-persian-fonts` (with pnpm/yarn: `pnpm add next-persian-fonts@^1.1`; recent pnpm versions hold back freshly published releases for a while)
 2. Import a font in `app/layout.tsx`: `import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'`
-3. Put its class on `<html>`: `<html lang="fa" dir="rtl" className={vazirmatnVariable.className}>`
+3. Put its class on `<body>`: `<body className={vazirmatnVariable.className}>`
+
+> **Fresh create-next-app project?** Remove the Geist `next/font/google` imports from `app/layout.tsx` (they need the global internet) and delete the `font-family: Arial, Helvetica, sans-serif;` line from the `body` rule in `globals.css`, otherwise it overrides the Persian font.
 
 **App Router**
 
 ```tsx
 // app/layout.tsx
+import './globals.css'
 import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fa" dir="rtl" className={vazirmatnVariable.className}>
-      <body>{children}</body>
+    <html lang="fa" dir="rtl">
+      <body className={vazirmatnVariable.className}>{children}</body>
     </html>
   )
 }
@@ -294,6 +330,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ```tsx
 // pages/_app.tsx
+import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
 
@@ -303,6 +340,15 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
     </main>
   )
+}
+```
+
+The Pages Router also needs this in `next.config` (Next.js doesn't bundle `node_modules` packages for the Pages Router, so without it the build fails with `ERR_UNSUPPORTED_DIR_IMPORT`; Jest via `next/jest` needs it too, and it's harmless for the App Router):
+
+```js
+// next.config.mjs
+export default {
+  transpilePackages: ['next-persian-fonts'],
 }
 ```
 
@@ -336,6 +382,9 @@ When Iran is cut off from the global internet, `next/font/google` can't download
 - **Several fonts?** Put each font's `.variable` on `<html>` and use `font-family: var(--font-lalezar)` where needed, or put `lalezar.className` on a single element.
 - **What are the `FD` exports?** They render Latin digits (123) as Persian digits (۱۲۳). `vazirMatn` always uses Persian digits.
 - **Do I need `optimizePackageImports`?** Not with subpath imports. Only for the legacy root import (`from 'next-persian-fonts'`) with webpack: `experimental: { optimizePackageImports: ['next-persian-fonts'] }`.
+- **Pages Router or Jest fails with `ERR_UNSUPPORTED_DIR_IMPORT`?** Add `transpilePackages: ['next-persian-fonts']` to `next.config`. Harmless for the App Router.
+- **Why are some fonts not preloaded?** Exports with more than 3 files (e.g. `vazirMatn` with 9 weights, `sahelFD`, `shabnam`, `ibmPlexSansArabic`) aren't preloaded, so Next.js doesn't download every weight on every page; only the weights you use load. Variable exports such as `vazirmatnVariable` are the lightest (one file for all weights).
+- **pnpm installed 1.0?** Recent pnpm versions hold back freshly published releases for a while. Use `pnpm add next-persian-fonts@^1.1`.
 - **Upgrading from 1.0?** Nothing breaks: every 1.0 import path and export still works. `estedadFD` is deprecated (kept on Estedad 7.3); use `estedad`. See the [CHANGELOG](https://github.com/amiryxe/next-persian-fonts/blob/main/CHANGELOG.md).
 - **Commercial use?** Yes. All fonts use free licenses (mostly SIL OFL 1.1).
 
@@ -375,7 +424,7 @@ npm run build               # static export into ./out
 npm start                   # serves ./out at http://localhost:4173/next-persian-fonts/ (same base path as Pages)
 
 npm run verify              # generated files in sync, fonts valid, pack contents, types (bundler/node16/node10)
-npm run test:smoke          # builds a test app with the packed tarball on Next 13.5, 14, 15, 16 (webpack + Turbopack)
+npm run test:smoke          # App Router + Pages Router test apps with the packed tarball on Next 13.5–16 (webpack + Turbopack), next/jest on 16
 npm run lint
 ```
 
@@ -383,8 +432,8 @@ npm run lint
 
 1. Edit `src/next-persian-fonts/fonts.json`: bump `version` and `ref` (a tag or commit SHA) or add a new family/variant (only redistributable licenses!).
 2. `npm run fonts:update` downloads the font files and license texts from upstream (`--only <id>` for one family).
-3. `npm run fonts:generate` regenerates `index.js`, `index.d.ts`, the `exports` map and `FONTS.md`.
-4. Add the new export to `src/lib/fonts.ts` (the demo), then `npm run verify && npm run test:smoke`.
+3. `npm run fonts:generate` regenerates `index.js`, `index.d.ts`, the `exports` map, `FONTS.md` and the demo gallery (`src/lib/gallery-fonts.generated.ts`).
+4. Run `npm run verify && npm run test:smoke`.
 
 Google Fonts families are pinned to a google/fonts commit. TTF-only families are converted to WOFF2
 and subset to Arabic + Latin by the update script (needs Python with `fonttools` and `brotli`; set
