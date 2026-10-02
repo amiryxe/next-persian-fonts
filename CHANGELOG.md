@@ -18,11 +18,13 @@ Nothing that worked in 1.0.x breaks: every 1.0.x import path and export name sti
 
 ### Added
 - New font families: **Samim** 4.0.5, **Shabnam** 5.0.1, **Mikhak** 3.4 (variable), **Parastoo** 2.0.1, **Gandom** 0.8, **Tanha** 0.10, **Vazir Code** 1.1.2 (monospace), **Behdad** 1.0.0 and **Nika** 1.0.0.
+- **Persian-capable Google Fonts, bundled for offline use** (21 families): **Lalezar**, **Markazi Text**, **Mirza**, **Reem Kufi**, **Noto Naskh Arabic**, **Noto Sans Arabic**, **Noto Kufi Arabic**, **Noto Nastaliq Urdu**, **IBM Plex Sans Arabic**, **Amiri** (with italics), **Harmattan**, **Scheherazade New**, **Lateef**, **Katibeh**, **Aref Ruqaa**, **Rubik** (with italic), **Jomhuria**, **El Messiri**, **Changa**, **Baloo Bhaijaan 2** and **Cairo**. When Iran is cut off from the global internet, `next/font/google` can't download fonts at build time and CDN fonts don't load; these now ship inside the package. Every family was checked for Persian letters (پ چ ژ گ ک ی) and Persian digits. TTF-only families are converted to WOFF2 and subset to Arabic + Latin; fonts with a Reserved Font Name (IBM Plex, SIL fonts) ship the authors' unmodified WOFF2. Changes are listed per file in `FONTS.md`. The packed tarball grows from about 2.3 MB to about 6.4 MB, but an app only downloads the fonts it imports.
 - Persian-digit (`…FD`) variants for Sahel, Samim, Shabnam, Mikhak, Parastoo, Gandom, Tanha and Vazir Code.
 - Vazirmatn variants: `vazirmatnVariable` (a single 111 KB variable file, Latin digits) and `vazirmatnRoundDots`. `vazirmatnFD` was added as an alias of `vazirMatn`.
 - `PersianFont` type, `next-persian-fonts/fonts.json` (machine-readable font list) and `exports` entries with `types` conditions.
 - Tooling: `fonts.json` manifest with generator, upstream update/check script, package verification, and a smoke-test matrix (Next 13.5 / 14 / 15 / 16, webpack and Turbopack) with CI on Node 22 and 24.
-- Demo/docs site redesigned: Next.js 16, React 19, Tailwind CSS 4, RTL/`lang="fa"`, a live font gallery (custom text, weight and size sliders, Persian/Latin digits toggle, category filter, search, copyable imports, license links), dark mode, and usage docs for App Router, Pages Router, CSS variables, Tailwind v3/v4 and `next/font/google`.
+- Demo/docs site redesigned: Next.js 16, React 19, Tailwind CSS 4, RTL/`lang="fa"`, a live font gallery (custom text, weight and size sliders, Persian/Latin digits toggle, category filter, search, copyable imports, license links), dark mode, a Google Fonts source filter, and beginner-friendly docs (3-step quick start, App Router / Pages Router examples, Tailwind v3/v4, FAQ). The demo sets `agentRules: false` so `next dev` on Next.js 16 doesn't generate `AGENTS.md`/`CLAUDE.md`.
+- READMEs rewritten: Persian first, then English, with a 3-step quick start, copy-paste examples and an FAQ.
 
 ## 1.0.1 (2026-07-18)
 - ESM `exports` map for `sahel`, `vazirmatn` and `estedad`.

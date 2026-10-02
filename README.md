@@ -4,27 +4,42 @@
 [![CI](https://github.com/amiryxe/next-persian-fonts/actions/workflows/ci.yml/badge.svg)](https://github.com/amiryxe/next-persian-fonts/actions/workflows/ci.yml)
 [![Demo](https://img.shields.io/badge/demo-GitHub%20Pages-10b981)](https://amiryxe.github.io/next-persian-fonts/)
 
-Free Persian (Farsi) fonts for Next.js, self-hosted through `next/font/local`, with TypeScript types.
-Includes Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Parastoo, Gandom, Tanha, Vazir Code, Behdad and Nika.
+<div dir="rtl">
 
-**👉 Package docs (English + فارسی): [src/next-persian-fonts/README.md](./src/next-persian-fonts/README.md)**
-**👉 Live demo & font gallery: https://amiryxe.github.io/next-persian-fonts/**
+۳۳ فونت فارسی رایگان برای Next.js، داخل خود پکیج: وزیرمتن، استعداد، ساحل، صمیم، شبنم، میخک و… به‌علاوهٔ فونت‌های فارسی Google Fonts مثل لاله‌زار، نوتو و امیری. بدون گوگل و CDN، پس حتی وقتی اینترنت بین‌الملل قطع است هم کار می‌کند.
+
+**شروع سریع در ۳ قدم:**
+
+۱. نصب: `npm install next-persian-fonts`
+
+۲. ایمپورت در `app/layout.tsx`: `import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'`
+
+۳. استفاده: `<html lang="fa" dir="rtl" className={vazirmatnVariable.className}>`
+
+📖 **[راهنمای کامل (فارسی + English)](./src/next-persian-fonts/README.md)** · 🎨 **[دمو و گالری فونت‌ها](https://amiryxe.github.io/next-persian-fonts/)**
+
+</div>
+
+33 free Persian fonts for Next.js, bundled inside the package (no Google, no CDN, works offline):
 
 ```bash
 npm install next-persian-fonts
 ```
 
 ```tsx
+// app/layout.tsx
 import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
 
-<html lang="fa" dir="rtl" className={vazirmatnVariable.className}>
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="fa" dir="rtl" className={vazirmatnVariable.className}>
+      <body>{children}</body>
+    </html>
+  )
+}
 ```
 
-<div dir="rtl">
-
-مجموعه‌ای از فونت‌های فارسی آزاد برای Next.js که با `next/font/local` روی سایت خودتان میزبانی می‌شوند. راهنمای کامل فارسی در [README پکیج](./src/next-persian-fonts/README.md#فارسی) است.
-
-</div>
+**[Full docs: Pages Router, Tailwind, multiple fonts, FAQ →](./src/next-persian-fonts/README.md#english)**
 
 ## Repository layout
 
@@ -60,6 +75,11 @@ npm run lint
 2. `npm run fonts:update` downloads the font files and license texts from upstream (`--only <id>` for one family).
 3. `npm run fonts:generate` regenerates `index.js`, `index.d.ts`, the `exports` map and `FONTS.md`.
 4. Add the new export to `src/lib/fonts.ts` (the demo), then `npm run verify && npm run test:smoke`.
+
+Google Fonts families are pinned to a google/fonts commit. TTF-only families are converted to WOFF2
+and subset to Arabic + Latin by the update script (needs Python with `fonttools` and `brotli`; set
+`NPF_PYTHON=/path/to/python`). Never subset a font whose OFL declares a Reserved Font Name for its own
+name: use the authors' official WOFF2 instead.
 
 `npm run fonts:check-upstream` compares the pinned versions with the latest upstream GitHub releases.
 

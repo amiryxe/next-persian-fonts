@@ -3,20 +3,38 @@
 [![npm](https://img.shields.io/npm/v/next-persian-fonts)](https://www.npmjs.com/package/next-persian-fonts)
 [![CI](https://github.com/amiryxe/next-persian-fonts/actions/workflows/ci.yml/badge.svg)](https://github.com/amiryxe/next-persian-fonts/actions/workflows/ci.yml)
 
-Self-hosted, free Persian (Farsi) fonts for **Next.js**, loaded with `next/font/local`, so there's no CDN and no layout shift. TypeScript types are included.
-Works with Next.js 13.2 → 16 (App Router and Pages Router, Turbopack and webpack) and React 18/19.
+فونت‌های فارسی رایگان برای Next.js، داخل خود پکیج. بدون نیاز به گوگل و CDN، حتی وقتی اینترنت بین‌الملل قطع است.
+Free Persian fonts for Next.js, bundled inside the package. No Google, no CDN, works offline.
 
-**[Live demo & font gallery →](https://amiryxe.github.io/next-persian-fonts/)** · [فارسی](#فارسی)
+**[دموی زنده و گالری فونت‌ها · Live demo & gallery](https://amiryxe.github.io/next-persian-fonts/)** · [English](#english)
 
-## Install
+<div dir="rtl">
+
+## شروع سریع در ۳ قدم
+
+**۱. نصب کنید**
 
 ```bash
-npm install next-persian-fonts   # or: pnpm add / yarn add / bun add
+npm install next-persian-fonts
 ```
 
-## Usage
+**۲. فونت را در `app/layout.tsx` ایمپورت کنید**
 
-Import each font from its own subpath. Only fonts you import end up in your CSS.
+```tsx
+import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
+```
+
+**۳. کلاس فونت را روی `<html>` بگذارید**
+
+```tsx
+<html lang="fa" dir="rtl" className={vazirmatnVariable.className}>
+```
+
+تمام! حالا کل سایت با فونت وزیرمتن نمایش داده می‌شود.
+
+## مثال کامل: App Router
+
+این فایل را کپی کنید:
 
 ```tsx
 // app/layout.tsx
@@ -31,115 +49,226 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-Every export is a Next.js font object: `{ className, variable, style }`.
-
-### CSS variables & Tailwind
+## مثال کامل: Pages Router
 
 ```tsx
-import { estedad } from 'next-persian-fonts/estedad'
-import { vazirCode } from 'next-persian-fonts/vazir-code'
+// pages/_app.tsx
+import type { AppProps } from 'next/app'
+import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
 
-<html className={`${estedad.variable} ${vazirCode.variable}`}>
-```
-
-```css
-/* Tailwind v4 (globals.css) */
-@import 'tailwindcss';
-@theme inline {
-  --font-sans: var(--font-estedad), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-vazir-code), ui-monospace, monospace;
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <main className={vazirmatnVariable.className}>
+      <Component {...pageProps} />
+    </main>
+  )
 }
 ```
 
-```ts
-// Tailwind v3 (tailwind.config.ts)
-theme: { extend: { fontFamily: { sans: ['var(--font-estedad)', 'system-ui'] } } }
+برای راست‌چین شدن صفحه، در `pages/_document.tsx` بنویسید: `<Html lang="fa" dir="rtl">`.
+
+## استفاده با Tailwind
+
+به‌جای `className` از `variable` استفاده کنید تا فونت به‌صورت متغیر CSS در دسترس باشد:
+
+```tsx
+<html lang="fa" dir="rtl" className={vazirmatnVariable.variable}>
 ```
 
-## Fonts
+**Tailwind نسخهٔ ۴** (در `globals.css`):
 
-`FD` variants use Persian digits (۱۲۳) even for Latin digits in your text.
+```css
+@import 'tailwindcss';
 
-| Font | Import from | Export(s) | Weights |
-|---|---|---|---|
-| Vazirmatn (وزیرمتن) | `next-persian-fonts/vazirmatn` | `vazirMatn` (= `vazirmatnFD`, Persian digits) | 100–900 (9 static files) |
-| | `next-persian-fonts/vazirmatn-variable` | `vazirmatnVariable` | 100–900 variable |
-| | `next-persian-fonts/vazirmatn-round-dots` | `vazirmatnRoundDots` | 100–900 variable |
-| Estedad (استعداد) | `next-persian-fonts/estedad` | `estedad` (v8.5), `estedadFD` (v7.3, deprecated) | 100–900 variable |
-| Sahel (ساحل) | `next-persian-fonts/sahel` · `/sahel-fd` | `sahel` · `sahelFD` | 400–900 variable · 300–900 static |
-| Samim (صمیم) | `next-persian-fonts/samim` · `/samim-fd` | `samim` · `samimFD` | 400, 500, 700 |
-| Shabnam (شبنم) | `next-persian-fonts/shabnam` · `/shabnam-fd` | `shabnam` · `shabnamFD` | 100, 300, 400, 500, 700 |
-| Mikhak (میخک) | `next-persian-fonts/mikhak` · `/mikhak-fd` | `mikhak` · `mikhakFD` | 100–900 variable |
-| Parastoo (پرستو) | `next-persian-fonts/parastoo` · `/parastoo-fd` | `parastoo` · `parastooFD` | 400, 700 |
-| Gandom (گندم) | `next-persian-fonts/gandom` · `/gandom-fd` | `gandom` · `gandomFD` | 400 |
-| Tanha (تنها) | `next-persian-fonts/tanha` · `/tanha-fd` | `tanha` · `tanhaFD` | 400 |
-| Vazir Code (وزیر کد) | `next-persian-fonts/vazir-code` · `/vazir-code-fd` | `vazirCode` · `vazirCodeFD` | 400 (monospace) |
-| Behdad (بهداد) | `next-persian-fonts/behdad` | `behdad` | 400 (Arabic script only) |
-| Nika (نیکا) | `next-persian-fonts/nika` | `nika` | 400 (Arabic script only) |
-
-Versions, licenses and upstream sources: **[FONTS.md](./FONTS.md)**. Machine-readable list: `next-persian-fonts/fonts.json`.
-
-### Fonts on Google Fonts
-
-Persian fonts that are available on Google Fonts (Lalezar, Noto Naskh Arabic, Noto Sans Arabic, Noto Nastaliq Urdu, Markazi Text, Reem Kufi, IBM Plex Sans Arabic, Amiri, Mirza, …) are not bundled. Use `next/font/google` for those:
-
-```ts
-import { Lalezar } from 'next/font/google'
-const lalezar = Lalezar({ weight: '400', subsets: ['arabic'], variable: '--font-lalezar' })
+@theme inline {
+  --font-sans: var(--font-vazirmatn-variable), sans-serif;
+}
 ```
 
-## Notes
+**Tailwind نسخهٔ ۳** (در `tailwind.config.js`):
 
-- **Root import.** `import { sahel } from 'next-persian-fonts'` still works for 1.0.x compatibility and only re-exports `sahel`, `vazirMatn` and `estedad`/`estedadFD`. Turbopack tree-shakes it. With webpack, every font in that barrel ends up in your CSS and preloads unless you add `experimental: { optimizePackageImports: ['next-persian-fonts'] }` to `next.config`. Subpath imports avoid this altogether.
-- **`estedadFD` is deprecated.** Estedad 8 dropped its Farsi-digits build, so `estedadFD` stays on Estedad 7.3 and is no longer preloaded. Use `estedad` (8.5).
-- Variable fonts declare their weight range (e.g. `font-weight: 100 900`), so every `font-weight` uses the real weight instead of a browser-synthesized bold.
-- Requires Next.js ≥ 13.2 (when `next/font` became built in).
-
-## License
-
-Package code: ISC. Fonts are redistributed unmodified under their own licenses (mostly SIL OFL 1.1; see [LICENSE.md](./LICENSE.md) and [FONTS.md](./FONTS.md)). Each font folder contains its license file.
-
----
-
-<div dir="rtl">
-
-## فارسی
-
-مجموعه‌ای از فونت‌های فارسی آزاد برای **Next.js** که با `next/font/local` بارگذاری می‌شوند: میزبانی روی سرور خودتان، بدون CDN، بدون پرش صفحه (CLS) و با تایپ‌اسکریپت. سازگار با Next.js ۱۳.۲ تا ۱۶، App Router و Pages Router، Turbopack و webpack و React ۱۸ و ۱۹.
-
-**[دموی زنده و گالری فونت‌ها ←](https://amiryxe.github.io/next-persian-fonts/)**
-
-### نصب
-
-```bash
-npm install next-persian-fonts
+```js
+module.exports = {
+  theme: {
+    extend: {
+      fontFamily: { sans: ['var(--font-vazirmatn-variable)', 'sans-serif'] },
+    },
+  },
+}
 ```
 
-### استفاده
+حالا `font-sans` (پیش‌فرض Tailwind) همان وزیرمتن است. نام متغیر هر فونت `--font-` به‌علاوهٔ مسیر ایمپورتش است؛ مثلاً `next-persian-fonts/estedad` ← `--font-estedad`.
 
-هر فونت را از مسیر جداگانهٔ خودش ایمپورت کنید تا فقط همان فونت در خروجی بیاید:
+## فهرست فونت‌ها
+
+هر فونت از مسیر خودش ایمپورت می‌شود: `import { نام‌خروجی } from 'next-persian-fonts/مسیر'`
+
+**فونت‌های ایرانی**
+
+| فونت | مسیر ← نام خروجی |
+|---|---|
+| وزیرمتن · Vazirmatn | `vazirmatn-variable` ← `vazirmatnVariable` · `vazirmatn` ← `vazirMatn` (ارقام فارسی) · `vazirmatn-round-dots` ← `vazirmatnRoundDots` |
+| استعداد · Estedad | `estedad` ← `estedad` |
+| ساحل · Sahel | `sahel` ← `sahel` · `sahel-fd` ← `sahelFD` |
+| صمیم · Samim | `samim` ← `samim` · `samim-fd` ← `samimFD` |
+| شبنم · Shabnam | `shabnam` ← `shabnam` · `shabnam-fd` ← `shabnamFD` |
+| میخک · Mikhak | `mikhak` ← `mikhak` · `mikhak-fd` ← `mikhakFD` |
+| پرستو · Parastoo | `parastoo` ← `parastoo` · `parastoo-fd` ← `parastooFD` |
+| گندم · Gandom | `gandom` ← `gandom` · `gandom-fd` ← `gandomFD` |
+| تنها · Tanha | `tanha` ← `tanha` · `tanha-fd` ← `tanhaFD` |
+| وزیر کد · Vazir Code (مونواسپیس) | `vazir-code` ← `vazirCode` · `vazir-code-fd` ← `vazirCodeFD` |
+| بهداد · Behdad | `behdad` ← `behdad` |
+| نیکا · Nika | `nika` ← `nika` |
+
+**فونت‌های Google Fonts (آفلاین، داخل پکیج)**
+
+| فونت | مسیر ← نام خروجی |
+|---|---|
+| لاله‌زار · Lalezar | `lalezar` ← `lalezar` |
+| مرکزی · Markazi Text | `markazi-text` ← `markaziText` |
+| میرزا · Mirza | `mirza` ← `mirza` |
+| ریم کوفی · Reem Kufi | `reem-kufi` ← `reemKufi` |
+| نوتو نسخ · Noto Naskh Arabic | `noto-naskh-arabic` ← `notoNaskhArabic` |
+| نوتو سنس · Noto Sans Arabic | `noto-sans-arabic` ← `notoSansArabic` |
+| نوتو کوفی · Noto Kufi Arabic | `noto-kufi-arabic` ← `notoKufiArabic` |
+| نوتو نستعلیق · Noto Nastaliq Urdu | `noto-nastaliq-urdu` ← `notoNastaliqUrdu` |
+| آی‌بی‌ام پلکس · IBM Plex Sans Arabic | `ibm-plex-sans-arabic` ← `ibmPlexSansArabic` |
+| امیری · Amiri | `amiri` ← `amiri` |
+| هرمتان · Harmattan | `harmattan` ← `harmattan` |
+| شهرزاد · Scheherazade New | `scheherazade-new` ← `scheherazadeNew` |
+| لطیف · Lateef | `lateef` ← `lateef` |
+| کتیبه · Katibeh | `katibeh` ← `katibeh` |
+| عارف رقعه · Aref Ruqaa | `aref-ruqaa` ← `arefRuqaa` |
+| روبیک · Rubik | `rubik` ← `rubik` |
+| جمهوریا · Jomhuria | `jomhuria` ← `jomhuria` |
+| المسیری · El Messiri | `el-messiri` ← `elMessiri` |
+| چنگا · Changa | `changa` ← `changa` |
+| بالو بهایجان · Baloo Bhaijaan 2 | `baloo-bhaijaan-2` ← `balooBhaijaan2` |
+| قاهره · Cairo | `cairo` ← `cairo` |
+
+وزن‌ها، نسخه‌ها و مجوز هر فونت در **[FONTS.md](./FONTS.md)** آمده است. برای دیدن ظاهر فونت‌ها به [گالری](https://amiryxe.github.io/next-persian-fonts/) سر بزنید.
+
+## پرسش‌های رایج
+
+**چرا فونت‌ها داخل پکیج هستند و از Google Fonts یا CDN استفاده نمی‌کنیم؟**
+وقتی اینترنت ایران از اینترنت جهانی قطع می‌شود، `next/font/google` نمی‌تواند هنگام build فونت را دانلود کند و build شکست می‌خورد؛ فونت‌های CDN هم برای کاربران بارگذاری نمی‌شوند. در این پکیج فایل فونت‌ها همراه `npm install` می‌آیند و Next.js آن‌ها را روی سایت خودتان میزبانی می‌کند، پس همیشه کار می‌کنند. (فقط کافی است خود پکیج یک بار از npm یا یک آینهٔ داخلی نصب شده باشد.)
+
+**چطور چند فونت با هم استفاده کنم؟**
+`variable` هر فونت را روی `<html>` بگذارید و هر جا لازم است از متغیرش استفاده کنید:
 
 ```tsx
 import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
+import { lalezar } from 'next-persian-fonts/lalezar'
 
-<html lang="fa" dir="rtl" className={vazirmatnVariable.className}>
+<html lang="fa" dir="rtl" className={`${vazirmatnVariable.variable} ${lalezar.variable}`}>
 ```
 
-برای استفاده به‌صورت متغیر CSS (مثلاً در Tailwind) کلاس `font.variable` را روی `html` بگذارید و از `var(--font-estedad)` استفاده کنید.
+```css
+body { font-family: var(--font-vazirmatn-variable); }
+h1   { font-family: var(--font-lalezar); }
+```
 
-### فونت‌ها
+با Tailwind v4 هم می‌توانید در `@theme` بنویسید `--font-display: var(--font-lalezar);` و از کلاس `font-display` استفاده کنید. یا ساده‌تر: `className={lalezar.className}` را مستقیم روی همان المان بگذارید.
 
-وزیرمتن، استعداد، ساحل، صمیم، شبنم، میخک، پرستو، گندم، تنها، وزیر کد، بهداد و نیکا. نسخه‌های **FD** ارقام لاتین را هم به شکل فارسی نشان می‌دهند. جدول کامل نسخه‌ها و مجوزها در [FONTS.md](./FONTS.md) است.
+**نسخه‌های FD چه هستند؟**
+در نسخه‌های `FD` (مثل `sahelFD` یا `samimFD`) حتی اعداد انگلیسی (123) هم به شکل فارسی (۱۲۳) نمایش داده می‌شوند. اگر متن شما اعداد فارسی دارد، نسخهٔ معمولی هم آن‌ها را درست نشان می‌دهد. `vazirMatn` (مسیر `vazirmatn`) همیشه اعداد فارسی دارد.
 
-فونت‌هایی که در Google Fonts هستند (لاله‌زار، نوتو نسخ، مرکزی و…) در این پکیج نیستند. آن‌ها را با `next/font/google` بارگذاری کنید.
+**`optimizePackageImports` لازم است؟**
+اگر مثل مثال‌های بالا از مسیر هر فونت ایمپورت کنید (`next-persian-fonts/estedad`)، **نه**. فقط اگر از ریشهٔ پکیج ایمپورت می‌کنید (`import { sahel } from 'next-persian-fonts'`، روش قدیمی نسخهٔ ۱.۰) و با webpack می‌سازید (پیش‌فرض Next 13 تا 15)، این را در `next.config` اضافه کنید تا فونت‌های اضافه دانلود نشوند:
 
-### نکته‌ها
+```js
+experimental: { optimizePackageImports: ['next-persian-fonts'] }
+```
 
-- ایمپورت از ریشهٔ پکیج (`'next-persian-fonts'`) فقط برای سازگاری با نسخهٔ ۱.۰ است. اگر از webpack استفاده می‌کنید، یا ایمپورت مسیری بنویسید یا `optimizePackageImports` را فعال کنید.
-- `estedadFD` منسوخ شده و روی استعداد ۷.۳ مانده است. برای پروژه‌های جدید از `estedad` (نسخهٔ ۸.۵) استفاده کنید.
+**با کدام نسخه‌های Next.js کار می‌کند؟**
+Next.js ۱۳.۲ تا ۱۶، هم App Router و هم Pages Router، هم Turbopack و هم webpack، با React ۱۸ و ۱۹. تایپ‌اسکریپت هم پشتیبانی می‌شود.
 
-### مجوز
+**`estedadFD` چه شد؟**
+استعداد ۸ دیگر نسخهٔ ارقام فارسی ندارد. `estedadFD` برای سازگاری روی نسخهٔ ۷.۳ مانده و منسوخ است؛ برای پروژهٔ جدید از `estedad` استفاده کنید.
 
-کد پکیج با مجوز ISC منتشر می‌شود و هر فونت با مجوز سازندهٔ خودش (عمدتاً SIL OFL 1.1).
+**برای پروژهٔ تجاری رایگان است؟**
+بله. همهٔ فونت‌ها مجوز آزاد دارند (بیشترشان SIL OFL 1.1) و استفاده در سایت‌های تجاری مجاز است. جزئیات در [LICENSE.md](./LICENSE.md) و [FONTS.md](./FONTS.md).
 
 </div>
+
+---
+
+## English
+
+### Quick start (3 steps)
+
+1. Install: `npm install next-persian-fonts`
+2. Import a font in `app/layout.tsx`: `import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'`
+3. Put its class on `<html>`: `<html lang="fa" dir="rtl" className={vazirmatnVariable.className}>`
+
+That's it: the whole site now uses Vazirmatn.
+
+### App Router
+
+```tsx
+// app/layout.tsx
+import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="fa" dir="rtl" className={vazirmatnVariable.className}>
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+### Pages Router
+
+```tsx
+// pages/_app.tsx
+import type { AppProps } from 'next/app'
+import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
+
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <main className={vazirmatnVariable.className}>
+      <Component {...pageProps} />
+    </main>
+  )
+}
+```
+
+For right-to-left pages, use `<Html lang="fa" dir="rtl">` in `pages/_document.tsx`.
+
+### Tailwind
+
+Use `.variable` instead of `.className`: `<html className={vazirmatnVariable.variable}>`.
+
+```css
+/* Tailwind v4: globals.css */
+@import 'tailwindcss';
+@theme inline {
+  --font-sans: var(--font-vazirmatn-variable), sans-serif;
+}
+```
+
+```js
+// Tailwind v3: tailwind.config.js
+theme: { extend: { fontFamily: { sans: ['var(--font-vazirmatn-variable)', 'sans-serif'] } } }
+```
+
+Each font's CSS variable is `--font-` + its import path, e.g. `next-persian-fonts/estedad` → `--font-estedad`.
+
+### Fonts
+
+33 families: Iranian fonts (Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Parastoo, Gandom, Tanha, Vazir Code, Behdad, Nika) and Persian-capable Google Fonts bundled for offline use (Lalezar, Markazi Text, Mirza, Reem Kufi, Noto Naskh/Sans/Kufi Arabic, Noto Nastaliq Urdu, IBM Plex Sans Arabic, Amiri, Harmattan, Scheherazade New, Lateef, Katibeh, Aref Ruqaa, Rubik, Jomhuria, El Messiri, Changa, Baloo Bhaijaan 2, Cairo). The import paths and export names are in the table above. Weights, versions and licenses are in **[FONTS.md](./FONTS.md)**.
+
+### FAQ
+
+- **Why bundle fonts instead of using Google Fonts?** When Iran is cut off from the global internet, `next/font/google` can't download fonts at build time and CDN fonts don't load. These font files come with `npm install` and are self-hosted by Next.js, so they always work.
+- **Several fonts?** Put each font's `.variable` on `<html>` and use `font-family: var(--font-lalezar)` where you need it, or put `lalezar.className` on a single element.
+- **What are the `FD` exports?** They show Latin digits (123) as Persian digits (۱۲۳). `vazirMatn` always uses Persian digits.
+- **Do I need `optimizePackageImports`?** Not with subpath imports (`next-persian-fonts/estedad`). Only if you use the legacy root import (`from 'next-persian-fonts'`) with webpack: add `experimental: { optimizePackageImports: ['next-persian-fonts'] }` to `next.config`.
+- **Which Next.js versions?** 13.2 to 16, App Router and Pages Router, Turbopack and webpack, React 18/19, with TypeScript types.
+- **`estedadFD`?** Deprecated. Estedad 8 has no Persian-digit build, so `estedadFD` stays on 7.3. Use `estedad`.
+- **Free for commercial use?** Yes. All fonts are under free licenses (mostly SIL OFL 1.1). See [LICENSE.md](./LICENSE.md) and [FONTS.md](./FONTS.md).
+
+### License
+
+Package code: ISC. Fonts: each under its own license, included in every font folder. Some Google Fonts files were converted to WOFF2 and subset to Arabic + Latin; [FONTS.md](./FONTS.md) lists every change.
