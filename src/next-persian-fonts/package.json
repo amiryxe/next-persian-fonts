@@ -1,7 +1,7 @@
 {
   "name": "next-persian-fonts",
   "version": "1.1.0",
-  "description": "Self-hosted Persian (Farsi) fonts for Next.js via next/font/local — works offline, no Google/CDN needed: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Noto, Lalezar, Amiri and more, with TypeScript types.",
+  "description": "33 free Persian (Farsi) font families for Next.js, bundled for offline use with next/font/local: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Lalezar, Noto, Amiri and more. No Google or CDN, TypeScript types included.",
   "author": "Amir Salehi (@amiryxe)",
   "license": "ISC AND OFL-1.1 AND Bitstream-Vera AND Apache-2.0",
   "type": "module",
@@ -242,7 +242,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amiryxe/next-persian-fonts.git"
+    "url": "git+https://github.com/amiryxe/next-persian-fonts.git",
+    "directory": "src/next-persian-fonts"
   },
   "homepage": "https://amiryxe.github.io/next-persian-fonts/",
   "bugs": {
@@ -272,7 +273,19 @@
     "lalezar",
     "noto",
     "amiri",
-    "iran"
+    "iran",
+    "font",
+    "farsi-fonts",
+    "persian-fonts",
+    "iranian-fonts",
+    "next-font-local",
+    "typescript",
+    "tailwind",
+    "app-router",
+    "noto-nastaliq",
+    "ibm-plex-arabic",
+    "fd",
+    "persian-digits"
   ],
   "peerDependencies": {
     "next": ">=13.2.0"
