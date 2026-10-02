@@ -143,7 +143,7 @@ export default function Home() {
           </a>
           <nav className="hidden items-center gap-5 text-sm text-zinc-600 md:flex dark:text-zinc-400">
             <a href="#fonts" className="hover:text-zinc-950 dark:hover:text-white">فونت‌ها</a>
-            <a href="#usage" className="hover:text-zinc-950 dark:hover:text-white">شروع سریع</a>
+            <a href="#usage" className="hover:text-zinc-950 dark:hover:text-white">نصب و استفاده</a>
             <a href="#tailwind" className="hover:text-zinc-950 dark:hover:text-white">Tailwind</a>
             <a href="#faq" className="hover:text-zinc-950 dark:hover:text-white">پرسش‌ها</a>
             <a href="#compat" className="hover:text-zinc-950 dark:hover:text-white">سازگاری</a>
@@ -196,7 +196,7 @@ export default function Home() {
         </Section>
 
         <div className="border-y border-zinc-200 bg-zinc-50/60 dark:border-zinc-800 dark:bg-zinc-900/30">
-          <Section id="usage" title="شروع سریع در ۳ قدم" kicker="نحوهٔ استفاده">
+          <Section id="usage" title="نصب و استفاده در ۳ قدم" kicker="راهنما">
             <ol className="mb-10 grid gap-4 md:grid-cols-3">
               {steps.map(([t, d, c], i) => (
                 <li key={t} className="flex min-w-0 flex-col rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900/50">

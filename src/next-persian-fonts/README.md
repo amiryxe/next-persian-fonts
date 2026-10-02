@@ -10,7 +10,7 @@ Free Persian fonts for Next.js, bundled inside the package. No Google, no CDN, w
 
 <div dir="rtl">
 
-## شروع سریع در ۳ قدم
+## نصب و استفاده در ۳ قدم
 
 **۱. نصب کنید**
 
@@ -195,7 +195,7 @@ Next.js ۱۳.۲ تا ۱۶، هم App Router و هم Pages Router، هم Turbopac
 
 ## English
 
-### Quick start (3 steps)
+### Installation & Usage (3 steps)
 
 1. Install: `npm install next-persian-fonts`
 2. Import a font in `app/layout.tsx`: `import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'`
