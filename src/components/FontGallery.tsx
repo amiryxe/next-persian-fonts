@@ -15,6 +15,7 @@ const CATEGORIES: Record<string, string> = {
   'sans-serif': 'بدون گیره',
   serif: 'گیره‌دار',
   display: 'نمایشی',
+  calligraphy: 'خوشنویسی',
   monospace: 'تک‌فاصله',
 }
 
@@ -40,6 +41,7 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
   const [category, setCategory] = useState('all')
   const [query, setQuery] = useState('')
   const [hideDeprecated, setHideDeprecated] = useState(true)
+  const [source, setSource] = useState<'all' | 'iranian' | 'google'>('all')
 
   const preview = persianDigits ? toPersianDigits(text) : toLatinDigits(text)
 
@@ -49,9 +51,10 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
       (f) =>
         (category === 'all' || f.category === category) &&
         (!hideDeprecated || !f.deprecated) &&
+        (source === 'all' || (source === 'google') === f.googleFonts) &&
         (!q || [f.name, f.nameFa, f.exportName, f.subpath].some((s) => s.toLowerCase().includes(q))),
     )
-  }, [fonts, category, query, hideDeprecated])
+  }, [fonts, category, query, hideDeprecated, source])
 
   return (
     <div>
@@ -118,6 +121,16 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
               {label}
             </button>
           ))}
+          <select
+            value={source}
+            onChange={(e) => setSource(e.target.value as typeof source)}
+            aria-label="منبع فونت"
+            className="rounded-full border border-zinc-300 bg-white px-3 py-1 text-sm dark:border-zinc-700 dark:bg-zinc-900"
+          >
+            <option value="all">همهٔ منابع</option>
+            <option value="iranian">فقط غیرِ گوگل</option>
+            <option value="google">فقط فونت‌های Google Fonts</option>
+          </select>
           <input
             type="search"
             value={query}
@@ -134,7 +147,7 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
       </div>
 
       <p className="mb-4 text-sm text-zinc-500 dark:text-zinc-400">
-        {faNum(visible.length)} خروجی نمایش داده می‌شود. فونت‌های «FD» ارقام لاتین را هم به شکل فارسی نمایش می‌دهند.
+        {faNum(visible.length)} فونت نمایش داده می‌شود. نسخه‌های «FD» عددهای انگلیسی را هم فارسی نشان می‌دهند. برای فونت‌های بدون FD، دکمهٔ «۱۲۳ فارسی» متن را به ارقام فارسی تبدیل می‌کند.
       </p>
 
       <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -154,6 +167,8 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
                   <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300">{weightLabel(f)}</span>
                   {f.digits === 'persian' && <span className="rounded-full bg-sky-50 px-2 py-0.5 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300">ارقام فارسی (FD)</span>}
                   {f.digits === 'none' && <span className="rounded-full bg-amber-50 px-2 py-0.5 text-amber-700 dark:bg-amber-500/10 dark:text-amber-300">فقط فارسی</span>}
+                  {f.googleFonts && <span className="rounded-full bg-violet-50 px-2 py-0.5 text-violet-700 dark:bg-violet-500/10 dark:text-violet-300" title="در Google Fonts هم هست؛ اینجا به‌صورت محلی و آفلاین">Google Fonts · آفلاین</span>}
+                  {f.hasItalic && <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">ایتالیک</span>}
                   {f.deprecated && <span className="rounded-full bg-rose-50 px-2 py-0.5 text-rose-700 dark:bg-rose-500/10 dark:text-rose-300">منسوخ</span>}
                   <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300" dir="ltr">v{f.version}</span>
                 </div>
@@ -161,7 +176,7 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
 
               <p
                 className="my-5 min-h-24 [overflow-wrap:anywhere] leading-[1.7] text-zinc-900 dark:text-zinc-50"
-                style={{ fontFamily: f.fontFamily, fontWeight: w, fontSize: size }}
+                style={{ fontFamily: f.fontFamily, fontWeight: w, fontSize: size, lineHeight: f.category === 'calligraphy' ? 2.4 : undefined }}
               >
                 {preview || 'متن نمونه'}
               </p>
