@@ -7,6 +7,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/next-persian-fonts"><img src="https://img.shields.io/npm/v/next-persian-fonts?color=10b981&label=npm" alt="npm version"></a>
   <a href="https://www.npmjs.com/package/next-persian-fonts"><img src="https://img.shields.io/npm/dm/next-persian-fonts?color=0ea5e9" alt="npm downloads"></a>
+  <a href="https://github.com/amiryxe/next-persian-fonts"><img src="https://img.shields.io/github/stars/amiryxe/next-persian-fonts?style=flat&logo=github&color=f59e0b" alt="GitHub stars"></a>
   <a href="https://github.com/amiryxe/next-persian-fonts/blob/main/src/next-persian-fonts/LICENSE.md"><img src="https://img.shields.io/badge/license-ISC%20%2B%20OFL--1.1-blue" alt="License: ISC + OFL-1.1"></a>
   <img src="https://img.shields.io/badge/Next.js-13.2%20%E2%86%92%2016-000000?logo=nextdotjs" alt="Next.js 13.2 to 16">
   <img src="https://img.shields.io/badge/types-included-3178c6?logo=typescript&logoColor=white" alt="TypeScript types included">
@@ -22,6 +23,9 @@
   <a href="#english">English</a> ·
   <a href="#fonts">فهرست فونت‌ها · Fonts</a>
 </p>
+
+<p align="center" dir="rtl">⭐ اگر این پکیج به کارتان آمد، با یک <a href="https://github.com/amiryxe/next-persian-fonts">ستاره در گیت‌هاب</a> حمایتش کنید.</p>
+<p align="center" dir="ltr">⭐ If this package helped you, please <a href="https://github.com/amiryxe/next-persian-fonts">give it a star on GitHub</a>.</p>
 
 <div dir="rtl">
 
@@ -219,6 +223,8 @@ Next.js ۱۳.۲ تا ۱۶، App Router و Pages Router، Turbopack و webpack، 
 
 ### مشارکت
 
+⭐ اگر این پکیج به کارتان آمد، لطفاً در [گیت‌هاب](https://github.com/amiryxe/next-persian-fonts) به آن ستاره بدهید؛ ستاره‌ها کمک می‌کنند توسعه‌دهنده‌های بیشتری آن را پیدا کنند.
+
 پیشنهاد فونت جدید، گزارش باگ یا Pull Request در [GitHub](https://github.com/amiryxe/next-persian-fonts/issues) خوشحالمان می‌کند. فقط فونت‌هایی با مجوز آزاد (مثل OFL) اضافه می‌شوند. راهنمای افزودن فونت در بخش [Development](https://github.com/amiryxe/next-persian-fonts#development) آمده است.
 
 ### اعتبار و مجوز
@@ -389,6 +395,8 @@ When Iran is cut off from the global internet, `next/font/google` can't download
 - **Commercial use?** Yes. All fonts use free licenses (mostly SIL OFL 1.1).
 
 ### Contributing
+
+⭐ If this package saved you time, a [star on GitHub](https://github.com/amiryxe/next-persian-fonts) helps other developers find it.
 
 Font suggestions, bug reports and pull requests are welcome on [GitHub](https://github.com/amiryxe/next-persian-fonts/issues). Only fonts with a redistributable license (e.g. OFL) can be added. See [Development](https://github.com/amiryxe/next-persian-fonts#development) for how fonts are added and tested.
 

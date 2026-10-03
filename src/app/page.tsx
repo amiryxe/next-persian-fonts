@@ -1,6 +1,7 @@
 import { CodeBlock } from '@/components/CodeBlock'
 import { CopyButton } from '@/components/CopyButton'
 import { FontGallery } from '@/components/FontGallery'
+import { GitHubIcon, GitHubStarButton } from '@/components/GitHubStarButton'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { familyCount, fonts } from '@/lib/fonts'
 import pkg from 'next-persian-fonts/package.json'
@@ -174,7 +175,7 @@ export default function Home() {
             <a href="#compat" className="hover:text-zinc-950 dark:hover:text-white">سازگاری</a>
           </nav>
           <div className="ms-auto flex items-center gap-2">
-            <a href={GITHUB} target="_blank" rel="noreferrer" className="rounded-lg border border-zinc-200 px-3 py-1.5 text-sm hover:bg-zinc-100 dark:border-zinc-800 dark:hover:bg-zinc-800">GitHub</a>
+            <GitHubStarButton compact />
             <a href={NPM} target="_blank" rel="noreferrer" className="hidden rounded-lg border border-zinc-200 px-3 py-1.5 text-sm hover:bg-zinc-100 sm:inline-block dark:border-zinc-800 dark:hover:bg-zinc-800">npm</a>
             <ThemeToggle />
           </div>
@@ -200,6 +201,7 @@ export default function Home() {
                 <CopyButton text="npm install next-persian-fonts" />
               </div>
               <a href="#fonts" className="rounded-xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">مشاهدهٔ فونت‌ها ←</a>
+              <GitHubStarButton className="rounded-xl" />
             </div>
             <dl className="mt-12 grid max-w-2xl grid-cols-3 gap-4 text-center">
               {[
@@ -251,6 +253,16 @@ export default function Home() {
             <p className="mt-4 text-sm leading-7 text-zinc-600 dark:text-zinc-400">
               فونت دیگری می‌خواهید؟ در گالری بالا روی «کپی» کارت آن فونت بزنید و خط ایمپورت را جایگزین کنید. در Pages Router تنظیم <code dir="ltr" className={code}>transpilePackages</code> لازم است (Next.js پکیج‌های node_modules را در Pages Router باندل نمی‌کند و بدون آن build خطا می‌دهد)؛ در App Router بی‌ضرر است. برای راست‌چین شدن، در <code dir="ltr" className={code}>pages/_document.tsx</code> بنویسید <code dir="ltr" className={code}>{'<Html lang="fa" dir="rtl">'}</code>.
             </p>
+            <aside aria-label="حمایت از پروژه" className="mt-8 flex flex-col gap-4 rounded-2xl border border-emerald-500/30 bg-emerald-50 p-5 sm:flex-row sm:items-center sm:justify-between dark:bg-emerald-500/10">
+              <p className="leading-7 text-emerald-950 dark:text-emerald-100">
+                <span aria-hidden="true">⭐ </span>
+                <b>این پکیج به کارتان آمد؟</b> با یک ستاره در گیت‌هاب از پروژه حمایت کنید؛ همین ستاره‌ها کمک می‌کنند توسعه‌دهنده‌های بیشتری آن را پیدا کنند و انگیزهٔ ادامهٔ کار هستند.
+              </p>
+              <a href={GITHUB} target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 sm:self-auto">
+                <GitHubIcon />
+                ستاره بدهید
+              </a>
+            </aside>
           </Section>
         </div>
 
