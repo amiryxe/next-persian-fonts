@@ -53,11 +53,26 @@ export function GitHubStarButton({ compact = false, className = '' }: { compact?
 
   useEffect(() => {
     let alive = true
-    loadStars().then((n) => {
-      if (alive) setStars(n)
-    })
+    let timer: ReturnType<typeof setTimeout> | undefined
+    const run = () => {
+      loadStars().then((n) => {
+        if (alive) setStars(n)
+      })
+    }
+    // The count is decorative: request it well after the page has loaded and painted, so the
+    // cross-origin API call never competes with fonts/LCP (and stays out of Lighthouse's critical path).
+    const schedule = () => {
+      timer = setTimeout(() => {
+        if ('requestIdleCallback' in window) window.requestIdleCallback(run, { timeout: 2000 })
+        else run()
+      }, 3000)
+    }
+    if (document.readyState === 'complete') schedule()
+    else window.addEventListener('load', schedule, { once: true })
     return () => {
       alive = false
+      clearTimeout(timer)
+      window.removeEventListener('load', schedule)
     }
   }, [])
 

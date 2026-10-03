@@ -201,7 +201,7 @@ export default function Home() {
                 <CopyButton text="npm install next-persian-fonts" />
               </div>
               <a href="#fonts" className="rounded-xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">مشاهدهٔ فونت‌ها ←</a>
-              <GitHubStarButton className="rounded-xl" />
+              <GitHubStarButton className="w-full justify-center rounded-xl sm:w-auto" />
             </div>
             <dl className="mt-12 grid max-w-2xl grid-cols-3 gap-4 text-center">
               {[
