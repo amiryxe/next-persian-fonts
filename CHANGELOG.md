@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.2.0 (2026-10-09)
+
+Nothing changes for Next.js users: every import path, export, type and generated `next/font` call is byte-for-byte the same as in 1.1.1, and the new CSS files are only bundled if you import them.
+
+### Added
+- **Use the fonts without Next.js** (Vite, Gatsby, Astro, plain HTML, …). Every export now has a plain CSS file, `next-persian-fonts/css/<name>.css` (44 files, e.g. `css/vazirmatn-variable.css`, `css/sahel-fd.css`). Each one declares `@font-face` rules for the same bundled font files through relative URLs (no duplicated fonts), with `font-display: swap` and real weight ranges for variable fonts, sets the CSS variable on `:root` (e.g. `--font-vazirmatn-variable`, the same name as the `next/font` variable) and adds a class (e.g. `.font-vazirmatn-variable`). Works with `import` from JS, `@import` from CSS (including Tailwind v4) and `<link>` in plain HTML.
+- `exports` entry `./css/*`; `sideEffects` is now `["*.css"]` so bundlers keep imported CSS while JS stays tree-shakeable.
+- FONTS.md lists the CSS file and `font-family` name of every export.
+
+### Tooling
+- The generator writes the CSS files from `fonts.json`; `npm run verify` checks that every export has one and that its URLs, weights, styles, `font-display`, variable and class match the manifest, and that no JS entry imports CSS.
+- New `npm run test:smoke:css` (also in CI): builds a Vite app, a Vite + Tailwind 4 app and a webpack 5 + css-loader app (the Gatsby setup) from the packed tarball and checks that only the imported font files are emitted and referenced; also checks that every `url()` resolves inside `node_modules` for plain HTML.
+
+### Docs & demo
+- READMEs: "Using without Next.js" section (Vite/Gatsby/Astro import, Tailwind, plain HTML) and a feature bullet; FAQ entry.
+- Demo: a «استفاده در پروژه‌های غیر Next.js» section in «نصب و استفاده», a Next.js / CSS toggle for the gallery snippets, and a mention in the hero and FAQ.
+
 ## 1.1.1 (2026-10-02)
 
 ### Fixed

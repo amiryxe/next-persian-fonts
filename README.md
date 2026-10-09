@@ -39,6 +39,7 @@
 - **فقط همان فونتی که ایمپورت می‌کنید** در خروجی می‌آید (هر فونت مسیر جداگانه دارد).
 - **نسخه‌های ارقام فارسی (FD)** برای فونت‌های ایرانی.
 - **تایپ‌اسکریپت** و سازگار با **Next.js ۱۳.۲ تا ۱۶**، App Router و Pages Router، Turbopack و webpack.
+- **بدون Next.js هم:** برای Vite، Gatsby، Astro و HTML ساده، هر فونت یک فایل CSS آماده دارد ([توضیح](#without-next-fa)). برای کاربران Next.js هیچ هزینه‌ای ندارد.
 - **مجوز آزاد** (بیشتر SIL OFL 1.1)؛ استفاده در پروژه‌های تجاری مجاز است.
 
 ### نصب و استفاده در ۳ قدم
@@ -49,7 +50,7 @@
 npm install next-persian-fonts
 ```
 
-با pnpm یا yarn: `pnpm add next-persian-fonts@^1.1` (نسخه را صریح بنویسید؛ pnpm بسته‌های تازه‌منتشرشده را تا مدتی نصب نمی‌کند).
+با pnpm یا yarn: `pnpm add next-persian-fonts@^1.2` (نسخه را صریح بنویسید؛ pnpm بسته‌های تازه‌منتشرشده را تا مدتی نصب نمی‌کند).
 
 **۲. فونت را در `app/layout.tsx` ایمپورت کنید**
 
@@ -143,6 +144,51 @@ module.exports = {
 
 حالا `font-sans` همان وزیرمتن است. نام متغیر CSS هر فونت `--font-` به‌علاوهٔ مسیر ایمپورت آن است؛ مثلاً `next-persian-fonts/estedad` ← `--font-estedad`.
 
+<a id="without-next-fa"></a>
+
+### استفاده در پروژه‌های غیر Next.js (Vite، Gatsby، Astro، HTML ساده)
+
+از نسخهٔ ۱.۲ برای هر فونت یک فایل CSS آماده هم هست: `next-persian-fonts/css/<نام>.css`. نام فایل همان مسیر ایمپورت است (مثلاً `vazirmatn-variable.css` یا `sahel-fd.css`؛ فهرست کامل در ستون CSS جدول [FONTS.md](https://github.com/amiryxe/next-persian-fonts/blob/main/src/next-persian-fonts/FONTS.md)). هر فایل:
+
+- قانون‌های `@font-face` را با **همان فایل‌های فونت داخل پکیج** تعریف می‌کند (`font-display: swap` و بازهٔ وزن درست برای فونت‌های متغیر)،
+- متغیر CSS را روی `:root` می‌گذارد، مثلاً `--font-vazirmatn-variable` (همان نام متغیر نسخهٔ Next.js)،
+- و یک کلاس آماده می‌سازد، مثلاً `.font-vazirmatn-variable`.
+
+**Vite (React، Vue، Svelte، vanilla)، Gatsby و Astro:** فایل CSS را یک بار ایمپورت کنید؛ باندلر فایل فونت را خودش کپی می‌کند.
+
+```js
+// main.jsx (Vite) · gatsby-browser.js (Gatsby) · frontmatter فایل Layout.astro (Astro)
+import 'next-persian-fonts/css/vazirmatn-variable.css'
+```
+
+```html
+<body class="font-vazirmatn-variable">
+```
+
+یا در CSS خودتان: `body { font-family: var(--font-vazirmatn-variable); }`. ایمپورت از داخل CSS هم کار می‌کند: `@import 'next-persian-fonts/css/vazirmatn-variable.css';`.
+
+**Tailwind نسخهٔ ۴:**
+
+```css
+@import 'tailwindcss';
+@import 'next-persian-fonts/css/vazirmatn-variable.css';
+
+@theme inline {
+  --font-sans: var(--font-vazirmatn-variable);
+}
+```
+
+(در Tailwind نسخهٔ ۳: `fontFamily: { sans: ['var(--font-vazirmatn-variable)'] }`.)
+
+**HTML ساده (بدون باندلر):** فایل CSS را با `<link>` اضافه کنید. آدرس فونت‌ها نسبی است، پس کافی است پوشهٔ پکیج (یا کل `node_modules`) کنار صفحه باشد:
+
+```html
+<link rel="stylesheet" href="node_modules/next-persian-fonts/css/vazirmatn-variable.css">
+<body class="font-vazirmatn-variable">
+```
+
+> برای کاربران Next.js هیچ چیزی تغییر نمی‌کند: این فایل‌ها فقط وقتی وارد خروجی می‌شوند که خودتان ایمپورتشان کنید. در Next.js همان روش `next/font` بالا را استفاده کنید (preload و بدون پرش صفحه).
+
 ### چرا آفلاین؟ (برای توسعه‌دهنده‌های ایرانی)
 
 وقتی اینترنت ایران از اینترنت جهانی قطع می‌شود، `next/font/google` نمی‌تواند هنگام build فونت را دانلود کند و build شکست می‌خورد؛ فونت‌های CDN هم برای کاربران باز نمی‌شوند. در این پکیج فایل فونت‌ها همراه `npm install` می‌آیند و Next.js آن‌ها را روی سایت خودتان میزبانی می‌کند. کافی است پکیج یک بار از npm یا یک آینهٔ داخلی نصب شده باشد.
@@ -200,7 +246,13 @@ experimental: { optimizePackageImports: ['next-persian-fonts'] }
 <details>
 <summary><b>با pnpm نسخهٔ قدیمی (۱.۰) نصب شد؟</b></summary>
 
-نسخه‌های جدید pnpm بسته‌هایی را که تازه منتشر شده‌اند تا مدتی نصب نمی‌کنند. نسخه را صریح بنویسید: `pnpm add next-persian-fonts@^1.1`.
+نسخه‌های جدید pnpm بسته‌هایی را که تازه منتشر شده‌اند تا مدتی نصب نمی‌کنند. نسخه را صریح بنویسید: `pnpm add next-persian-fonts@^1.2`.
+</details>
+
+<details>
+<summary><b>بدون Next.js هم می‌شود استفاده کرد؟</b></summary>
+
+بله، با فایل‌های CSS پکیج، مثلاً `import 'next-persian-fonts/css/estedad.css'`، در Vite، Gatsby، Astro یا با `<link>` در HTML ساده. بخش [استفاده در پروژه‌های غیر Next.js](#without-next-fa) را ببینید.
 </details>
 
 <details>
@@ -306,11 +358,12 @@ Vera = Bitstream Vera license (Latin glyphs), PD = public domain changes. Versio
 - **Only what you import** ends up in your build (one subpath per font).
 - **Persian-digit (FD) variants** for the Iranian fonts.
 - **TypeScript types**; works with **Next.js 13.2 → 16**, App Router and Pages Router, Turbopack and webpack, React 18/19.
+- **Works without Next.js too:** every font has a plain CSS file for Vite, Gatsby, Astro and plain HTML ([how](#using-without-nextjs-vite-gatsby-astro-plain-html)). It adds nothing for Next.js users.
 - **Free licenses** (mostly SIL OFL 1.1), fine for commercial projects.
 
 ### Installation & Usage (3 steps)
 
-1. Install: `npm install next-persian-fonts` (with pnpm/yarn: `pnpm add next-persian-fonts@^1.1`; recent pnpm versions hold back freshly published releases for a while)
+1. Install: `npm install next-persian-fonts` (with pnpm/yarn: `pnpm add next-persian-fonts@^1.2`; recent pnpm versions hold back freshly published releases for a while)
 2. Import a font in `app/layout.tsx`: `import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'`
 3. Put its class on `<body>`: `<body className={vazirmatnVariable.className}>`
 
@@ -379,6 +432,49 @@ theme: { extend: { fontFamily: { sans: ['var(--font-vazirmatn-variable)', 'sans-
 
 Each font's CSS variable is `--font-` + its import path, e.g. `next-persian-fonts/estedad` → `--font-estedad`.
 
+### Using without Next.js (Vite, Gatsby, Astro, plain HTML)
+
+Since 1.2 every font also ships as a plain CSS file: `next-persian-fonts/css/<name>.css`, where `<name>` is the import path (e.g. `vazirmatn-variable.css`, `sahel-fd.css`; see the CSS column in [FONTS.md](https://github.com/amiryxe/next-persian-fonts/blob/main/src/next-persian-fonts/FONTS.md)). Each file:
+
+- declares `@font-face` rules for **the same bundled font files** (`font-display: swap`, real weight ranges for variable fonts),
+- sets the CSS variable on `:root`, e.g. `--font-vazirmatn-variable` (the same name as the Next.js variable),
+- and adds a ready-made class, e.g. `.font-vazirmatn-variable`.
+
+**Vite (React, Vue, Svelte, vanilla), Gatsby and Astro:** import the CSS once; the bundler copies the font file for you.
+
+```js
+// main.jsx (Vite) · gatsby-browser.js (Gatsby) · Layout.astro frontmatter (Astro)
+import 'next-persian-fonts/css/vazirmatn-variable.css'
+```
+
+```html
+<body class="font-vazirmatn-variable">
+```
+
+Or in your own CSS: `body { font-family: var(--font-vazirmatn-variable); }`. Importing from CSS works too: `@import 'next-persian-fonts/css/vazirmatn-variable.css';`.
+
+**Tailwind v4:**
+
+```css
+@import 'tailwindcss';
+@import 'next-persian-fonts/css/vazirmatn-variable.css';
+
+@theme inline {
+  --font-sans: var(--font-vazirmatn-variable);
+}
+```
+
+(Tailwind v3: `fontFamily: { sans: ['var(--font-vazirmatn-variable)'] }`.)
+
+**Plain HTML (no bundler):** link the CSS file. Font URLs are relative, so the package folder (or `node_modules`) just has to be served next to the page:
+
+```html
+<link rel="stylesheet" href="node_modules/next-persian-fonts/css/vazirmatn-variable.css">
+<body class="font-vazirmatn-variable">
+```
+
+> Nothing changes for Next.js users: the CSS files only end up in a build if you import them. With Next.js, keep using the `next/font` exports above (preloading, no layout shift).
+
 ### Why offline?
 
 When Iran is cut off from the global internet, `next/font/google` can't download fonts at build time (the build fails) and CDN fonts don't load. Here the font files come with `npm install` and are self-hosted by Next.js, so they always work.
@@ -386,11 +482,12 @@ When Iran is cut off from the global internet, `next/font/google` can't download
 ### FAQ
 
 - **Several fonts?** Put each font's `.variable` on `<html>` and use `font-family: var(--font-lalezar)` where needed, or put `lalezar.className` on a single element.
+- **Without Next.js?** Yes: `import 'next-persian-fonts/css/estedad.css'` in Vite, Gatsby or Astro, or a `<link>` in plain HTML. See [Using without Next.js](#using-without-nextjs-vite-gatsby-astro-plain-html).
 - **What are the `FD` exports?** They render Latin digits (123) as Persian digits (۱۲۳). `vazirMatn` always uses Persian digits.
 - **Do I need `optimizePackageImports`?** Not with subpath imports. Only for the legacy root import (`from 'next-persian-fonts'`) with webpack: `experimental: { optimizePackageImports: ['next-persian-fonts'] }`.
 - **Pages Router or Jest fails with `ERR_UNSUPPORTED_DIR_IMPORT`?** Add `transpilePackages: ['next-persian-fonts']` to `next.config`. Harmless for the App Router.
 - **Why are some fonts not preloaded?** Exports with more than 3 files (e.g. `vazirMatn` with 9 weights, `sahelFD`, `shabnam`, `ibmPlexSansArabic`) aren't preloaded, so Next.js doesn't download every weight on every page; only the weights you use load. Variable exports such as `vazirmatnVariable` are the lightest (one file for all weights).
-- **pnpm installed 1.0?** Recent pnpm versions hold back freshly published releases for a while. Use `pnpm add next-persian-fonts@^1.1`.
+- **pnpm installed 1.0?** Recent pnpm versions hold back freshly published releases for a while. Use `pnpm add next-persian-fonts@^1.2`.
 - **Upgrading from 1.0?** Nothing breaks: every 1.0 import path and export still works. `estedadFD` is deprecated (kept on Estedad 7.3); use `estedad`. See the [CHANGELOG](https://github.com/amiryxe/next-persian-fonts/blob/main/CHANGELOG.md).
 - **Commercial use?** Yes. All fonts use free licenses (mostly SIL OFL 1.1).
 
@@ -414,6 +511,7 @@ Package code: ISC. Every font belongs to its designer and is redistributed under
 src/next-persian-fonts/   ← the npm package (published as-is, no build step)
   fonts.json              ← source of truth: fonts, versions, files, licenses
   <subpath>/              ← one folder per import path: index.js, index.d.ts, *.woff2, OFL.txt/LICENSE.txt
+  css/<name>.css          ← generated plain-CSS version of every export (for projects without Next.js)
   FONTS.md                ← generated table of fonts, versions and licenses
 src/app, src/components   ← demo/docs site (Next.js 16, Tailwind 4, static export to GitHub Pages)
 scripts/                  ← generate / update / verify / smoke-test / screenshot scripts
@@ -433,6 +531,7 @@ npm start                   # serves ./out at http://localhost:4173/next-persian
 
 npm run verify              # generated files in sync, fonts valid, pack contents, types (bundler/node16/node10)
 npm run test:smoke          # App Router + Pages Router test apps with the packed tarball on Next 13.5–16 (webpack + Turbopack), next/jest on 16
+npm run test:smoke:css      # Vite, Vite + Tailwind 4 and webpack apps that import next-persian-fonts/css/*.css
 npm run lint
 ```
 
@@ -440,8 +539,8 @@ npm run lint
 
 1. Edit `src/next-persian-fonts/fonts.json`: bump `version` and `ref` (a tag or commit SHA) or add a new family/variant (only redistributable licenses!).
 2. `npm run fonts:update` downloads the font files and license texts from upstream (`--only <id>` for one family).
-3. `npm run fonts:generate` regenerates `index.js`, `index.d.ts`, the `exports` map, `FONTS.md` and the demo gallery (`src/lib/gallery-fonts.generated.ts`).
-4. Run `npm run verify && npm run test:smoke`.
+3. `npm run fonts:generate` regenerates `index.js`, `index.d.ts`, `css/*.css`, the `exports` map, `FONTS.md` and the demo gallery (`src/lib/gallery-fonts.generated.ts`, `src/lib/css-fonts.generated.ts`).
+4. Run `npm run verify && npm run test:smoke && npm run test:smoke:css`.
 
 Google Fonts families are pinned to a google/fonts commit. TTF-only families are converted to WOFF2
 and subset to Arabic + Latin by the update script (needs Python with `fonttools` and `brotli`; set
@@ -455,7 +554,7 @@ The README banner is rendered from [`.github/assets/banner.html`](.github/assets
 ### Releasing
 
 ```bash
-npm run verify && npm run test:smoke
+npm run verify && npm run test:smoke && npm run test:smoke:css
 cd src/next-persian-fonts && npm publish        # publishes the package folder only
-git tag v1.1.0 && git push origin main --tags   # pushing main also deploys the demo to Pages
+git tag v1.2.0 && git push origin main --tags   # pushing main also deploys the demo to Pages
 ```

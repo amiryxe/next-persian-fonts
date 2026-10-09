@@ -50,3 +50,16 @@ jobs:
       - run: npm ci
       - name: Build App Router + Pages Router test apps (and next/jest on 16) against the packed tarball
         run: node scripts/smoke-test.mjs --next ${{ matrix.next }}
+
+  smoke-css:
+    name: Smoke test CSS files without Next.js (Vite, Tailwind 4, webpack)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build Vite, Vite + Tailwind 4 and webpack apps that import next-persian-fonts/css/*.css from the packed tarball
+        run: node scripts/smoke-test-css.mjs

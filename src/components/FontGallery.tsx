@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { cssFonts } from '@/lib/css-fonts.generated'
 import type { FontEntry } from '@/lib/fonts'
 import { CopyButton } from './CopyButton'
 
@@ -98,6 +99,8 @@ function switchVariant(variants: FontEntry[], current: FontEntry, axis: Axis, va
   return candidates.reduce((best, f) => (score(f) > score(best) ? f : best))
 }
 
+type CodeMode = 'next' | 'css'
+
 const chip = 'cursor-pointer select-none rounded-md px-2.5 py-1 text-xs transition peer-checked:bg-emerald-700 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500 peer-focus-visible:ring-offset-1 dark:peer-focus-visible:ring-offset-zinc-900 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
 
 function FamilyCard({
@@ -110,6 +113,7 @@ function FamilyCard({
   weight,
   setWeight,
   size,
+  codeMode,
 }: {
   family: Family
   selected: string | undefined
@@ -120,6 +124,7 @@ function FamilyCard({
   weight: number
   setWeight: (w: number) => void
   size: number
+  codeMode: CodeMode
 }) {
   const [italic, setItalic] = useState(false)
   // Only apply the font (and so download it) once the card is close to the viewport.
@@ -140,7 +145,8 @@ function FamilyCard({
   const variants = hideDeprecated ? family.variants.filter((v) => !v.deprecated) : family.variants
   const f = variants.find((v) => v.exportName === selected) ?? defaultVariant(variants, persianDigits)
   const axes = axesFor(variants)
-  const snippet = `import { ${f.exportName} } from 'next-persian-fonts/${f.subpath}'`
+  const css = cssFonts[f.exportName]
+  const snippet = codeMode === 'css' ? `import 'next-persian-fonts/css/${css.file}'` : `import { ${f.exportName} } from 'next-persian-fonts/${f.subpath}'`
   const w = nearestWeight(f, weight)
   const canItalic = f.hasItalic
   const headingId = `family-${family.id}`
@@ -246,7 +252,7 @@ function FamilyCard({
           <CopyButton text={snippet} />
         </div>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-zinc-500 dark:text-zinc-400">
-          <span dir="ltr" className="font-mono">{f.cssVariable}</span>
+          <span dir="ltr" className="font-mono">{codeMode === 'css' ? `.${css.className} · ${f.cssVariable}` : f.cssVariable}</span>
           <a className="hover:text-emerald-600 dark:hover:text-emerald-400" href={f.licenseUrl} target="_blank" rel="noreferrer">مجوز: <span dir="ltr">{f.license.split(' ')[0]}</span></a>
           <a className="hover:text-emerald-600 dark:hover:text-emerald-400" href={f.sourceUrl} target="_blank" rel="noreferrer">منبع ↗</a>
         </div>
@@ -265,6 +271,7 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
   const [hideDeprecated, setHideDeprecated] = useState(true)
   const [source, setSource] = useState<'all' | 'iranian' | 'google'>('all')
   const [selected, setSelected] = useState<Record<string, string>>({})
+  const [codeMode, setCodeMode] = useState<CodeMode>('next')
   const families = useMemo(() => groupFamilies(fonts), [fonts])
 
   // The global digits toggle resets every card to its default variant for that digit style.
@@ -375,9 +382,27 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
         </div>
       </div>
 
-      <p className="mb-4 text-sm leading-6 text-zinc-500 dark:text-zinc-400" aria-live="polite">
-        {faNum(visible.length)} خانوادهٔ فونت نمایش داده می‌شود. هر کارت یک خانواده است؛ نسخه‌ها (ارقام فارسی FD، متغیر، نقطهٔ گرد، ایتالیک) را داخل کارت انتخاب کنید. دکمهٔ «۱۲۳ فارسی» بالا نسخهٔ ارقام فارسی را در همهٔ کارت‌ها پیش‌فرض می‌کند.
-      </p>
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <p className="text-sm leading-6 text-zinc-500 dark:text-zinc-400" aria-live="polite">
+          {faNum(visible.length)} خانوادهٔ فونت نمایش داده می‌شود. هر کارت یک خانواده است؛ نسخه‌ها (ارقام فارسی FD، متغیر، نقطهٔ گرد، ایتالیک) را داخل کارت انتخاب کنید. دکمهٔ «۱۲۳ فارسی» بالا نسخهٔ ارقام فارسی را در همهٔ کارت‌ها پیش‌فرض می‌کند.
+        </p>
+        <div className="flex shrink-0 items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+          <span id="code-mode-label">کد برای</span>
+          <div className="inline-flex rounded-lg border border-zinc-300 p-0.5 dark:border-zinc-700" role="group" aria-labelledby="code-mode-label">
+            {([['next', 'Next.js'], ['css', 'CSS (بدون Next)']] as const).map(([mode, label]) => (
+              <button
+                key={mode}
+                type="button"
+                aria-pressed={codeMode === mode}
+                onClick={() => setCodeMode(mode)}
+                className={`rounded-md px-3 py-1 text-sm transition ${codeMode === mode ? 'bg-emerald-700 text-white' : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'}`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
 
       <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {visible.map((fam) => (
@@ -392,6 +417,7 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
             weight={weight}
             setWeight={setWeight}
             size={size}
+            codeMode={codeMode}
           />
         ))}
       </ul>

@@ -71,6 +71,28 @@ export default {
   experimental: { optimizePackageImports: ['next-persian-fonts'] },
 }`
 
+const cssImportCode = `// Vite (React، Vue، Svelte، vanilla) · Gatsby · Astro
+// main.jsx / gatsby-browser.js / Layout.astro (frontmatter)
+import 'next-persian-fonts/css/vazirmatn-variable.css'
+
+<body class="font-vazirmatn-variable">
+
+/* or in your CSS: */
+body { font-family: var(--font-vazirmatn-variable); }`
+
+const cssTailwindCode = `/* Tailwind v4 — main.css */
+@import 'tailwindcss';
+@import 'next-persian-fonts/css/vazirmatn-variable.css';
+
+@theme inline {
+  --font-sans: var(--font-vazirmatn-variable);
+}`
+
+const cssHtmlCode = `<!-- plain HTML, no bundler -->
+<link rel="stylesheet" href="node_modules/next-persian-fonts/css/vazirmatn-variable.css">
+
+<body class="font-vazirmatn-variable">`
+
 const steps: [string, string, string][] = [
   ['نصب کنید', 'با npm، pnpm، yarn یا bun:', 'npm install next-persian-fonts'],
   ['ایمپورت کنید', 'در فایل app/layout.tsx:', "import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'"],
@@ -104,6 +126,12 @@ const faq: [string, React.ReactNode][] = [
     </>,
   ],
   [
+    'بدون Next.js هم می‌شود استفاده کرد؟',
+    <>
+      بله. از نسخهٔ ۱.۲ برای هر فونت یک فایل CSS هست، مثلاً <code dir="ltr" className={code}>{"import 'next-persian-fonts/css/estedad.css'"}</code>، که در Vite، Gatsby، Astro یا با تگ <code dir="ltr" className={code}>{'<link>'}</code> در HTML ساده کار می‌کند. <a href="#without-next" className="text-emerald-700 underline underline-offset-4 dark:text-emerald-400">مثال‌ها</a> را ببینید. این فایل‌ها برای کاربران Next.js هیچ هزینه‌ای ندارند، چون فقط وقتی ایمپورتشان کنید وارد خروجی می‌شوند.
+    </>,
+  ],
+  [
     'optimizePackageImports لازم است؟',
     <>
       <p>
@@ -123,7 +151,7 @@ const faq: [string, React.ReactNode][] = [
   [
     'با pnpm نسخهٔ قدیمی (۱.۰) نصب شد؟',
     <>
-      نسخه‌های جدید pnpm بسته‌هایی را که تازه منتشر شده‌اند تا مدتی نصب نمی‌کنند. نسخه را صریح بنویسید: <code dir="ltr" className={code}>pnpm add next-persian-fonts@^1.1</code> (یا <code dir="ltr" className={code}>npm install next-persian-fonts@latest</code>).
+      نسخه‌های جدید pnpm بسته‌هایی را که تازه منتشر شده‌اند تا مدتی نصب نمی‌کنند. نسخه را صریح بنویسید: <code dir="ltr" className={code}>pnpm add next-persian-fonts@^1.2</code> (یا <code dir="ltr" className={code}>npm install next-persian-fonts@latest</code>).
     </>,
   ],
   [
@@ -193,7 +221,7 @@ export default function Home() {
               فونت‌های فارسی، <span className="text-emerald-700 dark:text-emerald-400">آماده برای Next.js</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300">
-              {fa(familyCount)} خانوادهٔ فونت فارسی رایگان، داخل خود پکیج: وزیرمتن، استعداد، ساحل و فونت‌های فارسی Google Fonts مثل لاله‌زار و نوتو. بدون گوگل و CDN، پس حتی وقتی اینترنت بین‌الملل قطع است هم سایت و build شما کار می‌کند.
+              {fa(familyCount)} خانوادهٔ فونت فارسی رایگان، داخل خود پکیج: وزیرمتن، استعداد، ساحل و فونت‌های فارسی Google Fonts مثل لاله‌زار و نوتو. بدون گوگل و CDN، پس حتی وقتی اینترنت بین‌الملل قطع است هم سایت و build شما کار می‌کند. برای Vite، Gatsby، Astro و HTML ساده هم <a href="#without-next" className="font-medium text-emerald-700 underline underline-offset-4 hover:text-emerald-800 dark:text-emerald-400">فایل CSS آماده</a> دارد.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <div className="flex items-center gap-3 rounded-xl border border-zinc-300 bg-white py-2 pe-2 ps-4 shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
@@ -243,7 +271,7 @@ export default function Home() {
               <b>پروژهٔ تازهٔ create-next-app دارید؟</b> در <code dir="ltr" className={code}>app/layout.tsx</code> ایمپورت فونت‌های Geist از <code dir="ltr" className={code}>next/font/google</code> را حذف کنید (به اینترنت جهانی نیاز دارند) و در <code dir="ltr" className={code}>globals.css</code> خط <code dir="ltr" className={code}>font-family: Arial, Helvetica, sans-serif;</code> را از قانون <code dir="ltr" className={code}>body</code> پاک کنید تا جلوی فونت فارسی را نگیرد.
             </div>
             <h3 className="mb-4 text-lg font-bold">مثال کامل برای کپی</h3>
-            <div className="grid gap-6 lg:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               <CodeBlock title="App Router — app/layout.tsx" code={layoutCode} />
               <div className="space-y-4">
                 <CodeBlock title="Pages Router — pages/_app.tsx" code={pagesCode} />
@@ -253,6 +281,19 @@ export default function Home() {
             <p className="mt-4 text-sm leading-7 text-zinc-600 dark:text-zinc-400">
               فونت دیگری می‌خواهید؟ در گالری بالا روی «کپی» کارت آن فونت بزنید و خط ایمپورت را جایگزین کنید. در Pages Router تنظیم <code dir="ltr" className={code}>transpilePackages</code> لازم است (Next.js پکیج‌های node_modules را در Pages Router باندل نمی‌کند و بدون آن build خطا می‌دهد)؛ در App Router بی‌ضرر است. برای راست‌چین شدن، در <code dir="ltr" className={code}>pages/_document.tsx</code> بنویسید <code dir="ltr" className={code}>{'<Html lang="fa" dir="rtl">'}</code>.
             </p>
+            <div id="without-next" className="mt-10 scroll-mt-20">
+              <h3 className="mb-2 text-lg font-bold">استفاده در پروژه‌های غیر Next.js (Vite، Gatsby، Astro، HTML ساده)</h3>
+              <p className="mb-4 max-w-3xl text-sm leading-7 text-zinc-600 dark:text-zinc-400">
+                برای هر فونت یک فایل CSS آماده هم هست: <code dir="ltr" className={`${code} whitespace-nowrap`}>next-persian-fonts/css/&lt;name&gt;.css</code>. این فایل <code dir="ltr" className={`${code} whitespace-nowrap`}>@font-face</code> را با همان فایل‌های فونت داخل پکیج تعریف می‌کند و یک متغیر CSS (مثل <code dir="ltr" className={`${code} whitespace-nowrap`}>--font-vazirmatn-variable</code>) و یک کلاس (مثل <code dir="ltr" className={`${code} whitespace-nowrap`}>.font-vazirmatn-variable</code>) می‌سازد. به‌جای name همان مسیر ایمپورت فونت را بنویسید؛ در گالری بالا با دکمهٔ «CSS» کد هر فونت را ببینید. اگر از Next.js استفاده می‌کنید، این فایل‌ها هیچ چیزی به سایت شما اضافه نمی‌کنند.
+              </p>
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                <CodeBlock title="Vite / Gatsby / Astro" code={cssImportCode} />
+                <div className="space-y-4">
+                  <CodeBlock title="Tailwind v4" code={cssTailwindCode} />
+                  <CodeBlock title="index.html" code={cssHtmlCode} />
+                </div>
+              </div>
+            </div>
             <aside aria-label="حمایت از پروژه" className="mt-8 flex flex-col gap-4 rounded-2xl border border-emerald-500/30 bg-emerald-50 p-5 sm:flex-row sm:items-center sm:justify-between dark:bg-emerald-500/10">
               <p className="leading-7 text-emerald-950 dark:text-emerald-100">
                 <span aria-hidden="true">⭐ </span>
@@ -270,7 +311,7 @@ export default function Home() {
           <p className="mb-6 max-w-3xl leading-7 text-zinc-600 dark:text-zinc-400">
             روی <code dir="ltr" className={code}>html</code> به‌جای <code dir="ltr" className={code}>className</code> از <code dir="ltr" className={code}>vazirmatnVariable.variable</code> استفاده کنید و فونت را به Tailwind معرفی کنید. بعد از آن کلاس <code dir="ltr" className={code}>font-sans</code> (پیش‌فرض Tailwind) همان فونت فارسی است.
           </p>
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <CodeBlock title="Tailwind v4 — globals.css" code={tailwind4Code} />
             <CodeBlock title="Tailwind v3 — tailwind.config.js" code={tailwind3Code} />
           </div>

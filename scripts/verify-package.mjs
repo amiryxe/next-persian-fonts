@@ -4,6 +4,7 @@
 //  2. every subpath has index.js, index.d.ts, a license file and valid WOFF2 files (and no stray fonts)
 //  3. `npm pack` would ship everything that the exports map points to
 //  4. the type declarations compile under moduleResolution bundler, node16 and node10
+//  5. the plain CSS files (css/*.css) cover every export and point at the bundled font files
 import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync, readdirSync, writeFileSync, mkdirSync, openSync, readSync, closeSync } from 'node:fs'
 import { join, dirname } from 'node:path'
@@ -56,8 +57,12 @@ console.log(`${exportsList.length} exports checked`)
 step('npm pack contents')
 const packed = JSON.parse(run('npm', ['pack', '--dry-run', '--json', '--ignore-scripts'], { cwd: pkgDir }))[0]
 const shipped = new Set(packed.files.map((f) => f.path))
-for (const target of Object.values(pkg.exports).flatMap((t) => (typeof t === 'string' ? [t] : Object.values(t))))
-  if (!shipped.has(target.replace(/^\.\//, ''))) fail(`npm pack does not include ${target}`)
+for (const target of Object.values(pkg.exports).flatMap((t) => (typeof t === 'string' ? [t] : Object.values(t)))) {
+  if (target.includes('*')) {
+    const re = new RegExp('^' + target.replace(/^\.\//, '').replace(/[.]/g, '\\.').replace('*', '.+') + '$')
+    if (![...shipped].some((p) => re.test(p))) fail(`npm pack includes nothing for ${target}`)
+  } else if (!shipped.has(target.replace(/^\.\//, ''))) fail(`npm pack does not include ${target}`)
+}
 for (const family of manifest.families)
   for (const v of family.variants)
     for (const x of [v, ...(v.extra ?? [])])
@@ -65,6 +70,47 @@ for (const family of manifest.families)
 const stray = [...shipped].filter((p) => /(^|\/)(node_modules|\.DS_Store|package-lock\.json)/.test(p))
 if (stray.length) fail(`npm pack includes unexpected files: ${stray.join(', ')}`)
 console.log(`${packed.entryCount} files, ${(packed.size / 1024 / 1024).toFixed(2)} MB packed, ${(packed.unpackedSize / 1024 / 1024).toFixed(2)} MB unpacked`)
+
+step('CSS files (non-Next.js usage)')
+{
+  if (JSON.stringify(pkg.sideEffects) !== JSON.stringify(['*.css'])) fail('package.json sideEffects must be ["*.css"] (JS tree-shakeable, CSS kept)')
+  if (pkg.exports['./css/*'] !== './css/*') fail('exports map needs "./css/*": "./css/*"')
+  let n = 0
+  for (const family of manifest.families)
+    for (const v of family.variants)
+      for (const x of [v, ...(v.extra ?? [])]) {
+        const name = x.cssVariable.replace(/^--font-/, '')
+        const rel = `css/${name}.css`
+        if (!shipped.has(rel)) fail(`npm pack does not include ${rel}`)
+        if (!existsSync(join(pkgDir, rel))) { fail(`${rel} is missing`); continue }
+        const css = readFileSync(join(pkgDir, rel), 'utf8')
+        const faces = css.match(/@font-face\s*\{[^}]*\}/g) ?? []
+        if (faces.length !== x.files.length) fail(`${rel}: ${faces.length} @font-face rules, expected ${x.files.length}`)
+        const families = new Set(faces.map((f) => f.match(/font-family:\s*'([^']+)'/)?.[1]))
+        if (families.size !== 1 || families.has(undefined)) fail(`${rel}: @font-face rules must share one font-family`)
+        for (const f of x.files) {
+          const url = `../${v.subpath}/${f.to}`
+          const face = faces.find((r) => r.includes(`url('${url}')`))
+          if (!face) { fail(`${rel}: no @font-face for ${url}`); continue }
+          if (!shipped.has(`${v.subpath}/${f.to}`)) fail(`${rel}: ${url} is not in the package`)
+          if (!face.includes(`font-weight: ${f.weight};`)) fail(`${rel}: ${f.to} should have font-weight: ${f.weight}`)
+          if (!face.includes(`font-style: ${f.style ?? 'normal'};`)) fail(`${rel}: ${f.to} has the wrong font-style`)
+          if (!face.includes('font-display: swap;')) fail(`${rel}: ${f.to} has no font-display: swap`)
+        }
+        for (const u of css.match(/url\('([^']+)'\)/g) ?? []) {
+          const p = u.slice(5, -2)
+          if (!existsSync(join(pkgDir, 'css', p))) fail(`${rel}: ${p} does not exist`)
+        }
+        const [fam] = families
+        if (!new RegExp(`:root\\s*\\{\\s*${x.cssVariable}: '${fam}', [a-z-]+;\\s*\\}`).test(css)) fail(`${rel}: :root must set ${x.cssVariable}`)
+        if (!css.includes(`.font-${name} {\n  font-family: var(${x.cssVariable});`)) fail(`${rel}: missing .font-${name} class`)
+        n++
+      }
+  // Next.js entry points must never pull in CSS (zero cost for next/font users)
+  for (const file of [...shipped].filter((p) => p.endsWith('.js')))
+    if (/\.css['"]/.test(readFileSync(join(pkgDir, file), 'utf8'))) fail(`${file} imports a CSS file`)
+  console.log(`${n} CSS files checked`)
+}
 
 step('type declarations')
 const genDir = join(root, 'tests', 'types', '.generated')
