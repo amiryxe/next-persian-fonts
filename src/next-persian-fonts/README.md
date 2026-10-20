@@ -349,6 +349,11 @@ Vera = Bitstream Vera license (Latin glyphs), PD = public domain changes. Versio
 
 ---
 
+### Request a font · درخواست فونت
+
+فونتی که می‌خوای توی لیست نیست؟ از [فرم درخواست فونت](https://github.com/amiryxe/next-persian-fonts/issues/new?template=font-request.yml) پیشنهادش بده.
+Missing a font? Suggest it with the [font request form](https://github.com/amiryxe/next-persian-fonts/issues/new?template=font-request.yml).
+
 ## English
 
 ### Features

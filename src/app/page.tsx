@@ -376,6 +376,7 @@ export default function Home() {
             <a href={GITHUB} target="_blank" rel="noreferrer" className="hover:text-emerald-600">GitHub</a>
             <a href={NPM} target="_blank" rel="noreferrer" className="hover:text-emerald-600">npm</a>
             <a href={`${GITHUB}/blob/main/CHANGELOG.md`} target="_blank" rel="noreferrer" className="hover:text-emerald-600">تغییرات</a>
+            <a href={`${GITHUB}/issues/new?template=font-request.yml`} target="_blank" rel="noreferrer" className="hover:text-emerald-600">درخواست فونت</a>
           </p>
         </div>
       </footer>

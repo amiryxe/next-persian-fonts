@@ -1,0 +1,47 @@
+name: "درخواست فونت جدید · Font request"
+description: "پیشنهاد اضافه کردن یک فونت فارسی جدید · Suggest a new Persian font"
+title: "[Font request]: "
+labels: [font-request]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ممنون از پیشنهادت! فقط فونت‌هایی اضافه می‌شن که مجوزشون اجازهٔ بازنشر بده (مثل OFL).
+        Thanks! Only fonts whose license allows redistribution (e.g. OFL) can be bundled.
+  - type: input
+    id: font-name
+    attributes:
+      label: "نام فونت · Font name"
+      placeholder: "مثلاً آراد · e.g. Arad"
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: "لینک منبع یا مخزن · Source / repo URL"
+      placeholder: "https://github.com/..."
+    validations:
+      required: true
+  - type: dropdown
+    id: license
+    attributes:
+      label: "مجوز · License"
+      options:
+        - "OFL (SIL Open Font License)"
+        - "دیگر · Other"
+        - "نمی‌دانم · Unknown"
+    validations:
+      required: true
+  - type: dropdown
+    id: persian-digits
+    attributes:
+      label: "نسخهٔ اعداد فارسی دارد؟ · Has a Persian-digits variant?"
+      options:
+        - "بله · Yes"
+        - "خیر · No"
+        - "نمی‌دانم · Unknown"
+  - type: textarea
+    id: notes
+    attributes:
+      label: "توضیحات · Notes"
+      description: "هر چیز دیگری که مفید است · Anything else useful (weights, variable font, …)"
