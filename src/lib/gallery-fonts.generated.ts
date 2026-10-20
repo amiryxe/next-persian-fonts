@@ -172,6 +172,22 @@ export const mikhakFD = localFont({
   preload: false,
 })
 
+export const arad = localFont({
+  src: [
+    { path: '../next-persian-fonts/arad/Arad-VF.woff2', weight: '100 1000', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
+export const aradFD = localFont({
+  src: [
+    { path: '../next-persian-fonts/arad-fd/Arad-FD-VF.woff2', weight: '100 1000', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
 export const vazirCodeFD = localFont({
   src: [
     { path: '../next-persian-fonts/vazir-code-fd/Vazir-Code-FD.woff2', weight: '400', style: 'normal' },

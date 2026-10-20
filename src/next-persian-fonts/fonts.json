@@ -565,6 +565,51 @@
       ]
     },
     {
+      "id": "arad",
+      "name": "Arad",
+      "nameFa": "آراد",
+      "designer": "Mohamad Darvishi",
+      "category": "sans-serif",
+      "repo": "MohamadDarvishi/Arad",
+      "version": "2.5.1",
+      "ref": "2.5.1",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "arad",
+          "export": "arad",
+          "cssVariable": "--font-arad",
+          "digits": "latin",
+          "description": "Arad variable font (wght 100-1000, DSTY dot-style axis), Latin digits.",
+          "files": [
+            {
+              "from": "Fonts/Main_Fonts/AradVF.woff2",
+              "to": "Arad-VF.woff2",
+              "weight": "100 1000"
+            }
+          ]
+        },
+        {
+          "subpath": "arad-fd",
+          "export": "aradFD",
+          "cssVariable": "--font-arad-fd",
+          "digits": "persian",
+          "description": "Arad variable font with Persian digits (wght 100-1000, DSTY dot-style axis).",
+          "files": [
+            {
+              "from": "Fonts/Farsi_Digits/AradFDVF.woff2",
+              "to": "Arad-FD-VF.woff2",
+              "weight": "100 1000"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "vazir-code",
       "name": "Vazir Code",
       "nameFa": "وزیر کد",

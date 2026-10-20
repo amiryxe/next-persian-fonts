@@ -310,6 +310,7 @@ Usage · استفاده: `import { <Export> } from 'next-persian-fonts/<import>'
 | **Parastoo**<br>پرستو | Saber Rastikerdar | `parastoo`<br>`parastoo-fd` | `parastoo`<br>`parastooFD` ¹ | 400, 700 | OFL-1.1 |
 | **Gandom**<br>گندم | Saber Rastikerdar | `gandom`<br>`gandom-fd` | `gandom`<br>`gandomFD` ¹ | 400 | OFL-1.1 + Vera |
 | **Mikhak**<br>میخک | Amin Abedi | `mikhak`<br>`mikhak-fd` | `mikhak`<br>`mikhakFD` ¹ | 100–900 variable | OFL-1.1 |
+| **Arad**<br>آراد | Mohamad Darvishi | `arad`<br>`arad-fd` | `arad`<br>`aradFD` ¹ | 100–1000 variable | OFL-1.1 |
 | **Vazir Code**<br>وزیر کد | Saber Rastikerdar | `vazir-code`<br>`vazir-code-fd` | `vazirCode`<br>`vazirCodeFD` ¹ | 400 | Vera + PD |
 | **Behdad**<br>بهداد | Mohammad Saleh Souzanchi (Font Store) | `behdad` | `behdad` | 400 | OFL-1.1 |
 | **Nika**<br>نیکا | Mohammad Saleh Souzanchi (Font Store) | `nika` | `nika` | 400 | OFL-1.1 |
@@ -352,7 +353,7 @@ Vera = Bitstream Vera license (Latin glyphs), PD = public domain changes. Versio
 
 ### Features
 
-- **33 Persian font families**, 43 ready-to-use exports: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Parastoo, Gandom, Tanha, Vazir Code, Behdad, Nika, plus 21 Persian-capable Google Fonts (Lalezar, Noto Naskh/Sans/Kufi Arabic, Noto Nastaliq Urdu, Amiri, IBM Plex Sans Arabic, …).
+- **34 Persian font families**, 46 ready-to-use exports: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Arad, Parastoo, Gandom, Tanha, Vazir Code, Behdad, Nika, plus 21 Persian-capable Google Fonts (Lalezar, Noto Naskh/Sans/Kufi Arabic, Noto Nastaliq Urdu, Amiri, IBM Plex Sans Arabic, …).
 - **Fully offline:** font files ship inside the package; your build and site never depend on Google or a CDN.
 - **No layout shift:** loaded with `next/font/local`, preloaded automatically, `font-display: swap`.
 - **Only what you import** ends up in your build (one subpath per font).

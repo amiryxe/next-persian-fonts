@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- **Arad** (آراد) by Mohamad Darvishi, v2.5.1, OFL-1.1: `next-persian-fonts/arad` (`arad`) and `next-persian-fonts/arad-fd` (`aradFD`, Persian digits), variable wght 100–1000, plus `css/arad.css` and `css/arad-fd.css`. Shipped as the authors' unmodified WOFF2 (Reserved Font Name). Existing exports are unchanged.
+
 ## 1.2.0 (2026-10-09)
 
 Nothing changes for Next.js users: every import path, export, type and generated `next/font` call is byte-for-byte the same as in 1.1.1, and the new CSS files are only bundled if you import them.

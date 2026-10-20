@@ -20,6 +20,8 @@ export const cssFonts: Record<string, { file: string; family: string; className:
   gandomFD: { file: 'gandom-fd.css', family: 'Gandom FD', className: 'font-gandom-fd', variable: '--font-gandom-fd' },
   mikhak: { file: 'mikhak.css', family: 'Mikhak', className: 'font-mikhak', variable: '--font-mikhak' },
   mikhakFD: { file: 'mikhak-fd.css', family: 'Mikhak FD', className: 'font-mikhak-fd', variable: '--font-mikhak-fd' },
+  arad: { file: 'arad.css', family: 'Arad', className: 'font-arad', variable: '--font-arad' },
+  aradFD: { file: 'arad-fd.css', family: 'Arad FD', className: 'font-arad-fd', variable: '--font-arad-fd' },
   vazirCode: { file: 'vazir-code.css', family: 'Vazir Code', className: 'font-vazir-code', variable: '--font-vazir-code' },
   vazirCodeFD: { file: 'vazir-code-fd.css', family: 'Vazir Code FD', className: 'font-vazir-code-fd', variable: '--font-vazir-code-fd' },
   behdad: { file: 'behdad.css', family: 'Behdad', className: 'font-behdad', variable: '--font-behdad' },

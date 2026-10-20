@@ -87,6 +87,14 @@
       "types": "./mikhak-fd/index.d.ts",
       "default": "./mikhak-fd/index.js"
     },
+    "./arad": {
+      "types": "./arad/index.d.ts",
+      "default": "./arad/index.js"
+    },
+    "./arad-fd": {
+      "types": "./arad-fd/index.d.ts",
+      "default": "./arad-fd/index.js"
+    },
     "./vazir-code": {
       "types": "./vazir-code/index.d.ts",
       "default": "./vazir-code/index.js"
@@ -218,6 +226,8 @@
     "gandom-fd",
     "mikhak",
     "mikhak-fd",
+    "arad",
+    "arad-fd",
     "vazir-code",
     "vazir-code-fd",
     "behdad",
