@@ -12,7 +12,7 @@ body:
     id: font-name
     attributes:
       label: "نام فونت · Font name"
-      placeholder: "مثلاً آراد · e.g. Arad"
+      placeholder: "مثلاً وزیرمتن · e.g. Vazirmatn"
     validations:
       required: true
   - type: input
