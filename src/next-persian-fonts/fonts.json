@@ -718,6 +718,63 @@
       ]
     },
     {
+      "id": "sepehr",
+      "name": "Sepehr",
+      "nameFa": "سپهر",
+      "designer": "Saeed Rezaee, Saber Rastikerdar",
+      "category": "sans-serif",
+      "repo": "googlefonts/sepehr-fonts",
+      "version": "1.000",
+      "ref": "90f5da4017f0ed91867b74c60954cafd8568bd7a",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "modification": "Converted to WOFF2 and subset to Arabic + Latin characters (the license has no Reserved Font Name for this font name).",
+      "variants": [
+        {
+          "subpath": "sepehr",
+          "export": "sepehr",
+          "cssVariable": "--font-sepehr",
+          "digits": "latin",
+          "description": "Sepehr font, weights 100, 300, 400, 500, 700.",
+          "files": [
+            {
+              "from": "fonts/Sepehr-Thin.ttf",
+              "to": "Sepehr-Thin.woff2",
+              "weight": "100",
+              "subset": "arabic-latin"
+            },
+            {
+              "from": "fonts/Sepehr-Light.ttf",
+              "to": "Sepehr-Light.woff2",
+              "weight": "300",
+              "subset": "arabic-latin"
+            },
+            {
+              "from": "fonts/Sepehr-Regular.ttf",
+              "to": "Sepehr-Regular.woff2",
+              "weight": "400",
+              "subset": "arabic-latin"
+            },
+            {
+              "from": "fonts/Sepehr-Medium.ttf",
+              "to": "Sepehr-Medium.woff2",
+              "weight": "500",
+              "subset": "arabic-latin"
+            },
+            {
+              "from": "fonts/Sepehr-Bold.ttf",
+              "to": "Sepehr-Bold.woff2",
+              "weight": "700",
+              "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "lalezar",
       "name": "Lalezar",
       "nameFa": "لاله‌زار",

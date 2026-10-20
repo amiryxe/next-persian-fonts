@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- **Sepehr** (سپهر) by Saeed Rezaee and Saber Rastikerdar (googlefonts/sepehr-fonts @ 90f5da4, v1.000), OFL-1.1: `next-persian-fonts/sepehr` (`sepehr`), weights 100, 300, 400, 500, 700, plus `css/sepehr.css`. Converted to WOFF2 and subset to Arabic + Latin (no Reserved Font Name). Existing exports are unchanged.
+
 ## 1.3.0 (2026-10-20)
 
 Nothing changes for existing imports: every existing export, CSS file and generated `next/font` call is the same as in 1.2.0.

@@ -26,6 +26,7 @@ export const cssFonts: Record<string, { file: string; family: string; className:
   vazirCodeFD: { file: 'vazir-code-fd.css', family: 'Vazir Code FD', className: 'font-vazir-code-fd', variable: '--font-vazir-code-fd' },
   behdad: { file: 'behdad.css', family: 'Behdad', className: 'font-behdad', variable: '--font-behdad' },
   nika: { file: 'nika.css', family: 'Nika', className: 'font-nika', variable: '--font-nika' },
+  sepehr: { file: 'sepehr.css', family: 'Sepehr', className: 'font-sepehr', variable: '--font-sepehr' },
   lalezar: { file: 'lalezar.css', family: 'Lalezar', className: 'font-lalezar', variable: '--font-lalezar' },
   markaziText: { file: 'markazi-text.css', family: 'Markazi Text', className: 'font-markazi-text', variable: '--font-markazi-text' },
   mirza: { file: 'mirza.css', family: 'Mirza', className: 'font-mirza', variable: '--font-mirza' },

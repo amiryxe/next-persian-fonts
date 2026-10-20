@@ -111,6 +111,10 @@
       "types": "./nika/index.d.ts",
       "default": "./nika/index.js"
     },
+    "./sepehr": {
+      "types": "./sepehr/index.d.ts",
+      "default": "./sepehr/index.js"
+    },
     "./lalezar": {
       "types": "./lalezar/index.d.ts",
       "default": "./lalezar/index.js"
@@ -232,6 +236,7 @@
     "vazir-code-fd",
     "behdad",
     "nika",
+    "sepehr",
     "lalezar",
     "markazi-text",
     "mirza",
