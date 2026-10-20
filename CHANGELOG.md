@@ -1,9 +1,12 @@
 # Changelog
 
-## Unreleased
+## 1.3.0 (2026-10-20)
+
+Nothing changes for existing imports: every existing export, CSS file and generated `next/font` call is the same as in 1.2.0.
 
 ### Added
 - **Arad** (آراد) by Mohamad Darvishi, v2.5.1, OFL-1.1: `next-persian-fonts/arad` (`arad`) and `next-persian-fonts/arad-fd` (`aradFD`, Persian digits), variable wght 100–1000, plus `css/arad.css` and `css/arad-fd.css`. Shipped as the authors' unmodified WOFF2 (Reserved Font Name). Existing exports are unchanged.
+- **Font request form**: suggest a new font via the GitHub issue form (https://github.com/amiryxe/next-persian-fonts/issues/new?template=font-request.yml), linked from the README and the demo site.
 
 ## 1.2.0 (2026-10-09)
 

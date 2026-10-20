@@ -1,6 +1,6 @@
 {
   "name": "next-persian-fonts",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "33 free Persian (Farsi) font families for Next.js, bundled for offline use with next/font/local: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Lalezar, Noto, Amiri and more. No Google or CDN, TypeScript types included. Also plain CSS files for Vite, Gatsby, Astro and plain HTML.",
   "author": "Amir Salehi (@amiryxe)",
   "license": "ISC AND OFL-1.1 AND Bitstream-Vera AND Apache-2.0",
