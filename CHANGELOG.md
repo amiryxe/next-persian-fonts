@@ -1,10 +1,15 @@
 # Changelog
 
-## Unreleased
+## 1.4.0 (2026-10-21)
+
+Nothing changes for existing imports: every existing export, CSS file and generated `next/font` call is the same as in 1.3.0.
 
 ### Added
 - **Sepehr** (سپهر) by Saeed Rezaee and Saber Rastikerdar (googlefonts/sepehr-fonts @ 90f5da4, v1.000), OFL-1.1: `next-persian-fonts/sepehr` (`sepehr`), weights 100, 300, 400, 500, 700, plus `css/sepehr.css`. Converted to WOFF2 and subset to Arabic + Latin (no Reserved Font Name). Existing exports are unchanged.
 - **Sorena** (سورنا) by Mohamad Darvishi (MDarvishi5124/Sorena, v1.2.0), OFL-1.1, pixel-style display font, weight 400: `next-persian-fonts/sorena` (`sorena`), `sorena-fd` (`sorenaFD`, Persian digits), `sorena-pixel` (`sorenaPixel`, strict pixel-grid master) and `sorena-pixel-fd` (`sorenaPixelFD`), plus matching `css/sorena*.css`. Shipped as the author's unmodified WOFF2. Existing exports are unchanged.
+
+### Changed
+- Font request form example now suggests Vazirmatn.
 
 ## 1.3.0 (2026-10-20)
 
