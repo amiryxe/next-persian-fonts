@@ -315,6 +315,7 @@ Usage · استفاده: `import { <Export> } from 'next-persian-fonts/<import>'
 | **Behdad**<br>بهداد | Mohammad Saleh Souzanchi (Font Store) | `behdad` | `behdad` | 400 | OFL-1.1 |
 | **Nika**<br>نیکا | Mohammad Saleh Souzanchi (Font Store) | `nika` | `nika` | 400 | OFL-1.1 |
 | **Sepehr**<br>سپهر | Saeed Rezaee, Saber Rastikerdar | `sepehr` | `sepehr` | 100, 300, 400, 500, 700 | OFL-1.1 |
+| **Sorena**<br>سورنا | Mohamad Darvishi | `sorena`<br>`sorena-fd`<br>`sorena-pixel`<br>`sorena-pixel-fd` | `sorena`<br>`sorenaFD` ¹<br>`sorenaPixel`<br>`sorenaPixelFD` ¹ | 400 | OFL-1.1 |
 
 ### Google Fonts, bundled offline · فونت‌های Google Fonts (آفلاین)
 
@@ -359,7 +360,7 @@ Missing a font? Suggest it with the [font request form](https://github.com/amiry
 
 ### Features
 
-- **35 Persian font families**, 47 ready-to-use exports: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Arad, Parastoo, Gandom, Tanha, Vazir Code, Behdad, Nika, Sepehr, plus 21 Persian-capable Google Fonts (Lalezar, Noto Naskh/Sans/Kufi Arabic, Noto Nastaliq Urdu, Amiri, IBM Plex Sans Arabic, …).
+- **36 Persian font families**, 51 ready-to-use exports: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Arad, Parastoo, Gandom, Tanha, Vazir Code, Behdad, Nika, Sepehr, Sorena, plus 21 Persian-capable Google Fonts (Lalezar, Noto Naskh/Sans/Kufi Arabic, Noto Nastaliq Urdu, Amiri, IBM Plex Sans Arabic, …).
 - **Fully offline:** font files ship inside the package; your build and site never depend on Google or a CDN.
 - **No layout shift:** loaded with `next/font/local`, preloaded automatically, `font-display: swap`.
 - **Only what you import** ends up in your build (one subpath per font).

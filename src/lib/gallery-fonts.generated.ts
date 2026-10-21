@@ -224,6 +224,38 @@ export const sepehr = localFont({
   preload: false,
 })
 
+export const sorena = localFont({
+  src: [
+    { path: '../next-persian-fonts/sorena/Sorena-Normal.woff2', weight: '400', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
+export const sorenaFD = localFont({
+  src: [
+    { path: '../next-persian-fonts/sorena-fd/SorenaFD-Normal.woff2', weight: '400', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
+export const sorenaPixel = localFont({
+  src: [
+    { path: '../next-persian-fonts/sorena-pixel/Sorena-Pixel.woff2', weight: '400', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
+export const sorenaPixelFD = localFont({
+  src: [
+    { path: '../next-persian-fonts/sorena-pixel-fd/SorenaFD-Pixel.woff2', weight: '400', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
 export const lalezar = localFont({
   src: [
     { path: '../next-persian-fonts/lalezar/Lalezar-Regular.woff2', weight: '400', style: 'normal' },

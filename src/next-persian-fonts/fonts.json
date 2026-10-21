@@ -775,6 +775,79 @@
       ]
     },
     {
+      "id": "sorena",
+      "name": "Sorena",
+      "nameFa": "سورنا",
+      "designer": "Mohamad Darvishi",
+      "category": "display",
+      "repo": "MDarvishi5124/Sorena",
+      "version": "1.2.0",
+      "ref": "1.2.0v",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "sorena",
+          "export": "sorena",
+          "cssVariable": "--font-sorena",
+          "digits": "latin",
+          "description": "Sorena pixel-style font (Normal master), weight 400, Latin digits.",
+          "files": [
+            {
+              "from": "Fonts/webfont/Sorena-Normal.woff2",
+              "to": "Sorena-Normal.woff2",
+              "weight": "400"
+            }
+          ]
+        },
+        {
+          "subpath": "sorena-fd",
+          "export": "sorenaFD",
+          "cssVariable": "--font-sorena-fd",
+          "digits": "persian",
+          "description": "Sorena pixel-style font (Normal master), weight 400, Persian digits.",
+          "files": [
+            {
+              "from": "Fonts/misc/Farsi-Digits/webfont/SorenaFD-Normal.woff2",
+              "to": "SorenaFD-Normal.woff2",
+              "weight": "400"
+            }
+          ]
+        },
+        {
+          "subpath": "sorena-pixel",
+          "export": "sorenaPixel",
+          "cssVariable": "--font-sorena-pixel",
+          "digits": "latin",
+          "description": "Sorena strict pixel-grid font (Pixel master), weight 400, Latin digits.",
+          "files": [
+            {
+              "from": "Fonts/webfont/Sorena-Pixel.woff2",
+              "to": "Sorena-Pixel.woff2",
+              "weight": "400"
+            }
+          ]
+        },
+        {
+          "subpath": "sorena-pixel-fd",
+          "export": "sorenaPixelFD",
+          "cssVariable": "--font-sorena-pixel-fd",
+          "digits": "persian",
+          "description": "Sorena strict pixel-grid font (Pixel master), weight 400, Persian digits.",
+          "files": [
+            {
+              "from": "Fonts/misc/Farsi-Digits/webfont/SorenaFD-Pixel.woff2",
+              "to": "SorenaFD-Pixel.woff2",
+              "weight": "400"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "lalezar",
       "name": "Lalezar",
       "nameFa": "لاله‌زار",

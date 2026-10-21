@@ -115,6 +115,22 @@
       "types": "./sepehr/index.d.ts",
       "default": "./sepehr/index.js"
     },
+    "./sorena": {
+      "types": "./sorena/index.d.ts",
+      "default": "./sorena/index.js"
+    },
+    "./sorena-fd": {
+      "types": "./sorena-fd/index.d.ts",
+      "default": "./sorena-fd/index.js"
+    },
+    "./sorena-pixel": {
+      "types": "./sorena-pixel/index.d.ts",
+      "default": "./sorena-pixel/index.js"
+    },
+    "./sorena-pixel-fd": {
+      "types": "./sorena-pixel-fd/index.d.ts",
+      "default": "./sorena-pixel-fd/index.js"
+    },
     "./lalezar": {
       "types": "./lalezar/index.d.ts",
       "default": "./lalezar/index.js"
@@ -237,6 +253,10 @@
     "behdad",
     "nika",
     "sepehr",
+    "sorena",
+    "sorena-fd",
+    "sorena-pixel",
+    "sorena-pixel-fd",
     "lalezar",
     "markazi-text",
     "mirza",
