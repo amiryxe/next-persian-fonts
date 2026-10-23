@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 1.5.0 (2026-10-23)
+
+Nothing changes for existing imports: every existing export, CSS file and generated `next/font` call is the same as in 1.4.0.
 
 ### Added
 - **Ganjnameh** (گنجنامه) by Mohammad Saleh Souzanchi (font-store/GanjnamehFont, v0.0.4), OFL-1.1, monoline modern Naskh, weight 400: `next-persian-fonts/ganjnameh` (`ganjnameh`), plus `css/ganjnameh.css`. Shipped as the author's unmodified WOFF2. Existing exports are unchanged.
@@ -11,6 +13,12 @@
 - **Rooyin** (رویین) by Mohamad Darvishi (MohamadDarvishi/Rooyin, v1.1), OFL-1.1 (Reserved Font Name "Rooyin"), pixel display font, weights 400 and 700: `next-persian-fonts/rooyin` (`rooyin`) and `rooyin-fd` (`rooyinFD`, Persian digits), plus `css/rooyin.css` and `css/rooyin-fd.css`. Shipped as the author's unmodified WOFF2. Existing exports are unchanged.
 - **Noqte** (نقطه) by Mehdi Sadeghi (mehdisadeghi/Noqte, 0.1.0-beta4), OFL-1.1 (Reserved Font Name "Noqte"), pixel display font, weight 500: `next-persian-fonts/noqte` (`noqte`), plus `css/noqte.css`. Shipped as the author's unmodified WOFF2 from the GitHub release. `update-fonts` now accepts a full `https://` URL in a file's `from` (used for release assets). Existing exports are unchanged.
 - **Badeen Display** (بدین) by Hani Adnan (haniadnansd/Badeen-Display, v1.000 at commit c1370b6; also on Google Fonts), OFL-1.1, headline/display font, weight 400: `next-persian-fonts/badeen-display` (`badeenDisplay`), plus `css/badeen-display.css`. Shipped as the author's unmodified WOFF2. Existing exports are unchanged.
+
+### Changed
+- Demo gallery filters redesigned: "only variable" toggle, "hide deprecated" toggle, source segmented control, category pills with counts, result count, clear-filters button and empty state.
+- Demo: the `display` category is labelled «تیتر و نمایشی» (headline & display).
+- Demo: cleaner, more accessible design (skip link, landmarks, visible focus, reduced-motion support, better contrast and screen-reader labels) and a note that only the fonts you import are bundled and loaded.
+- `scripts/update-fonts.mjs` accepts a full `https://` URL as a file source (used for release assets).
 
 ## 1.4.0 (2026-10-21)
 
