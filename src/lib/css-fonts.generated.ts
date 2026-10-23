@@ -38,6 +38,9 @@ export const cssFonts: Record<string, { file: string; family: string; className:
   normalSans: { file: 'normal-sans.css', family: 'Normal Sans', className: 'font-normal-sans', variable: '--font-normal-sans' },
   ario: { file: 'ario.css', family: 'Ario', className: 'font-ario', variable: '--font-ario' },
   arioFD: { file: 'ario-fd.css', family: 'Ario FD', className: 'font-ario-fd', variable: '--font-ario-fd' },
+  rooyin: { file: 'rooyin.css', family: 'Rooyin', className: 'font-rooyin', variable: '--font-rooyin' },
+  rooyinFD: { file: 'rooyin-fd.css', family: 'Rooyin FD', className: 'font-rooyin-fd', variable: '--font-rooyin-fd' },
+  noqte: { file: 'noqte.css', family: 'Noqte', className: 'font-noqte', variable: '--font-noqte' },
   lalezar: { file: 'lalezar.css', family: 'Lalezar', className: 'font-lalezar', variable: '--font-lalezar' },
   markaziText: { file: 'markazi-text.css', family: 'Markazi Text', className: 'font-markazi-text', variable: '--font-markazi-text' },
   mirza: { file: 'mirza.css', family: 'Mirza', className: 'font-mirza', variable: '--font-mirza' },
@@ -59,4 +62,5 @@ export const cssFonts: Record<string, { file: string; family: string; className:
   changa: { file: 'changa.css', family: 'Changa', className: 'font-changa', variable: '--font-changa' },
   balooBhaijaan2: { file: 'baloo-bhaijaan-2.css', family: 'Baloo Bhaijaan 2', className: 'font-baloo-bhaijaan-2', variable: '--font-baloo-bhaijaan-2' },
   cairo: { file: 'cairo.css', family: 'Cairo', className: 'font-cairo', variable: '--font-cairo' },
+  badeenDisplay: { file: 'badeen-display.css', family: 'Badeen Display', className: 'font-badeen-display', variable: '--font-badeen-display' },
 }

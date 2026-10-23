@@ -159,6 +159,18 @@
       "types": "./ario-fd/index.d.ts",
       "default": "./ario-fd/index.js"
     },
+    "./rooyin": {
+      "types": "./rooyin/index.d.ts",
+      "default": "./rooyin/index.js"
+    },
+    "./rooyin-fd": {
+      "types": "./rooyin-fd/index.d.ts",
+      "default": "./rooyin-fd/index.js"
+    },
+    "./noqte": {
+      "types": "./noqte/index.d.ts",
+      "default": "./noqte/index.js"
+    },
     "./lalezar": {
       "types": "./lalezar/index.d.ts",
       "default": "./lalezar/index.js"
@@ -243,6 +255,10 @@
       "types": "./cairo/index.d.ts",
       "default": "./cairo/index.js"
     },
+    "./badeen-display": {
+      "types": "./badeen-display/index.d.ts",
+      "default": "./badeen-display/index.js"
+    },
     "./css/*": "./css/*",
     "./fonts.json": "./fonts.json",
     "./package.json": "./package.json"
@@ -292,6 +308,9 @@
     "normal-sans",
     "ario",
     "ario-fd",
+    "rooyin",
+    "rooyin-fd",
+    "noqte",
     "lalezar",
     "markazi-text",
     "mirza",
@@ -312,7 +331,8 @@
     "el-messiri",
     "changa",
     "baloo-bhaijaan-2",
-    "cairo"
+    "cairo",
+    "badeen-display"
   ],
   "repository": {
     "type": "git",

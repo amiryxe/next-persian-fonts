@@ -1031,6 +1031,92 @@
       ]
     },
     {
+      "id": "rooyin",
+      "name": "Rooyin",
+      "nameFa": "رویین",
+      "designer": "Mohamad Darvishi",
+      "category": "display",
+      "repo": "MohamadDarvishi/Rooyin",
+      "version": "1.1",
+      "ref": "v1.1",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "rooyin",
+          "export": "rooyin",
+          "cssVariable": "--font-rooyin",
+          "digits": "latin",
+          "description": "Rooyin (Rooyin Free) Persian/English pixel font, weights 400 and 700, Latin digits.",
+          "files": [
+            {
+              "from": "Fonts/Webfont/RooyinFree-Regular.woff2",
+              "to": "RooyinFree-Regular.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "Fonts/Webfont/RooyinFree-Bold.woff2",
+              "to": "RooyinFree-Bold.woff2",
+              "weight": "700"
+            }
+          ]
+        },
+        {
+          "subpath": "rooyin-fd",
+          "export": "rooyinFD",
+          "cssVariable": "--font-rooyin-fd",
+          "digits": "persian",
+          "description": "Rooyin (Rooyin Free) Persian/English pixel font, weights 400 and 700, Persian digits.",
+          "files": [
+            {
+              "from": "Fonts/Farsi Numerals/Webfont/RooyinFreeFaNum-Regular.woff2",
+              "to": "RooyinFreeFaNum-Regular.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "Fonts/Farsi Numerals/Webfont/RooyinFreeFaNum-Bold.woff2",
+              "to": "RooyinFreeFaNum-Bold.woff2",
+              "weight": "700"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "noqte",
+      "name": "Noqte",
+      "nameFa": "نقطه",
+      "designer": "Mehdi Sadeghi",
+      "category": "display",
+      "repo": "mehdisadeghi/Noqte",
+      "version": "0.1.0-beta4",
+      "ref": "0.1.0-beta4",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "LICENSE",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "noqte",
+          "export": "noqte",
+          "cssVariable": "--font-noqte",
+          "digits": "latin",
+          "description": "Noqte minimalist Persian pixel font, single weight (500).",
+          "files": [
+            {
+              "from": "https://github.com/mehdisadeghi/Noqte/releases/download/0.1.0-beta4/noqte.woff2",
+              "to": "noqte.woff2",
+              "weight": "500"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "lalezar",
       "name": "Lalezar",
       "nameFa": "لاله‌زار",
@@ -1889,6 +1975,38 @@
               "to": "Cairo-VF.woff2",
               "weight": "200 1000",
               "subset": "arabic-latin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "badeen-display",
+      "name": "Badeen Display",
+      "nameFa": "بدین",
+      "designer": "Hani Adnan",
+      "category": "display",
+      "repo": "haniadnansd/Badeen-Display",
+      "version": "1.000",
+      "ref": "c1370b602b4a9819c4ddce4af17962a42edb8bc3",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "googleFonts": true,
+      "variants": [
+        {
+          "subpath": "badeen-display",
+          "export": "badeenDisplay",
+          "cssVariable": "--font-badeen-display",
+          "digits": "latin",
+          "description": "Badeen Display headline/display font, single weight (400).",
+          "files": [
+            {
+              "from": "fonts/webfonts/BadeenDisplay-Regular.woff2",
+              "to": "BadeenDisplay-Regular.woff2",
+              "weight": "400"
             }
           ]
         }

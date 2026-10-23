@@ -96,7 +96,7 @@ async function update() {
       else execFileSync('tar', ['-xzf', file, '-C', extracted])
     }
     const fetchTo = async (from, dest) =>
-      extracted ? copyFileSync(join(extracted, from), dest) : download(raw(f.repo, f.ref, from), dest)
+      from.startsWith('https://') ? download(from, dest) : extracted ? copyFileSync(join(extracted, from), dest) : download(raw(f.repo, f.ref, from), dest)
 
     for (const v of f.variants) {
       const dir = join(pkgDir, v.subpath)

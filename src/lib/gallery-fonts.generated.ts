@@ -312,6 +312,32 @@ export const arioFD = localFont({
   preload: false,
 })
 
+export const rooyin = localFont({
+  src: [
+    { path: '../next-persian-fonts/rooyin/RooyinFree-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../next-persian-fonts/rooyin/RooyinFree-Bold.woff2', weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
+export const rooyinFD = localFont({
+  src: [
+    { path: '../next-persian-fonts/rooyin-fd/RooyinFreeFaNum-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../next-persian-fonts/rooyin-fd/RooyinFreeFaNum-Bold.woff2', weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
+export const noqte = localFont({
+  src: [
+    { path: '../next-persian-fonts/noqte/noqte.woff2', weight: '500', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
 export const lalezar = localFont({
   src: [
     { path: '../next-persian-fonts/lalezar/Lalezar-Regular.woff2', weight: '400', style: 'normal' },
@@ -498,6 +524,14 @@ export const balooBhaijaan2 = localFont({
 export const cairo = localFont({
   src: [
     { path: '../next-persian-fonts/cairo/Cairo-VF.woff2', weight: '200 1000', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
+export const badeenDisplay = localFont({
+  src: [
+    { path: '../next-persian-fonts/badeen-display/BadeenDisplay-Regular.woff2', weight: '400', style: 'normal' },
   ],
   display: 'swap',
   preload: false,

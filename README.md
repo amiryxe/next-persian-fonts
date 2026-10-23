@@ -321,6 +321,8 @@ Usage · استفاده: `import { <Export> } from 'next-persian-fonts/<import>'
 | **Nahid**<br>ناهید | Saber Rastikerdar | `nahid`<br>`nahid-fd` | `nahid`<br>`nahidFD` ¹ | 400 | Vera + PD |
 | **Normal Sans**<br>نرمال سنس | Azad Qalam | `normal-sans` | `normalSans` | 100–900 variable | OFL-1.1 |
 | **Ario**<br>آریو | Mohamad Darvishi | `ario`<br>`ario-fd` | `ario`<br>`arioFD` ¹ | 400 | OFL-1.1 |
+| **Rooyin**<br>رویین | Mohamad Darvishi | `rooyin`<br>`rooyin-fd` | `rooyin`<br>`rooyinFD` ¹ | 400, 700 | OFL-1.1 |
+| **Noqte**<br>نقطه | Mehdi Sadeghi | `noqte` | `noqte` | 500 | OFL-1.1 |
 
 ### Google Fonts, bundled offline · فونت‌های Google Fonts (آفلاین)
 
@@ -347,6 +349,7 @@ Usage · استفاده: `import { <Export> } from 'next-persian-fonts/<import>'
 | **Changa**<br>چنگا | Eduardo Tunni | `changa` | `changa` | 200–800 variable | OFL-1.1 |
 | **Baloo Bhaijaan 2**<br>بالو بهایجان | Ek Type | `baloo-bhaijaan-2` | `balooBhaijaan2` | 400–800 variable | OFL-1.1 |
 | **Cairo**<br>قاهره | Mohamed Gaber | `cairo` | `cairo` | 200–1000 variable | OFL-1.1 |
+| **Badeen Display**<br>بدین | Hani Adnan | `badeen-display` | `badeenDisplay` | 400 | OFL-1.1 |
 
 ¹ Persian digits (FD): Latin digits are shown as Persian digits.
 
@@ -365,7 +368,7 @@ Missing a font? Suggest it with the [font request form](https://github.com/amiry
 
 ### Features
 
-- **41 Persian font families**, 58 ready-to-use exports: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Arad, Parastoo, Gandom, Tanha, Vazir Code, Behdad, Nika, Sepehr, Sorena, Ganjnameh, Shahab, Nahid, Normal Sans, Ario, plus 21 Persian-capable Google Fonts (Lalezar, Noto Naskh/Sans/Kufi Arabic, Noto Nastaliq Urdu, Amiri, IBM Plex Sans Arabic, …).
+- **44 Persian font families**, 62 ready-to-use exports: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Arad, Parastoo, Gandom, Tanha, Vazir Code, Behdad, Nika, Sepehr, Sorena, Ganjnameh, Shahab, Nahid, Normal Sans, Ario, Rooyin, Noqte, plus 22 Persian-capable Google Fonts (Lalezar, Noto Naskh/Sans/Kufi Arabic, Noto Nastaliq Urdu, Amiri, IBM Plex Sans Arabic, …).
 - **Fully offline:** font files ship inside the package; your build and site never depend on Google or a CDN.
 - **No layout shift:** loaded with `next/font/local`, preloaded automatically, `font-display: swap`.
 - **Only what you import** ends up in your build (one subpath per font).
