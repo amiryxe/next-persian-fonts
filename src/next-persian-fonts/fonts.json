@@ -879,6 +879,113 @@
       ]
     },
     {
+      "id": "shahab",
+      "name": "Shahab",
+      "nameFa": "شهاب",
+      "designer": "Mohammad Saleh Souzanchi",
+      "category": "display",
+      "repo": "font-store/ShahabFont",
+      "version": "0.0.2",
+      "ref": "v0.0.2",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "shahab",
+          "export": "shahab",
+          "cssVariable": "--font-shahab",
+          "digits": "latin",
+          "description": "Shahab display font (modern Naskh, best at 18px+), single weight (400).",
+          "files": [
+            {
+              "from": "dist/Shahab-Regular.woff2",
+              "to": "Shahab-Regular.woff2",
+              "weight": "400"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nahid",
+      "name": "Nahid",
+      "nameFa": "ناهید",
+      "designer": "Saber Rastikerdar",
+      "category": "sans-serif",
+      "repo": "rastikerdar/nahid-font",
+      "version": "0.3.0",
+      "ref": "v0.3.0",
+      "license": "Bitstream Vera License + Public Domain (changes) + Apache-2.0 (Latin glyphs)",
+      "licenseFile": {
+        "from": "LICENSE",
+        "to": "LICENSE.txt"
+      },
+      "variants": [
+        {
+          "subpath": "nahid",
+          "export": "nahid",
+          "cssVariable": "--font-nahid",
+          "digits": "latin",
+          "description": "Nahid, single weight (400), Latin digits.",
+          "files": [
+            {
+              "from": "dist/Nahid.woff2",
+              "to": "Nahid.woff2",
+              "weight": "400"
+            }
+          ]
+        },
+        {
+          "subpath": "nahid-fd",
+          "export": "nahidFD",
+          "cssVariable": "--font-nahid-fd",
+          "digits": "persian",
+          "description": "Nahid, single weight (400), Persian digits.",
+          "files": [
+            {
+              "from": "dist/Farsi-Digits/Nahid-FD.woff2",
+              "to": "Nahid-FD.woff2",
+              "weight": "400"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal-sans",
+      "name": "Normal Sans",
+      "nameFa": "نرمال سنس",
+      "designer": "Azad Qalam",
+      "category": "sans-serif",
+      "repo": "AzadQalam/normal-sans",
+      "version": "1.0.0",
+      "ref": "v1.0.0",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "normal-sans",
+          "export": "normalSans",
+          "cssVariable": "--font-normal-sans",
+          "digits": "latin",
+          "description": "AQ Normal Sans variable font (wght 100-900).",
+          "files": [
+            {
+              "from": "Variable/AQNormalSans-VF.woff2",
+              "to": "AQNormalSans-VF.woff2",
+              "weight": "100 900"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "lalezar",
       "name": "Lalezar",
       "nameFa": "لاله‌زار",

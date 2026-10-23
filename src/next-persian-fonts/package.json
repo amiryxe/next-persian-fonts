@@ -135,6 +135,22 @@
       "types": "./ganjnameh/index.d.ts",
       "default": "./ganjnameh/index.js"
     },
+    "./shahab": {
+      "types": "./shahab/index.d.ts",
+      "default": "./shahab/index.js"
+    },
+    "./nahid": {
+      "types": "./nahid/index.d.ts",
+      "default": "./nahid/index.js"
+    },
+    "./nahid-fd": {
+      "types": "./nahid-fd/index.d.ts",
+      "default": "./nahid-fd/index.js"
+    },
+    "./normal-sans": {
+      "types": "./normal-sans/index.d.ts",
+      "default": "./normal-sans/index.js"
+    },
     "./lalezar": {
       "types": "./lalezar/index.d.ts",
       "default": "./lalezar/index.js"
@@ -262,6 +278,10 @@
     "sorena-pixel",
     "sorena-pixel-fd",
     "ganjnameh",
+    "shahab",
+    "nahid",
+    "nahid-fd",
+    "normal-sans",
     "lalezar",
     "markazi-text",
     "mirza",

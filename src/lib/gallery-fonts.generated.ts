@@ -264,6 +264,38 @@ export const ganjnameh = localFont({
   preload: false,
 })
 
+export const shahab = localFont({
+  src: [
+    { path: '../next-persian-fonts/shahab/Shahab-Regular.woff2', weight: '400', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
+export const nahid = localFont({
+  src: [
+    { path: '../next-persian-fonts/nahid/Nahid.woff2', weight: '400', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
+export const nahidFD = localFont({
+  src: [
+    { path: '../next-persian-fonts/nahid-fd/Nahid-FD.woff2', weight: '400', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
+export const normalSans = localFont({
+  src: [
+    { path: '../next-persian-fonts/normal-sans/AQNormalSans-VF.woff2', weight: '100 900', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
 export const lalezar = localFont({
   src: [
     { path: '../next-persian-fonts/lalezar/Lalezar-Regular.woff2', weight: '400', style: 'normal' },
