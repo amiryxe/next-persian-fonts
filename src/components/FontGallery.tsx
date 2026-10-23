@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { cssFonts } from '@/lib/css-fonts.generated'
 import type { FontEntry } from '@/lib/fonts'
 import { CopyButton } from './CopyButton'
@@ -99,6 +99,10 @@ function switchVariant(variants: FontEntry[], current: FontEntry, axis: Axis, va
   return candidates.reduce((best, f) => (score(f) > score(best) ? f : best))
 }
 
+const KIND_AXIS = AXES.find((a) => a.key === 'kind')!
+
+export const hasVariable = (fam: Family) => fam.variants.some((v) => v.isVariable && !v.deprecated)
+
 type CodeMode = 'next' | 'css'
 
 const chip = 'cursor-pointer select-none rounded-md px-2.5 py-1 text-xs transition peer-checked:bg-emerald-700 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500 peer-focus-visible:ring-offset-1 dark:peer-focus-visible:ring-offset-zinc-900 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
@@ -109,6 +113,7 @@ function FamilyCard({
   onSelect,
   persianDigits,
   hideDeprecated,
+  onlyVariable,
   preview,
   weight,
   setWeight,
@@ -120,6 +125,7 @@ function FamilyCard({
   onSelect: (exportName: string) => void
   persianDigits: boolean
   hideDeprecated: boolean
+  onlyVariable: boolean
   preview: string
   weight: number
   setWeight: (w: number) => void
@@ -142,8 +148,13 @@ function FamilyCard({
     io.observe(el)
     return () => io.disconnect()
   }, [visible])
-  const variants = hideDeprecated ? family.variants.filter((v) => !v.deprecated) : family.variants
-  const f = variants.find((v) => v.exportName === selected) ?? defaultVariant(variants, persianDigits)
+  const base = hideDeprecated ? family.variants.filter((v) => !v.deprecated) : family.variants
+  // "Only variable" narrows the card to its (non-deprecated) variable variants, keeping the other axes of the current pick.
+  const variants = onlyVariable ? family.variants.filter((v) => v.isVariable && !v.deprecated) : base
+  const picked = family.variants.find((v) => v.exportName === selected)
+  const f = (picked && variants.includes(picked) ? picked : undefined)
+    ?? (picked && onlyVariable ? switchVariant(variants, picked, KIND_AXIS, 'variable') : undefined)
+    ?? defaultVariant(variants, persianDigits)
   const axes = axesFor(variants)
   const css = cssFonts[f.exportName]
   const snippet = codeMode === 'css' ? `import 'next-persian-fonts/css/${css.file}'` : `import { ${f.exportName} } from 'next-persian-fonts/${f.subpath}'`
@@ -261,6 +272,32 @@ function FamilyCard({
   )
 }
 
+const SOURCES = [['all', 'همه'], ['iranian', 'غیرِ گوگل'], ['google', 'Google Fonts']] as const
+type Source = (typeof SOURCES)[number][0]
+
+const segWrap = 'inline-flex shrink-0 rounded-xl bg-zinc-100 p-1 dark:bg-zinc-800/80'
+const seg = (on: boolean) =>
+  `whitespace-nowrap rounded-lg px-3 py-1.5 text-sm transition outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${on ? 'bg-white font-medium text-zinc-900 shadow-sm dark:bg-zinc-950 dark:text-white' : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'}`
+const label = 'text-[11px] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400'
+
+function Toggle({ on, onChange, children, filter }: { on: boolean; onChange: (v: boolean) => void; children: ReactNode; filter?: string }) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      data-filter={filter}
+      onClick={() => onChange(!on)}
+      className={`inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-xl border px-3 py-1.5 text-sm transition outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${on ? 'border-emerald-600/40 bg-emerald-50 text-emerald-800 dark:border-emerald-500/40 dark:bg-emerald-500/10 dark:text-emerald-200' : 'border-zinc-200 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100'}`}
+    >
+      <span aria-hidden className={`relative h-4 w-7 rounded-full transition ${on ? 'bg-emerald-600' : 'bg-zinc-300 dark:bg-zinc-600'}`}>
+        <span className={`absolute top-0.5 size-3 rounded-full bg-white shadow transition-all ${on ? 'start-3.5' : 'start-0.5'}`} />
+      </span>
+      {children}
+    </button>
+  )
+}
+
 export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
   const [text, setText] = useState(SAMPLES[0])
   const [weight, setWeight] = useState(400)
@@ -269,7 +306,8 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
   const [category, setCategory] = useState('all')
   const [query, setQuery] = useState('')
   const [hideDeprecated, setHideDeprecated] = useState(true)
-  const [source, setSource] = useState<'all' | 'iranian' | 'google'>('all')
+  const [onlyVariable, setOnlyVariable] = useState(false)
+  const [source, setSource] = useState<Source>('all')
   const [selected, setSelected] = useState<Record<string, string>>({})
   const [codeMode, setCodeMode] = useState<CodeMode>('next')
   const families = useMemo(() => groupFamilies(fonts), [fonts])
@@ -282,62 +320,122 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
 
   const preview = persianDigits ? toPersianDigits(text) : toLatinDigits(text)
 
-  const visible = useMemo(() => {
+  // Families matching everything except the category, so each category pill can show its own count.
+  const matching = useMemo(() => {
     const q = query.trim().toLowerCase()
     return families.filter(
       (fam) =>
-        (category === 'all' || fam.category === category) &&
         (source === 'all' || (source === 'google') === fam.googleFonts) &&
+        (!onlyVariable || hasVariable(fam)) &&
         (!q || [fam.name, fam.nameFa, fam.id, ...fam.variants.flatMap((v) => [v.exportName, v.subpath])].some((s) => s.toLowerCase().includes(q))),
     )
-  }, [families, category, query, source])
+  }, [families, query, source, onlyVariable])
+  const visible = category === 'all' ? matching : matching.filter((fam) => fam.category === category)
+
+  const filtersActive = category !== 'all' || source !== 'all' || query.trim() !== '' || onlyVariable || !hideDeprecated
+  const clearFilters = () => {
+    setCategory('all')
+    setSource('all')
+    setQuery('')
+    setOnlyVariable(false)
+    setHideDeprecated(true)
+  }
 
   return (
     <div>
-      <div className="z-20 -mx-4 lg:sticky lg:top-16 mb-6 border-y border-zinc-200 bg-white/85 px-4 py-4 backdrop-blur sm:mx-0 sm:rounded-2xl sm:border dark:border-zinc-800 dark:bg-zinc-950/85">
-        <div className="grid gap-4 lg:grid-cols-[1fr_auto]">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="sample" className="text-xs font-medium text-zinc-500 dark:text-zinc-400">متن نمونه</label>
+      <section
+        aria-label="فیلتر و تنظیمات پیش‌نمایش"
+        className="z-20 -mx-4 mb-4 border-y border-zinc-200 bg-white/90 shadow-sm backdrop-blur sm:mx-0 sm:rounded-2xl sm:border lg:sticky lg:top-16 dark:border-zinc-800 dark:bg-zinc-950/90"
+      >
+        {/* Filters */}
+        <div className="flex flex-col gap-3 p-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="relative min-w-48 flex-1">
+              <svg aria-hidden viewBox="0 0 20 20" className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-zinc-400" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="9" cy="9" r="6" /><path d="m17 17-3.5-3.5" strokeLinecap="round" /></svg>
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="جستجوی فونت: samim، شبنم…"
+                aria-label="جستجوی فونت"
+                className="w-full rounded-xl border border-zinc-200 bg-white py-2 pe-3 ps-9 text-sm outline-none transition focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 dark:border-zinc-700 dark:bg-zinc-900"
+              />
+            </div>
+            <div className="-mx-1 flex max-w-full items-center gap-2 overflow-x-auto px-1 py-0.5 [scrollbar-width:none]">
+              <div className={segWrap} role="group" aria-label="منبع فونت">
+                {SOURCES.map(([key, text]) => (
+                  <button key={key} type="button" aria-pressed={source === key} onClick={() => setSource(key)} className={seg(source === key)}>
+                    {text}
+                  </button>
+                ))}
+              </div>
+              <Toggle on={onlyVariable} onChange={setOnlyVariable} filter="variable">فقط متغیر</Toggle>
+              <Toggle on={hideDeprecated} onChange={setHideDeprecated} filter="deprecated">بدون منسوخ</Toggle>
+            </div>
+          </div>
+          <div className="-mx-4 flex gap-1.5 overflow-x-auto px-4 pb-0.5 [scrollbar-width:none] sm:flex-wrap" role="group" aria-label="دسته‌بندی">
+            {Object.entries(CATEGORIES).map(([key, text]) => {
+              const n = key === 'all' ? matching.length : matching.filter((fam) => fam.category === key).length
+              const on = category === key
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  aria-pressed={on}
+                  onClick={() => setCategory(key)}
+                  disabled={n === 0 && !on}
+                  className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1 text-sm transition outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 disabled:cursor-not-allowed disabled:opacity-40 ${on ? 'border-zinc-900 bg-zinc-900 text-white dark:border-white dark:bg-white dark:text-zinc-900' : 'border-zinc-200 text-zinc-700 hover:border-zinc-400 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500'}`}
+                >
+                  {text}
+                  <span className={`text-xs tabular-nums ${on ? 'opacity-70' : 'text-zinc-400 dark:text-zinc-500'}`}>{faNum(n)}</span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Preview controls */}
+        <div className="grid gap-4 border-t border-zinc-200 bg-zinc-50/70 p-4 sm:rounded-b-2xl lg:grid-cols-[minmax(0,1fr)_auto] dark:border-zinc-800 dark:bg-zinc-900/40">
+          <div className="flex min-w-0 flex-col gap-2">
+            <div className="flex items-center justify-between gap-2">
+              <label htmlFor="sample" className={label}>متن نمونه</label>
+              <div className="flex gap-1" role="group" aria-label="متن‌های آماده">
+                {SAMPLES.map((s, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    aria-pressed={text === s}
+                    aria-label={`نمونهٔ ${faNum(i + 1)}`}
+                    onClick={() => setText(s)}
+                    className={`grid size-6 place-items-center rounded-md text-xs transition outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${text === s ? 'bg-emerald-700 text-white' : 'text-zinc-500 hover:bg-zinc-200 dark:hover:bg-zinc-800'}`}
+                  >
+                    {faNum(i + 1)}
+                  </button>
+                ))}
+              </div>
+            </div>
             <input
               id="sample"
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="متن دلخواه خود را بنویسید…"
-              className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-base outline-none ring-emerald-500/30 focus:border-emerald-500 focus:ring-4 dark:border-zinc-700 dark:bg-zinc-900"
+              className="w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-base outline-none transition focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 dark:border-zinc-700 dark:bg-zinc-900"
             />
-            <div className="flex flex-wrap gap-1.5">
-              {SAMPLES.map((s, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setText(s)}
-                  className="rounded-full border border-zinc-200 px-2.5 py-0.5 text-xs text-zinc-600 hover:border-emerald-500 hover:text-emerald-700 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-emerald-300"
-                >
-                  نمونهٔ {faNum(i + 1)}
-                </button>
-              ))}
-            </div>
           </div>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-[repeat(3,minmax(0,11rem))]">
-            <label className="flex flex-col gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">
-              <span>وزن: <b className="text-zinc-900 dark:text-zinc-100">{faNum(weight)}</b></span>
-              <input type="range" min={100} max={900} step={100} value={weight} onChange={(e) => setWeight(Number(e.target.value))} className="accent-emerald-600" aria-label="وزن فونت" />
+          <div className="grid grid-cols-2 items-end gap-4 sm:grid-cols-[repeat(2,minmax(0,10rem))_auto]">
+            <label className="flex flex-col gap-2">
+              <span className={`${label} flex justify-between`}>وزن <b className="font-semibold tabular-nums text-zinc-900 dark:text-zinc-100">{faNum(weight)}</b></span>
+              <input type="range" min={100} max={900} step={100} value={weight} onChange={(e) => setWeight(Number(e.target.value))} className="h-9 accent-emerald-600" aria-label="وزن فونت" />
             </label>
-            <label className="flex flex-col gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">
-              <span>اندازه: <b className="text-zinc-900 dark:text-zinc-100">{faNum(size)}px</b></span>
-              <input type="range" min={14} max={72} step={2} value={size} onChange={(e) => setSize(Number(e.target.value))} className="accent-emerald-600" aria-label="اندازهٔ فونت" />
+            <label className="flex flex-col gap-2">
+              <span className={`${label} flex justify-between`}>اندازه <b className="font-semibold tabular-nums text-zinc-900 dark:text-zinc-100">{faNum(size)}px</b></span>
+              <input type="range" min={14} max={72} step={2} value={size} onChange={(e) => setSize(Number(e.target.value))} className="h-9 accent-emerald-600" aria-label="اندازهٔ فونت" />
             </label>
-            <div className="col-span-2 flex flex-col gap-2 text-xs font-medium text-zinc-500 sm:col-span-1 dark:text-zinc-400">
-              <span>ارقام</span>
-              <div className="inline-flex rounded-lg border border-zinc-300 p-0.5 dark:border-zinc-700" role="group" aria-label="نوع ارقام">
+            <div className="col-span-2 flex flex-col gap-2 sm:col-span-1">
+              <span id="digits-label" className={label}>ارقام</span>
+              <div className={segWrap} role="group" aria-labelledby="digits-label">
                 {[true, false].map((fa) => (
-                  <button
-                    key={String(fa)}
-                    type="button"
-                    aria-pressed={persianDigits === fa}
-                    onClick={() => changeDigits(fa)}
-                    className={`flex-1 rounded-md px-3 py-1 text-sm transition ${persianDigits === fa ? 'bg-emerald-700 text-white' : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'}`}
-                  >
+                  <button key={String(fa)} type="button" aria-pressed={persianDigits === fa} onClick={() => changeDigits(fa)} className={`flex-1 ${seg(persianDigits === fa)}`}>
                     {fa ? '۱۲۳ فارسی' : '123 لاتین'}
                   </button>
                 ))}
@@ -345,83 +443,65 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
             </div>
           </div>
         </div>
-        <div className="mt-4 flex flex-wrap items-center gap-2">
-          {Object.entries(CATEGORIES).map(([key, label]) => (
-            <button
-              key={key}
-              type="button"
-              aria-pressed={category === key}
-              onClick={() => setCategory(key)}
-              className={`rounded-full px-3 py-1 text-sm transition ${category === key ? 'bg-zinc-900 text-white dark:bg-white dark:text-zinc-900' : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'}`}
-            >
-              {label}
-            </button>
-          ))}
-          <select
-            value={source}
-            onChange={(e) => setSource(e.target.value as typeof source)}
-            aria-label="منبع فونت"
-            className="rounded-full border border-zinc-300 bg-white px-3 py-1 text-sm dark:border-zinc-700 dark:bg-zinc-900"
-          >
-            <option value="all">همهٔ منابع</option>
-            <option value="iranian">فقط غیرِ گوگل</option>
-            <option value="google">فقط فونت‌های Google Fonts</option>
-          </select>
-          <input
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="جستجو: samim، شبنم…"
-            aria-label="جستجوی فونت"
-            className="ms-auto w-44 rounded-full border border-zinc-300 bg-white px-3 py-1 text-sm outline-none focus:border-emerald-500 dark:border-zinc-700 dark:bg-zinc-900"
-          />
-          <label className="flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400">
-            <input type="checkbox" checked={hideDeprecated} onChange={(e) => setHideDeprecated(e.target.checked)} className="accent-emerald-600" />
-            پنهان کردن نسخه‌های منسوخ
-          </label>
-        </div>
-      </div>
+      </section>
 
-      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <p className="text-sm leading-6 text-zinc-500 dark:text-zinc-400" aria-live="polite">
-          {faNum(visible.length)} خانوادهٔ فونت نمایش داده می‌شود. هر کارت یک خانواده است؛ نسخه‌ها (ارقام فارسی FD، متغیر، نقطهٔ گرد، ایتالیک) را داخل کارت انتخاب کنید. دکمهٔ «۱۲۳ فارسی» بالا نسخهٔ ارقام فارسی را در همهٔ کارت‌ها پیش‌فرض می‌کند.
-        </p>
-        <div className="flex shrink-0 items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
-          <span id="code-mode-label">کد برای</span>
-          <div className="inline-flex rounded-lg border border-zinc-300 p-0.5 dark:border-zinc-700" role="group" aria-labelledby="code-mode-label">
-            {([['next', 'Next.js'], ['css', 'CSS (بدون Next)']] as const).map(([mode, label]) => (
-              <button
-                key={mode}
-                type="button"
-                aria-pressed={codeMode === mode}
-                onClick={() => setCodeMode(mode)}
-                className={`rounded-md px-3 py-1 text-sm transition ${codeMode === mode ? 'bg-emerald-700 text-white' : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'}`}
-              >
-                {label}
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <p className="text-sm text-zinc-600 dark:text-zinc-300" aria-live="polite">
+            <b className="font-semibold tabular-nums text-zinc-900 dark:text-white">{faNum(visible.length)}</b> خانواده
+            {visible.length !== families.length && <span className="text-zinc-400 dark:text-zinc-500"> از {faNum(families.length)}</span>}
+          </p>
+          {filtersActive && (
+            <button type="button" onClick={clearFilters} className="rounded-lg px-2 py-1 text-sm text-emerald-700 transition outline-none hover:bg-emerald-50 focus-visible:ring-2 focus-visible:ring-emerald-500 dark:text-emerald-300 dark:hover:bg-emerald-500/10">
+              ✕ پاک کردن فیلترها
+            </button>
+          )}
+        </div>
+        <div className="flex shrink-0 items-center gap-2">
+          <span id="code-mode-label" className={label}>کد برای</span>
+          <div className={segWrap} role="group" aria-labelledby="code-mode-label">
+            {([['next', 'Next.js'], ['css', 'CSS (بدون Next)']] as const).map(([mode, text]) => (
+              <button key={mode} type="button" aria-pressed={codeMode === mode} onClick={() => setCodeMode(mode)} className={seg(codeMode === mode)}>
+                {text}
               </button>
             ))}
           </div>
         </div>
       </div>
+      <p className="mb-4 text-xs leading-6 text-zinc-500 dark:text-zinc-400">
+        هر کارت یک خانواده است؛ نسخه‌ها (ارقام فارسی FD، متغیر، نقطهٔ گرد، ایتالیک) را داخل کارت انتخاب کنید.
+      </p>
 
-      <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {visible.map((fam) => (
-          <FamilyCard
-            key={fam.id}
-            family={fam}
-            selected={selected[fam.id]}
-            onSelect={(exportName) => setSelected((s) => ({ ...s, [fam.id]: exportName }))}
-            persianDigits={persianDigits}
-            hideDeprecated={hideDeprecated}
-            preview={preview}
-            weight={weight}
-            setWeight={setWeight}
-            size={size}
-            codeMode={codeMode}
-          />
-        ))}
-      </ul>
-      {visible.length === 0 && <p className="py-16 text-center text-zinc-500">فونتی پیدا نشد.</p>}
+      {visible.length > 0 ? (
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {visible.map((fam) => (
+            <FamilyCard
+              key={fam.id}
+              family={fam}
+              selected={selected[fam.id]}
+              onSelect={(exportName) => setSelected((s) => ({ ...s, [fam.id]: exportName }))}
+              persianDigits={persianDigits}
+              hideDeprecated={hideDeprecated}
+              onlyVariable={onlyVariable}
+              preview={preview}
+              weight={weight}
+              setWeight={setWeight}
+              size={size}
+              codeMode={codeMode}
+            />
+          ))}
+        </ul>
+      ) : (
+        <div className="rounded-2xl border border-dashed border-zinc-300 py-16 text-center dark:border-zinc-700">
+          <p className="font-medium text-zinc-700 dark:text-zinc-200">فونتی با این فیلترها پیدا نشد.</p>
+          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">جستجو را تغییر دهید یا فیلترها را بردارید.</p>
+          {filtersActive && (
+            <button type="button" onClick={clearFilters} className="mt-4 rounded-xl bg-emerald-700 px-4 py-2 text-sm text-white transition hover:bg-emerald-800 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-950">
+              پاک کردن فیلترها
+            </button>
+          )}
+        </div>
+      )}
     </div>
   )
 }
