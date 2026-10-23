@@ -191,11 +191,11 @@ export default function Home() {
     <>
       <header className="sticky top-0 z-30 h-16 border-b border-zinc-200/80 bg-white/80 backdrop-blur dark:border-zinc-800/80 dark:bg-zinc-950/80">
         <div className="mx-auto flex h-full max-w-6xl items-center gap-6 px-4">
-          <a href="#top" className="flex items-center gap-2 font-extrabold">
-            <span className="grid size-8 place-items-center rounded-lg bg-emerald-700 text-lg text-white">ف</span>
+          <a href="#top" className="flex items-center gap-2 font-extrabold" aria-label="Next Persian Fonts، بازگشت به بالا">
+            <span aria-hidden="true" className="grid size-8 place-items-center rounded-lg bg-emerald-700 text-lg text-white">ف</span>
             <span dir="ltr">Next Persian Fonts</span>
           </a>
-          <nav className="hidden items-center gap-5 text-sm text-zinc-600 md:flex dark:text-zinc-400">
+          <nav aria-label="بخش‌های صفحه" className="hidden items-center gap-5 text-sm text-zinc-600 md:flex dark:text-zinc-400">
             <a href="#fonts" className="hover:text-zinc-950 dark:hover:text-white">فونت‌ها</a>
             <a href="#usage" className="hover:text-zinc-950 dark:hover:text-white">نصب و استفاده</a>
             <a href="#tailwind" className="hover:text-zinc-950 dark:hover:text-white">Tailwind</a>
@@ -210,27 +210,33 @@ export default function Home() {
         </div>
       </header>
 
-      <main id="top">
-        <div className="relative overflow-hidden border-b border-zinc-200 dark:border-zinc-800">
-          <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(60rem_30rem_at_80%_-10%,rgb(16_185_129/0.15),transparent),radial-gradient(40rem_20rem_at_0%_0%,rgb(14_165_233/0.12),transparent)]" />
-          <div className="relative mx-auto max-w-6xl px-4 py-20 sm:py-28">
+      <main id="content" tabIndex={-1} className="outline-none">
+        <span id="top" />
+        <section aria-labelledby="hero-title" className="border-b border-zinc-200 bg-gradient-to-b from-emerald-50/60 to-transparent dark:border-zinc-800 dark:from-emerald-500/5">
+          <div className="mx-auto max-w-6xl px-4 py-16 sm:py-24">
             <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-300">
               <span dir="ltr">v{pkg.version}</span> · سازگار با Next.js ۱۳.۲ تا ۱۶
             </p>
-            <h1 className="max-w-3xl text-4xl font-black leading-tight tracking-tight sm:text-6xl">
+            <h1 id="hero-title" className="max-w-3xl text-4xl font-black leading-tight tracking-tight sm:text-6xl">
               فونت‌های فارسی، <span className="text-emerald-700 dark:text-emerald-400">آماده برای Next.js</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300">
-              {fa(familyCount)} خانوادهٔ فونت فارسی رایگان، داخل خود پکیج: وزیرمتن، استعداد، ساحل و فونت‌های فارسی Google Fonts مثل لاله‌زار و نوتو. بدون گوگل و CDN، پس حتی وقتی اینترنت بین‌الملل قطع است هم سایت و build شما کار می‌کند. برای Vite، Gatsby، Astro و HTML ساده هم <a href="#without-next" className="font-medium text-emerald-700 underline underline-offset-4 hover:text-emerald-800 dark:text-emerald-400">فایل CSS آماده</a> دارد.
+              {fa(familyCount)} خانوادهٔ فونت فارسی رایگان، داخل خود پکیج، بدون گوگل و CDN؛ حتی وقتی اینترنت بین‌الملل قطع است، سایت و build شما کار می‌کند. برای Vite، Astro و HTML ساده هم <a href="#without-next" className="font-medium text-emerald-700 underline underline-offset-4 hover:text-emerald-800 dark:text-emerald-400">فایل CSS</a> دارد.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <div className="flex items-center gap-3 rounded-xl border border-zinc-300 bg-white py-2 pe-2 ps-4 shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
                 <code dir="ltr" className="font-mono text-sm">npm install next-persian-fonts</code>
-                <CopyButton text="npm install next-persian-fonts" />
+                <CopyButton text="npm install next-persian-fonts" title="دستور نصب" />
               </div>
-              <a href="#fonts" className="rounded-xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">مشاهدهٔ فونت‌ها ←</a>
+              <a href="#fonts" className="rounded-xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">مشاهدهٔ فونت‌ها <span aria-hidden="true">←</span></a>
               <GitHubStarButton className="w-full justify-center rounded-xl sm:w-auto" />
             </div>
+            <p className="mt-6 flex max-w-2xl items-start gap-2 text-sm leading-7 text-zinc-600 dark:text-zinc-400">
+              <span aria-hidden="true" className="mt-0.5 text-emerald-700 dark:text-emerald-400">✓</span>
+              <span>
+                نگران حجم نباشید: با نصب پکیج همهٔ فونت‌ها بارگذاری نمی‌شوند. فقط فونتی که ایمپورت می‌کنید (مثلاً <code dir="ltr" className={`${code} whitespace-nowrap`}>next-persian-fonts/estedad</code>) وارد build و صفحه می‌شود.
+              </span>
+            </p>
             <dl className="mt-12 grid max-w-2xl grid-cols-3 gap-4 text-center">
               {[
                 [fa(familyCount), 'خانوادهٔ فونت'],
@@ -244,7 +250,7 @@ export default function Home() {
               ))}
             </dl>
           </div>
-        </div>
+        </section>
 
         <Section id="fonts" title="گالری فونت‌ها" kicker="پیش‌نمایش زنده">
           <FontGallery fonts={fonts} />
@@ -324,7 +330,7 @@ export default function Home() {
                 <details key={q} open={i === 0} className="group rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900/50">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold [&::-webkit-details-marker]:hidden">
                     {q}
-                    <span aria-hidden className="text-zinc-400 transition group-open:rotate-45">+</span>
+                    <span aria-hidden="true" className="text-zinc-500 transition group-open:rotate-45">+</span>
                   </summary>
                   <div className="mt-3 leading-8 text-zinc-600 dark:text-zinc-300">{a}</div>
                 </details>
@@ -336,12 +342,13 @@ export default function Home() {
         <Section id="compat" title="سازگاری" kicker="تست‌شده در CI">
           <div className="overflow-x-auto rounded-2xl border border-zinc-200 dark:border-zinc-800">
             <table className="w-full min-w-[36rem] text-sm">
+              <caption className="sr-only">نسخه‌های تست‌شدهٔ Next.js</caption>
               <thead className="bg-zinc-50 text-zinc-600 dark:bg-zinc-900 dark:text-zinc-400">
                 <tr>
-                  <th className="p-3 text-start font-medium">Next.js</th>
-                  <th className="p-3 text-start font-medium">React</th>
-                  <th className="p-3 text-start font-medium">باندلر</th>
-                  <th className="p-3 text-start font-medium">وضعیت</th>
+                  <th scope="col" className="p-3 text-start font-medium">Next.js</th>
+                  <th scope="col" className="p-3 text-start font-medium">React</th>
+                  <th scope="col" className="p-3 text-start font-medium">باندلر</th>
+                  <th scope="col" className="p-3 text-start font-medium">وضعیت</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800" dir="ltr">
@@ -355,7 +362,7 @@ export default function Home() {
                     <td className="p-3 text-right font-mono">{n}</td>
                     <td className="p-3 text-right font-mono">{r}</td>
                     <td className="p-3 text-right">{b}</td>
-                    <td className="p-3 text-right text-emerald-700 dark:text-emerald-400">✓</td>
+                    <td className="p-3 text-right text-emerald-700 dark:text-emerald-400"><span aria-hidden="true">✓</span><span className="sr-only">پشتیبانی می‌شود</span></td>
                   </tr>
                 ))}
               </tbody>
@@ -372,12 +379,12 @@ export default function Home() {
           <p>
             ساخته‌شده توسط <a className="font-medium text-zinc-800 hover:text-emerald-600 dark:text-zinc-200" href="https://github.com/amiryxe" target="_blank" rel="noreferrer">امیر صالحی</a>. کد پکیج با مجوز ISC؛ هر فونت با مجوز سازندهٔ خودش (<a className="underline hover:text-emerald-600" href={`${GITHUB}/blob/main/src/next-persian-fonts/FONTS.md`} target="_blank" rel="noreferrer">فهرست مجوزها</a>).
           </p>
-          <p className="flex gap-4">
+          <nav aria-label="پیوندهای پروژه" className="flex flex-wrap gap-4">
             <a href={GITHUB} target="_blank" rel="noreferrer" className="hover:text-emerald-600">GitHub</a>
             <a href={NPM} target="_blank" rel="noreferrer" className="hover:text-emerald-600">npm</a>
             <a href={`${GITHUB}/blob/main/CHANGELOG.md`} target="_blank" rel="noreferrer" className="hover:text-emerald-600">تغییرات</a>
             <a href={`${GITHUB}/issues/new?template=font-request.yml`} target="_blank" rel="noreferrer" className="hover:text-emerald-600">درخواست فونت</a>
-          </p>
+          </nav>
         </div>
       </footer>
     </>

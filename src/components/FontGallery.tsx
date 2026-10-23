@@ -387,7 +387,7 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
                   className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1 text-sm transition outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 disabled:cursor-not-allowed disabled:opacity-40 ${on ? 'border-zinc-900 bg-zinc-900 text-white dark:border-white dark:bg-white dark:text-zinc-900' : 'border-zinc-200 text-zinc-700 hover:border-zinc-400 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500'}`}
                 >
                   {text}
-                  <span className={`text-xs tabular-nums ${on ? 'opacity-70' : 'text-zinc-400 dark:text-zinc-500'}`}>{faNum(n)}</span>
+                  <span className={`text-xs tabular-nums ${on ? 'opacity-80' : 'text-zinc-500 dark:text-zinc-400'}`}>{faNum(n)}</span>
                 </button>
               )
             })}
@@ -449,7 +449,7 @@ export function FontGallery({ fonts }: { fonts: FontEntry[] }) {
         <div className="flex items-center gap-3">
           <p className="text-sm text-zinc-600 dark:text-zinc-300" aria-live="polite">
             <b className="font-semibold tabular-nums text-zinc-900 dark:text-white">{faNum(visible.length)}</b> خانواده
-            {visible.length !== families.length && <span className="text-zinc-400 dark:text-zinc-500"> از {faNum(families.length)}</span>}
+            {visible.length !== families.length && <span className="text-zinc-500 dark:text-zinc-400"> از {faNum(families.length)}</span>}
           </p>
           {filtersActive && (
             <button type="button" onClick={clearFilters} className="rounded-lg px-2 py-1 text-sm text-emerald-700 transition outline-none hover:bg-emerald-50 focus-visible:ring-2 focus-visible:ring-emerald-500 dark:text-emerald-300 dark:hover:bg-emerald-500/10">
