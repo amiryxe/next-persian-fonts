@@ -36,6 +36,8 @@ export const cssFonts: Record<string, { file: string; family: string; className:
   nahid: { file: 'nahid.css', family: 'Nahid', className: 'font-nahid', variable: '--font-nahid' },
   nahidFD: { file: 'nahid-fd.css', family: 'Nahid FD', className: 'font-nahid-fd', variable: '--font-nahid-fd' },
   normalSans: { file: 'normal-sans.css', family: 'Normal Sans', className: 'font-normal-sans', variable: '--font-normal-sans' },
+  ario: { file: 'ario.css', family: 'Ario', className: 'font-ario', variable: '--font-ario' },
+  arioFD: { file: 'ario-fd.css', family: 'Ario FD', className: 'font-ario-fd', variable: '--font-ario-fd' },
   lalezar: { file: 'lalezar.css', family: 'Lalezar', className: 'font-lalezar', variable: '--font-lalezar' },
   markaziText: { file: 'markazi-text.css', family: 'Markazi Text', className: 'font-markazi-text', variable: '--font-markazi-text' },
   mirza: { file: 'mirza.css', family: 'Mirza', className: 'font-mirza', variable: '--font-mirza' },

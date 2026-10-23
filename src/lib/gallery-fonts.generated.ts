@@ -296,6 +296,22 @@ export const normalSans = localFont({
   preload: false,
 })
 
+export const ario = localFont({
+  src: [
+    { path: '../next-persian-fonts/ario/Ario-Dots1.woff2', weight: '400', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
+export const arioFD = localFont({
+  src: [
+    { path: '../next-persian-fonts/ario-fd/ArioFaNum-Dots1.woff2', weight: '400', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
 export const lalezar = localFont({
   src: [
     { path: '../next-persian-fonts/lalezar/Lalezar-Regular.woff2', weight: '400', style: 'normal' },

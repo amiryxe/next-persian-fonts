@@ -986,6 +986,51 @@
       ]
     },
     {
+      "id": "ario",
+      "name": "Ario",
+      "nameFa": "آریو",
+      "designer": "Mohamad Darvishi",
+      "category": "display",
+      "repo": "MohamadDarvishi/Ario",
+      "version": "2.0.1",
+      "ref": "2.0.1",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "ario",
+          "export": "ario",
+          "cssVariable": "--font-ario",
+          "digits": "latin",
+          "description": "Ario headline/display font (Dots 1 style), weight 400, Latin digits.",
+          "files": [
+            {
+              "from": "Fonts/Main_Fonts/Webfonts/Ario-Dots1.woff2",
+              "to": "Ario-Dots1.woff2",
+              "weight": "400"
+            }
+          ]
+        },
+        {
+          "subpath": "ario-fd",
+          "export": "arioFD",
+          "cssVariable": "--font-ario-fd",
+          "digits": "persian",
+          "description": "Ario headline/display font (Dots 1 style), weight 400, Persian digits.",
+          "files": [
+            {
+              "from": "Fonts/Farsi_Digits/Webfonts/ArioFaNum-Dots1.woff2",
+              "to": "ArioFaNum-Dots1.woff2",
+              "weight": "400"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "lalezar",
       "name": "Lalezar",
       "nameFa": "لاله‌زار",

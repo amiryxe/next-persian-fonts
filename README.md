@@ -320,6 +320,7 @@ Usage · استفاده: `import { <Export> } from 'next-persian-fonts/<import>'
 | **Shahab**<br>شهاب | Mohammad Saleh Souzanchi | `shahab` | `shahab` | 400 | OFL-1.1 |
 | **Nahid**<br>ناهید | Saber Rastikerdar | `nahid`<br>`nahid-fd` | `nahid`<br>`nahidFD` ¹ | 400 | Vera + PD |
 | **Normal Sans**<br>نرمال سنس | Azad Qalam | `normal-sans` | `normalSans` | 100–900 variable | OFL-1.1 |
+| **Ario**<br>آریو | Mohamad Darvishi | `ario`<br>`ario-fd` | `ario`<br>`arioFD` ¹ | 400 | OFL-1.1 |
 
 ### Google Fonts, bundled offline · فونت‌های Google Fonts (آفلاین)
 
@@ -364,7 +365,7 @@ Missing a font? Suggest it with the [font request form](https://github.com/amiry
 
 ### Features
 
-- **40 Persian font families**, 56 ready-to-use exports: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Arad, Parastoo, Gandom, Tanha, Vazir Code, Behdad, Nika, Sepehr, Sorena, Ganjnameh, Shahab, Nahid, Normal Sans, plus 21 Persian-capable Google Fonts (Lalezar, Noto Naskh/Sans/Kufi Arabic, Noto Nastaliq Urdu, Amiri, IBM Plex Sans Arabic, …).
+- **41 Persian font families**, 58 ready-to-use exports: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Arad, Parastoo, Gandom, Tanha, Vazir Code, Behdad, Nika, Sepehr, Sorena, Ganjnameh, Shahab, Nahid, Normal Sans, Ario, plus 21 Persian-capable Google Fonts (Lalezar, Noto Naskh/Sans/Kufi Arabic, Noto Nastaliq Urdu, Amiri, IBM Plex Sans Arabic, …).
 - **Fully offline:** font files ship inside the package; your build and site never depend on Google or a CDN.
 - **No layout shift:** loaded with `next/font/local`, preloaded automatically, `font-display: swap`.
 - **Only what you import** ends up in your build (one subpath per font).

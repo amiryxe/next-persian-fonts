@@ -151,6 +151,14 @@
       "types": "./normal-sans/index.d.ts",
       "default": "./normal-sans/index.js"
     },
+    "./ario": {
+      "types": "./ario/index.d.ts",
+      "default": "./ario/index.js"
+    },
+    "./ario-fd": {
+      "types": "./ario-fd/index.d.ts",
+      "default": "./ario-fd/index.js"
+    },
     "./lalezar": {
       "types": "./lalezar/index.d.ts",
       "default": "./lalezar/index.js"
@@ -282,6 +290,8 @@
     "nahid",
     "nahid-fd",
     "normal-sans",
+    "ario",
+    "ario-fd",
     "lalezar",
     "markazi-text",
     "mirza",

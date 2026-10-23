@@ -7,6 +7,7 @@
 - **Shahab** (شهاب) by Mohammad Saleh Souzanchi (font-store/ShahabFont, v0.0.2), OFL-1.1 (Reserved Font Name "Shahab"), display font, weight 400: `next-persian-fonts/shahab` (`shahab`), plus `css/shahab.css`. Shipped as the author's unmodified WOFF2. Existing exports are unchanged.
 - **Nahid** (ناهید) by Saber Rastikerdar (rastikerdar/nahid-font, v0.3.0; upstream archived), Bitstream Vera + Public Domain + Apache-2.0 (Latin glyphs), weight 400: `next-persian-fonts/nahid` (`nahid`) and `nahid-fd` (`nahidFD`, Persian digits), plus `css/nahid.css` and `css/nahid-fd.css`. Shipped as the author's unmodified WOFF2. Existing exports are unchanged.
 - **Normal Sans** (نرمال سنس) by Azad Qalam (AzadQalam/normal-sans, v1.0.0), OFL-1.1, variable font (wght 100–900): `next-persian-fonts/normal-sans` (`normalSans`), plus `css/normal-sans.css`. Shipped as the author's unmodified variable WOFF2. Existing exports are unchanged.
+- **Ario** (آریو) by Mohamad Darvishi (MohamadDarvishi/Ario, v2.0.1), OFL-1.1, headline/display font, weight 400: `next-persian-fonts/ario` (`ario`) and `ario-fd` (`arioFD`, Persian digits), plus `css/ario.css` and `css/ario-fd.css`. Shipped as the author's unmodified WOFF2 (Dots 1 style). Existing exports are unchanged.
 
 ## 1.4.0 (2026-10-21)
 
