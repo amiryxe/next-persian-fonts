@@ -848,6 +848,37 @@
       ]
     },
     {
+      "id": "ganjnameh",
+      "name": "Ganjnameh",
+      "nameFa": "گنجنامه",
+      "designer": "Mohammad Saleh Souzanchi",
+      "category": "sans-serif",
+      "repo": "font-store/GanjnamehFont",
+      "version": "0.0.4",
+      "ref": "v0.0.4",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "ganjnameh",
+          "export": "ganjnameh",
+          "cssVariable": "--font-ganjnameh",
+          "digits": "latin",
+          "description": "Ganjnameh (GanjNameh Sans) monoline modern Naskh, single weight (400).",
+          "files": [
+            {
+              "from": "dist/GanjNamehSans-Regular.woff2",
+              "to": "GanjNamehSans-Regular.woff2",
+              "weight": "400"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "lalezar",
       "name": "Lalezar",
       "nameFa": "لاله‌زار",

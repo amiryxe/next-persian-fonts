@@ -131,6 +131,10 @@
       "types": "./sorena-pixel-fd/index.d.ts",
       "default": "./sorena-pixel-fd/index.js"
     },
+    "./ganjnameh": {
+      "types": "./ganjnameh/index.d.ts",
+      "default": "./ganjnameh/index.js"
+    },
     "./lalezar": {
       "types": "./lalezar/index.d.ts",
       "default": "./lalezar/index.js"
@@ -257,6 +261,7 @@
     "sorena-fd",
     "sorena-pixel",
     "sorena-pixel-fd",
+    "ganjnameh",
     "lalezar",
     "markazi-text",
     "mirza",

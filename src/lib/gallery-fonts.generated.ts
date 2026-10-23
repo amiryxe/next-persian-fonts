@@ -256,6 +256,14 @@ export const sorenaPixelFD = localFont({
   preload: false,
 })
 
+export const ganjnameh = localFont({
+  src: [
+    { path: '../next-persian-fonts/ganjnameh/GanjNamehSans-Regular.woff2', weight: '400', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
 export const lalezar = localFont({
   src: [
     { path: '../next-persian-fonts/lalezar/Lalezar-Regular.woff2', weight: '400', style: 'normal' },

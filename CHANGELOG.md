@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- **Ganjnameh** (گنجنامه) by Mohammad Saleh Souzanchi (font-store/GanjnamehFont, v0.0.4), OFL-1.1, monoline modern Naskh, weight 400: `next-persian-fonts/ganjnameh` (`ganjnameh`), plus `css/ganjnameh.css`. Shipped as the author's unmodified WOFF2. Existing exports are unchanged.
+
 ## 1.4.0 (2026-10-21)
 
 Nothing changes for existing imports: every existing export, CSS file and generated `next/font` call is the same as in 1.3.0.

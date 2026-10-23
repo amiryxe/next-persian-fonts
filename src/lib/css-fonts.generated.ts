@@ -31,6 +31,7 @@ export const cssFonts: Record<string, { file: string; family: string; className:
   sorenaFD: { file: 'sorena-fd.css', family: 'Sorena FD', className: 'font-sorena-fd', variable: '--font-sorena-fd' },
   sorenaPixel: { file: 'sorena-pixel.css', family: 'Sorena Pixel', className: 'font-sorena-pixel', variable: '--font-sorena-pixel' },
   sorenaPixelFD: { file: 'sorena-pixel-fd.css', family: 'Sorena Pixel FD', className: 'font-sorena-pixel-fd', variable: '--font-sorena-pixel-fd' },
+  ganjnameh: { file: 'ganjnameh.css', family: 'Ganjnameh', className: 'font-ganjnameh', variable: '--font-ganjnameh' },
   lalezar: { file: 'lalezar.css', family: 'Lalezar', className: 'font-lalezar', variable: '--font-lalezar' },
   markaziText: { file: 'markazi-text.css', family: 'Markazi Text', className: 'font-markazi-text', variable: '--font-markazi-text' },
   mirza: { file: 'mirza.css', family: 'Mirza', className: 'font-mirza', variable: '--font-mirza' },
