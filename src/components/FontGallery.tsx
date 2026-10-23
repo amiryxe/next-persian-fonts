@@ -15,7 +15,7 @@ const CATEGORIES: Record<string, string> = {
   all: 'همه',
   'sans-serif': 'بدون گیره',
   serif: 'گیره‌دار',
-  display: 'نمایشی',
+  display: 'تیتر و نمایشی',
   calligraphy: 'خوشنویسی',
   monospace: 'تک‌فاصله',
 }
