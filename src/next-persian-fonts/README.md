@@ -46,29 +46,43 @@
 
 **۱. نصب کنید**
 
+<div dir="ltr">
+
 ```bash
 npm install next-persian-fonts
 ```
+
+</div>
 
 با pnpm یا yarn: `pnpm add next-persian-fonts@^1.2` (نسخه را صریح بنویسید؛ pnpm بسته‌های تازه‌منتشرشده را تا مدتی نصب نمی‌کند).
 
 **۲. فونت را در `app/layout.tsx` ایمپورت کنید**
 
+<div dir="ltr">
+
 ```tsx
 import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
 ```
 
+</div>
+
 **۳. کلاس فونت را روی `<body>` بگذارید**
+
+<div dir="ltr">
 
 ```tsx
 <body className={vazirmatnVariable.className}>
 ```
+
+</div>
 
 تمام! حالا کل سایت با فونت وزیرمتن نمایش داده می‌شود.
 
 > **پروژهٔ تازهٔ create-next-app؟** در `app/layout.tsx` ایمپورت فونت‌های Geist از `next/font/google` را حذف کنید (به اینترنت جهانی نیاز دارند) و در `globals.css` خط `font-family: Arial, Helvetica, sans-serif;` را از قانون `body` پاک کنید تا جلوی فونت فارسی را نگیرد.
 
 ### مثال کامل: App Router
+
+<div dir="ltr">
 
 ```tsx
 // app/layout.tsx
@@ -84,7 +98,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
+</div>
+
 ### مثال کامل: Pages Router
+
+<div dir="ltr">
 
 ```tsx
 // pages/_app.tsx
@@ -101,7 +119,11 @@ export default function App({ Component, pageProps }: AppProps) {
 }
 ```
 
+</div>
+
 و در `next.config` این را اضافه کنید (در Pages Router لازم است، چون Next.js پکیج‌های node_modules را در Pages Router باندل نمی‌کند و بدون آن build با خطای `ERR_UNSUPPORTED_DIR_IMPORT` متوقف می‌شود؛ برای Jest هم لازم است و در App Router بی‌ضرر است):
+
+<div dir="ltr">
 
 ```js
 // next.config.mjs
@@ -110,17 +132,25 @@ export default {
 }
 ```
 
+</div>
+
 برای راست‌چین شدن صفحه، در `pages/_document.tsx` بنویسید: `<Html lang="fa" dir="rtl">`.
 
 ### استفاده با Tailwind
 
 به‌جای `className` از `variable` استفاده کنید:
 
+<div dir="ltr">
+
 ```tsx
 <html lang="fa" dir="rtl" className={vazirmatnVariable.variable}>
 ```
 
+</div>
+
 **Tailwind نسخهٔ ۴** (`globals.css`):
+
+<div dir="ltr">
 
 ```css
 @import 'tailwindcss';
@@ -130,7 +160,11 @@ export default {
 }
 ```
 
+</div>
+
 **Tailwind نسخهٔ ۳** (`tailwind.config.js`):
+
+<div dir="ltr">
 
 ```js
 module.exports = {
@@ -141,6 +175,8 @@ module.exports = {
   },
 }
 ```
+
+</div>
 
 حالا `font-sans` همان وزیرمتن است. نام متغیر CSS هر فونت `--font-` به‌علاوهٔ مسیر ایمپورت آن است؛ مثلاً `next-persian-fonts/estedad` ← `--font-estedad`.
 
@@ -156,18 +192,28 @@ module.exports = {
 
 **Vite (React، Vue، Svelte، vanilla)، Gatsby و Astro:** فایل CSS را یک بار ایمپورت کنید؛ باندلر فایل فونت را خودش کپی می‌کند.
 
+<div dir="ltr">
+
 ```js
 // main.jsx (Vite) · gatsby-browser.js (Gatsby) · frontmatter فایل Layout.astro (Astro)
 import 'next-persian-fonts/css/vazirmatn-variable.css'
 ```
 
+</div>
+
+<div dir="ltr">
+
 ```html
 <body class="font-vazirmatn-variable">
 ```
 
+</div>
+
 یا در CSS خودتان: `body { font-family: var(--font-vazirmatn-variable); }`. ایمپورت از داخل CSS هم کار می‌کند: `@import 'next-persian-fonts/css/vazirmatn-variable.css';`.
 
 **Tailwind نسخهٔ ۴:**
+
+<div dir="ltr">
 
 ```css
 @import 'tailwindcss';
@@ -178,14 +224,20 @@ import 'next-persian-fonts/css/vazirmatn-variable.css'
 }
 ```
 
+</div>
+
 (در Tailwind نسخهٔ ۳: `fontFamily: { sans: ['var(--font-vazirmatn-variable)'] }`.)
 
 **HTML ساده (بدون باندلر):** فایل CSS را با `<link>` اضافه کنید. آدرس فونت‌ها نسبی است، پس کافی است پوشهٔ پکیج (یا کل `node_modules`) کنار صفحه باشد:
+
+<div dir="ltr">
 
 ```html
 <link rel="stylesheet" href="node_modules/next-persian-fonts/css/vazirmatn-variable.css">
 <body class="font-vazirmatn-variable">
 ```
+
+</div>
 
 > برای کاربران Next.js هیچ چیزی تغییر نمی‌کند: این فایل‌ها فقط وقتی وارد خروجی می‌شوند که خودتان ایمپورتشان کنید. در Next.js همان روش `next/font` بالا را استفاده کنید (preload و بدون پرش صفحه).
 
@@ -200,6 +252,8 @@ import 'next-persian-fonts/css/vazirmatn-variable.css'
 
 `variable` هر فونت را روی `<html>` بگذارید و هر جا لازم است از متغیرش استفاده کنید:
 
+<div dir="ltr">
+
 ```tsx
 import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
 import { lalezar } from 'next-persian-fonts/lalezar'
@@ -207,10 +261,16 @@ import { lalezar } from 'next-persian-fonts/lalezar'
 <html lang="fa" dir="rtl" className={`${vazirmatnVariable.variable} ${lalezar.variable}`}>
 ```
 
+</div>
+
+<div dir="ltr">
+
 ```css
 body { font-family: var(--font-vazirmatn-variable); }
 h1   { font-family: var(--font-lalezar); }
 ```
+
+</div>
 
 با Tailwind v4 هم می‌توانید در `@theme` بنویسید `--font-display: var(--font-lalezar);` و از کلاس `font-display` استفاده کنید. یا ساده‌تر: `lalezar.className` را مستقیم روی همان المان بگذارید.
 </details>
@@ -226,9 +286,14 @@ h1   { font-family: var(--font-lalezar); }
 
 اگر از مسیر هر فونت ایمپورت کنید (`next-persian-fonts/estedad`)، **نه**. فقط اگر از ریشهٔ پکیج ایمپورت می‌کنید (`import { sahel } from 'next-persian-fonts'`، روش قدیمی نسخهٔ ۱.۰) و با webpack می‌سازید، این را در `next.config` اضافه کنید:
 
+<div dir="ltr">
+
 ```js
 experimental: { optimizePackageImports: ['next-persian-fonts'] }
 ```
+
+</div>
+
 </details>
 
 <details>
