@@ -2,6 +2,7 @@ import { CodeBlock } from '@/components/CodeBlock'
 import { CopyButton } from '@/components/CopyButton'
 import { FontGallery } from '@/components/FontGallery'
 import { GitHubIcon, GitHubStarButton } from '@/components/GitHubStarButton'
+import { NpmIcon } from '@/components/NpmIcon'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { familyCount, fonts } from '@/lib/fonts'
 import pkg from 'next-persian-fonts/package.json'
@@ -204,7 +205,10 @@ export default function Home() {
           </nav>
           <div className="ms-auto flex items-center gap-2">
             <GitHubStarButton compact />
-            <a href={NPM} target="_blank" rel="noreferrer" className="hidden rounded-lg border border-zinc-200 px-3 py-1.5 text-sm hover:bg-zinc-100 sm:inline-block dark:border-zinc-800 dark:hover:bg-zinc-800">npm</a>
+            <a href={NPM} target="_blank" rel="noreferrer" className="hidden items-center gap-1.5 rounded-lg border border-zinc-200 px-3 py-1.5 text-sm hover:bg-zinc-100 sm:inline-flex dark:border-zinc-800 dark:hover:bg-zinc-800">
+              <NpmIcon />
+              npm
+            </a>
             <ThemeToggle />
           </div>
         </div>
@@ -381,7 +385,10 @@ export default function Home() {
           </p>
           <nav aria-label="پیوندهای پروژه" className="flex flex-wrap gap-4">
             <a href={GITHUB} target="_blank" rel="noreferrer" className="hover:text-emerald-600">GitHub</a>
-            <a href={NPM} target="_blank" rel="noreferrer" className="hover:text-emerald-600">npm</a>
+            <a href={NPM} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-emerald-600">
+              <NpmIcon className="size-3.5" />
+              npm
+            </a>
             <a href={`${GITHUB}/blob/main/CHANGELOG.md`} target="_blank" rel="noreferrer" className="hover:text-emerald-600">تغییرات</a>
             <a href={`${GITHUB}/issues/new?template=font-request.yml`} target="_blank" rel="noreferrer" className="hover:text-emerald-600">درخواست فونت</a>
           </nav>
