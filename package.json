@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/generate-llms.mjs && next build",
     "start": "node scripts/preview.mjs",
     "lint": "eslint .",
     "fonts:generate": "node scripts/generate-fonts.mjs",
