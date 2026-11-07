@@ -106,7 +106,7 @@ const faq: [string, React.ReactNode][] = [
   [
     'چرا فونت‌ها داخل پکیج هستند و از Google Fonts یا CDN استفاده نمی‌کنیم؟',
     <>
-      وقتی اینترنت ایران از اینترنت جهانی قطع می‌شود، <code dir="ltr" className={code}>next/font/google</code> نمی‌تواند هنگام build فونت را دانلود کند و build شکست می‌خورد؛ فونت‌های CDN هم برای کاربران باز نمی‌شوند. اینجا فایل فونت‌ها همراه <code dir="ltr" className={code}>npm install</code> می‌آیند و Next.js آن‌ها را روی سایت خودتان میزبانی می‌کند، پس همیشه کار می‌کنند. برای همین فونت‌های فارسی Google Fonts (لاله‌زار، نوتو، امیری، مرکزی و…) هم داخل پکیج قرار گرفته‌اند. در گالری با فیلتر «منبع» می‌توانید فقط آن‌ها را ببینید.
+      اگر اینترنت محدود باشد، <code dir="ltr" className={code}>next/font/google</code> ممکن است هنگام build نتواند فونت را دانلود کند و فونت‌های CDN هم برای کاربران باز نشوند. اینجا فایل فونت‌ها همراه <code dir="ltr" className={code}>npm install</code> می‌آیند و Next.js آن‌ها را روی سایت خودتان میزبانی می‌کند، پس همیشه کار می‌کنند. برای همین فونت‌های فارسی Google Fonts (لاله‌زار، نوتو، امیری، مرکزی و…) هم داخل پکیج قرار گرفته‌اند. در گالری با فیلتر «منبع» می‌توانید فقط آن‌ها را ببینید.
     </>,
   ],
   [
@@ -225,7 +225,7 @@ export default function Home() {
               فونت‌های فارسی، <span className="text-emerald-700 dark:text-emerald-400">آماده برای Next.js</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300">
-              {fa(familyCount)} خانوادهٔ فونت فارسی رایگان، داخل خود پکیج، بدون گوگل و CDN؛ حتی وقتی اینترنت بین‌الملل قطع است، سایت و build شما کار می‌کند. برای Vite، Astro و HTML ساده هم <a href="#without-next" className="font-medium text-emerald-700 underline underline-offset-4 hover:text-emerald-800 dark:text-emerald-400">فایل CSS</a> دارد.
+              {fa(familyCount)} خانوادهٔ فونت فارسی رایگان، داخل خود پکیج، بدون گوگل و CDN؛ حتی اگر اینترنت محدود باشد، سایت و build شما کار می‌کند. برای Vite، Astro و HTML ساده هم <a href="#without-next" className="font-medium text-emerald-700 underline underline-offset-4 hover:text-emerald-800 dark:text-emerald-400">فایل CSS</a> دارد.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <div className="flex items-center gap-3 rounded-xl border border-zinc-300 bg-white py-2 pe-2 ps-4 shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
@@ -278,7 +278,7 @@ export default function Home() {
               ))}
             </ol>
             <div className="mb-8 rounded-2xl border border-amber-300/60 bg-amber-50 p-5 text-sm leading-7 text-amber-900 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200">
-              <b>پروژهٔ تازهٔ create-next-app دارید؟</b> در <code dir="ltr" className={code}>app/layout.tsx</code> ایمپورت فونت‌های Geist از <code dir="ltr" className={code}>next/font/google</code> را حذف کنید (به اینترنت جهانی نیاز دارند) و در <code dir="ltr" className={code}>globals.css</code> خط <code dir="ltr" className={code}>font-family: Arial, Helvetica, sans-serif;</code> را از قانون <code dir="ltr" className={code}>body</code> پاک کنید تا جلوی فونت فارسی را نگیرد.
+              <b>پروژهٔ تازهٔ create-next-app دارید؟</b> در <code dir="ltr" className={code}>app/layout.tsx</code> ایمپورت فونت‌های Geist از <code dir="ltr" className={code}>next/font/google</code> را حذف کنید (باید هنگام build از گوگل دانلود شوند) و در <code dir="ltr" className={code}>globals.css</code> خط <code dir="ltr" className={code}>font-family: Arial, Helvetica, sans-serif;</code> را از قانون <code dir="ltr" className={code}>body</code> پاک کنید تا جلوی فونت فارسی را نگیرد.
             </div>
             <h3 className="mb-4 text-lg font-bold">مثال کامل برای کپی</h3>
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">

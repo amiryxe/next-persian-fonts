@@ -14,7 +14,7 @@
   <a href="https://github.com/amiryxe/next-persian-fonts/actions/workflows/ci.yml"><img src="https://github.com/amiryxe/next-persian-fonts/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
 </p>
 
-<p align="center" dir="rtl"><b>فونت‌های فارسی رایگان برای Next.js، داخل خود پکیج. بدون گوگل و CDN، حتی وقتی اینترنت بین‌الملل قطع است.</b></p>
+<p align="center" dir="rtl"><b>فونت‌های فارسی رایگان برای Next.js، داخل خود پکیج. بدون گوگل و CDN، حتی اگر اینترنت محدود باشد.</b></p>
 <p align="center" dir="ltr">Free Persian (Farsi) fonts for Next.js, bundled in the package. No Google, no CDN, works offline.</p>
 
 <p align="center">
@@ -78,7 +78,7 @@ import { vazirmatnVariable } from 'next-persian-fonts/vazirmatn-variable'
 
 تمام! حالا کل سایت با فونت وزیرمتن نمایش داده می‌شود.
 
-> **پروژهٔ تازهٔ create-next-app؟** در `app/layout.tsx` ایمپورت فونت‌های Geist از `next/font/google` را حذف کنید (به اینترنت جهانی نیاز دارند) و در `globals.css` خط `font-family: Arial, Helvetica, sans-serif;` را از قانون `body` پاک کنید تا جلوی فونت فارسی را نگیرد.
+> **پروژهٔ تازهٔ create-next-app؟** در `app/layout.tsx` ایمپورت فونت‌های Geist از `next/font/google` را حذف کنید (باید هنگام build از گوگل دانلود شوند) و در `globals.css` خط `font-family: Arial, Helvetica, sans-serif;` را از قانون `body` پاک کنید تا جلوی فونت فارسی را نگیرد.
 
 ### مثال کامل: App Router
 
@@ -243,7 +243,7 @@ import 'next-persian-fonts/css/vazirmatn-variable.css'
 
 ### چرا آفلاین؟ (برای توسعه‌دهنده‌های ایرانی)
 
-وقتی اینترنت ایران از اینترنت جهانی قطع می‌شود، `next/font/google` نمی‌تواند هنگام build فونت را دانلود کند و build شکست می‌خورد؛ فونت‌های CDN هم برای کاربران باز نمی‌شوند. در این پکیج فایل فونت‌ها همراه `npm install` می‌آیند و Next.js آن‌ها را روی سایت خودتان میزبانی می‌کند. کافی است پکیج یک بار از npm یا یک آینهٔ داخلی نصب شده باشد.
+اگر اینترنت محدود باشد، `next/font/google` ممکن است هنگام build نتواند فونت را دانلود کند و فونت‌های CDN هم برای کاربران باز نشوند. در این پکیج فایل فونت‌ها همراه `npm install` می‌آیند و Next.js آن‌ها را روی سایت خودتان میزبانی می‌کند. کافی است پکیج یک بار از npm یا یک آینهٔ داخلی نصب شده باشد.
 
 ### پرسش‌های رایج
 
@@ -558,7 +558,7 @@ Or in your own CSS: `body { font-family: var(--font-vazirmatn-variable); }`. Imp
 
 ### Why offline?
 
-When Iran is cut off from the global internet, `next/font/google` can't download fonts at build time (the build fails) and CDN fonts don't load. Here the font files come with `npm install` and are self-hosted by Next.js, so they always work.
+If internet access is restricted, `next/font/google` may not download fonts at build time and CDN fonts may not load. Here the font files come with `npm install` and are self-hosted by Next.js, so they always work.
 
 ### FAQ
 
