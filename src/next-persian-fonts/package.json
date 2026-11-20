@@ -27,6 +27,14 @@
       "types": "./vazirmatn-round-dots/index.d.ts",
       "default": "./vazirmatn-round-dots/index.js"
     },
+    "./vazirmatn-soft": {
+      "types": "./vazirmatn-soft/index.d.ts",
+      "default": "./vazirmatn-soft/index.js"
+    },
+    "./vazirmatn-soft-variable": {
+      "types": "./vazirmatn-soft-variable/index.d.ts",
+      "default": "./vazirmatn-soft-variable/index.js"
+    },
     "./sahel": {
       "types": "./sahel/index.d.ts",
       "default": "./sahel/index.js"
@@ -275,6 +283,8 @@
     "vazirmatn",
     "vazirmatn-variable",
     "vazirmatn-round-dots",
+    "vazirmatn-soft",
+    "vazirmatn-soft-variable",
     "sahel",
     "sahel-fd",
     "estedad",

@@ -4,6 +4,8 @@ export const cssFonts: Record<string, { file: string; family: string; className:
   vazirMatn: { file: 'vazirmatn.css', family: 'Vazirmatn', className: 'font-vazirmatn', variable: '--font-vazirmatn' },
   vazirmatnVariable: { file: 'vazirmatn-variable.css', family: 'Vazirmatn Variable', className: 'font-vazirmatn-variable', variable: '--font-vazirmatn-variable' },
   vazirmatnRoundDots: { file: 'vazirmatn-round-dots.css', family: 'Vazirmatn Round Dots', className: 'font-vazirmatn-round-dots', variable: '--font-vazirmatn-round-dots' },
+  vazirmatnSoft: { file: 'vazirmatn-soft.css', family: 'Vazirmatn Soft', className: 'font-vazirmatn-soft', variable: '--font-vazirmatn-soft' },
+  vazirmatnSoftVariable: { file: 'vazirmatn-soft-variable.css', family: 'Vazirmatn Soft Variable', className: 'font-vazirmatn-soft-variable', variable: '--font-vazirmatn-soft-variable' },
   sahel: { file: 'sahel.css', family: 'Sahel', className: 'font-sahel', variable: '--font-sahel' },
   sahelFD: { file: 'sahel-fd.css', family: 'Sahel FD', className: 'font-sahel-fd', variable: '--font-sahel-fd' },
   estedad: { file: 'estedad.css', family: 'Estedad', className: 'font-estedad', variable: '--font-estedad' },

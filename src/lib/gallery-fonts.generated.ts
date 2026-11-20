@@ -26,6 +26,30 @@ export const vazirmatnRoundDots = localFont({
   preload: false,
 })
 
+export const vazirmatnSoft = localFont({
+  src: [
+    { path: '../next-persian-fonts/vazirmatn-soft/VazirmatnSoft-FD-Thin.woff2', weight: '100', style: 'normal' },
+    { path: '../next-persian-fonts/vazirmatn-soft/VazirmatnSoft-FD-ExtraLight.woff2', weight: '200', style: 'normal' },
+    { path: '../next-persian-fonts/vazirmatn-soft/VazirmatnSoft-FD-Light.woff2', weight: '300', style: 'normal' },
+    { path: '../next-persian-fonts/vazirmatn-soft/VazirmatnSoft-FD-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../next-persian-fonts/vazirmatn-soft/VazirmatnSoft-FD-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../next-persian-fonts/vazirmatn-soft/VazirmatnSoft-FD-SemiBold.woff2', weight: '600', style: 'normal' },
+    { path: '../next-persian-fonts/vazirmatn-soft/VazirmatnSoft-FD-Bold.woff2', weight: '700', style: 'normal' },
+    { path: '../next-persian-fonts/vazirmatn-soft/VazirmatnSoft-FD-ExtraBold.woff2', weight: '800', style: 'normal' },
+    { path: '../next-persian-fonts/vazirmatn-soft/VazirmatnSoft-FD-Black.woff2', weight: '900', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
+export const vazirmatnSoftVariable = localFont({
+  src: [
+    { path: '../next-persian-fonts/vazirmatn-soft-variable/VazirmatnSoft-VF.woff2', weight: '100 900', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+})
+
 export const sahel = localFont({
   src: [
     { path: '../next-persian-fonts/sahel/Sahel-VF.woff2', weight: '400 900', style: 'normal' },
