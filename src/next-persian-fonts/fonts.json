@@ -106,6 +106,91 @@
       "googleFonts": true
     },
     {
+      "id": "vazirmatn-soft",
+      "name": "Vazirmatn Soft",
+      "nameFa": "وزیرمتن نرم",
+      "designer": "Matthew Truth (based on Vazirmatn by Saber Rastikerdar)",
+      "category": "sans-serif",
+      "repo": "truthofmatthew/vazirmatn-soft",
+      "version": "1.0.0",
+      "ref": "v1.0.0",
+      "license": "OFL-1.1",
+      "licenseFile": {
+        "from": "OFL.txt",
+        "to": "OFL.txt"
+      },
+      "variants": [
+        {
+          "subpath": "vazirmatn-soft",
+          "export": "vazirmatnSoft",
+          "cssVariable": "--font-vazirmatn-soft",
+          "digits": "persian",
+          "description": "Vazirmatn Soft (rounded Vazirmatn) with Persian (Farsi) digits, 9 static weights (100-900).",
+          "files": [
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/VazirmatnSoft-FD-Thin.woff2",
+              "to": "VazirmatnSoft-FD-Thin.woff2",
+              "weight": "100"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/VazirmatnSoft-FD-ExtraLight.woff2",
+              "to": "VazirmatnSoft-FD-ExtraLight.woff2",
+              "weight": "200"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/VazirmatnSoft-FD-Light.woff2",
+              "to": "VazirmatnSoft-FD-Light.woff2",
+              "weight": "300"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/VazirmatnSoft-FD-Regular.woff2",
+              "to": "VazirmatnSoft-FD-Regular.woff2",
+              "weight": "400"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/VazirmatnSoft-FD-Medium.woff2",
+              "to": "VazirmatnSoft-FD-Medium.woff2",
+              "weight": "500"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/VazirmatnSoft-FD-SemiBold.woff2",
+              "to": "VazirmatnSoft-FD-SemiBold.woff2",
+              "weight": "600"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/VazirmatnSoft-FD-Bold.woff2",
+              "to": "VazirmatnSoft-FD-Bold.woff2",
+              "weight": "700"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/VazirmatnSoft-FD-ExtraBold.woff2",
+              "to": "VazirmatnSoft-FD-ExtraBold.woff2",
+              "weight": "800"
+            },
+            {
+              "from": "misc/Farsi-Digits/fonts/webfonts/VazirmatnSoft-FD-Black.woff2",
+              "to": "VazirmatnSoft-FD-Black.woff2",
+              "weight": "900"
+            }
+          ]
+        },
+        {
+          "subpath": "vazirmatn-soft-variable",
+          "export": "vazirmatnSoftVariable",
+          "cssVariable": "--font-vazirmatn-soft-variable",
+          "digits": "latin",
+          "description": "Vazirmatn Soft variable font (wght 100-900) in a single file, Latin digits.",
+          "files": [
+            {
+              "from": "fonts/webfonts/VazirmatnSoft[wght].woff2",
+              "to": "VazirmatnSoft-VF.woff2",
+              "weight": "100 900"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "sahel",
       "name": "Sahel",
       "nameFa": "ساحل",

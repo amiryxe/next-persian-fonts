@@ -33,7 +33,7 @@
 
 ### ویژگی‌ها
 
-- **۴۴ خانوادهٔ فونت فارسی** و ۶۲ نسخهٔ آماده: وزیرمتن، استعداد، ساحل، صمیم، شبنم، میخک، آراد، پرستو، گندم، تنها، وزیر کد، بهداد، نیکا، سپهر، سورنا، گنجنامه، شهاب، ناهید، نرمال سنس، آریو، رویین، نقطه و ۲۲ فونت فارسی Google Fonts مثل لاله‌زار، نوتو نسخ، نوتو نستعلیق، امیری و بدین.
+- **۴۵ خانوادهٔ فونت فارسی** و ۶۴ نسخهٔ آماده: وزیرمتن، وزیرمتن نرم، استعداد، ساحل، صمیم، شبنم، میخک، آراد، پرستو، گندم، تنها، وزیر کد، بهداد، نیکا، سپهر، سورنا، گنجنامه، شهاب، ناهید، نرمال سنس، آریو، رویین، نقطه و ۲۲ فونت فارسی Google Fonts مثل لاله‌زار، نوتو نسخ، نوتو نستعلیق، امیری و بدین.
 - **کاملاً آفلاین:** فایل فونت‌ها داخل پکیج است؛ build و سایت شما به گوگل یا CDN وابسته نیست.
 - **بدون پرش صفحه (CLS):** بارگذاری با `next/font/local`، پیش‌بارگذاری خودکار و `font-display: swap`.
 - **فقط همان فونتی که ایمپورت می‌کنید** در خروجی می‌آید (هر فونت مسیر جداگانه دارد).
@@ -367,6 +367,7 @@ Usage · استفاده: `import { <Export> } from 'next-persian-fonts/<import>'
 | Font · فونت | Designer · طراح | Import `next-persian-fonts/…` | Export | Weights | License |
 |---|---|---|---|---|---|
 | **Vazirmatn**<br>وزیرمتن | Saber Rastikerdar | `vazirmatn`<br>`vazirmatn-variable`<br>`vazirmatn-round-dots` | `vazirMatn` ¹<br>`vazirmatnVariable`<br>`vazirmatnRoundDots` | 100–900 (9) | OFL-1.1 |
+| **Vazirmatn Soft**<br>وزیرمتن نرم | Matthew Truth | `vazirmatn-soft`<br>`vazirmatn-soft-variable` | `vazirmatnSoft`<br>`vazirmatnSoftVariable` | 100–900 (9) | OFL-1.1 |
 | **Sahel**<br>ساحل | Saber Rastikerdar | `sahel`<br>`sahel-fd` | `sahel`<br>`sahelFD` ¹ | 400–900 variable | OFL-1.1 |
 | **Estedad**<br>استعداد | Amin Abedi | `estedad` | `estedad` | 100–900 variable | OFL-1.1 |
 | **Samim**<br>صمیم | Saber Rastikerdar | `samim`<br>`samim-fd` | `samim`<br>`samimFD` ¹ | 400, 500, 700 | OFL-1.1 + Vera |
@@ -433,7 +434,7 @@ Missing a font? Suggest it with the [font request form](https://github.com/amiry
 
 ### Features
 
-- **44 Persian font families**, 62 ready-to-use exports: Vazirmatn, Estedad, Sahel, Samim, Shabnam, Mikhak, Arad, Parastoo, Gandom, Tanha, Vazir Code, Behdad, Nika, Sepehr, Sorena, Ganjnameh, Shahab, Nahid, Normal Sans, Ario, Rooyin, Noqte, plus 22 Persian-capable Google Fonts (Lalezar, Noto Naskh/Sans/Kufi Arabic, Noto Nastaliq Urdu, Amiri, IBM Plex Sans Arabic, …).
+- **45 Persian font families**, 64 ready-to-use exports: Vazirmatn, Vazirmatn Soft, Estedad, Sahel, Samim, Shabnam, Mikhak, Arad, Parastoo, Gandom, Tanha, Vazir Code, Behdad, Nika, Sepehr, Sorena, Ganjnameh, Shahab, Nahid, Normal Sans, Ario, Rooyin, Noqte, plus 22 Persian-capable Google Fonts (Lalezar, Noto Naskh/Sans/Kufi Arabic, Noto Nastaliq Urdu, Amiri, IBM Plex Sans Arabic, …).
 - **Fully offline:** font files ship inside the package; your build and site never depend on Google or a CDN.
 - **No layout shift:** loaded with `next/font/local`, preloaded automatically, `font-display: swap`.
 - **Only what you import** ends up in your build (one subpath per font).
